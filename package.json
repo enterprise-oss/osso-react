@@ -1,0 +1,8 @@
+{
+  "name": "osso",
+  "version": "1.0.0",
+  "description": "React components for Osso",
+  "main": "index.js",
+  "author": "sbauch",
+  "license": "MIT"
+}
