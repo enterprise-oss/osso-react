@@ -17,7 +17,10 @@ const InputComponent = ({ label, ...inputProps }) => (
 function App() {
   const [provider, setProvider] = useState();
   const { providers, fieldsForProvider } = useOssoFields();
-  // Provided by client side Osso hook
+
+  // Provided by client side Osso hook - pass the desired service to 
+  // the function to receive an object describing the fields needed to 
+  // configure an Identity Provider instance for that service
   const providerDetails = fieldsForProvider(activeIdentityProvider.value);
 
   // Normally provided by GraphQL-based Osso hook, data here is mocked
@@ -26,7 +29,6 @@ function App() {
     service: activeIdentityProvider.value,
     acsUrl: 'http://demo.ossoapp.io/auth/saml/2fdb5db6-4fcd-4872-80e2-6c59137370ef/callback',
   };
-
 
 
   return (
