@@ -1,1 +1,1 @@
-export { OssoInput, OssoInputProps, OssoProviderDetails } from '../../types';
+export { IdentityProvider, OssoInput, OssoInputProps, OssoProviderDetails } from '../../types';

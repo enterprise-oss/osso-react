@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { EnterpriseAccountData } from './index.types';
 
 const ACCOUNTS_QUERY = gql`
-  {
+  query EnterpriseAccounts {
     enterpriseAccounts {
       id
       domain

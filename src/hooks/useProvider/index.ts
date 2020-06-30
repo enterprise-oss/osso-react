@@ -1,25 +1,15 @@
-import OssoContext from '../../apollo';
 import { ApolloError } from 'apollo-client';
 import { gql } from 'apollo-boost';
 import { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import OssoContext from '../../apollo';
+
 const PROVIDER_QUERY = gql`
   query IdentityProvider($id: ID!) {
-    identityProvider: samlProvider(id: $id) {
+    identityProvider(id: $id) {
       id
-      provider
-    }
-  }
-`;
-
-const SET_PROVIDER = gql`
-  mutation SetProvider($id: ID!, $provider: IdentityProvider!) {
-    setSamlProvider(input: { id: $id, provider: $provider }) {
-      identityProvider: samlProvider {
-        id
-        provider
-      }
+      service
     }
   }
 `;
@@ -40,16 +30,6 @@ const useProvider = (
   const { data, loading, error } = useQuery(PROVIDER_QUERY, {
     variables: { providerId },
   });
-
-  // const setProviderService = (id: string, provider: Providers) => {
-  //   client.mutate({
-  //     mutation: SET_PROVIDER,
-  //     variables: {
-  //       id,
-  //       provider,
-  //     },
-  //   });
-  // };
 
   return {
     data,

@@ -8,6 +8,7 @@ const providers: ProviderMap<Providers> = {
       {
         name: 'acsUrl',
         inputProps: {
+          id: 'osso-acs-url',
           label: 'Reply URL (Assertion Consumer Service URL)',
           type: 'text',
           readOnly: true,
@@ -17,6 +18,7 @@ const providers: ProviderMap<Providers> = {
       {
         name: 'id',
         inputProps: {
+          id: 'osso-entity-id',
           label: 'Identifier (Entity ID)',
           type: 'text',
           readOnly: true,
@@ -36,6 +38,7 @@ const providers: ProviderMap<Providers> = {
       {
         name: 'acsUrl',
         inputProps: {
+          id: 'osso-acs-url',
           label: 'Single Sign On URL',
           type: 'text',
           readOnly: true,
@@ -45,6 +48,7 @@ const providers: ProviderMap<Providers> = {
       {
         name: 'id',
         inputProps: {
+          id: 'osso-entity-id',
           label: 'SP Audience ID',
           type: 'text',
           readOnly: true,

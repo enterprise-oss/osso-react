@@ -4,6 +4,7 @@ export enum Providers {
 }
 
 export interface OssoInputProps {
+  id: string;
   label: string;
   value?: string;
   type: 'text' | 'file';
@@ -27,7 +28,7 @@ export type OssoProviderDetails = {
   idpMetadata: boolean;
 };
 
-interface IdentityProvider {
+export interface IdentityProvider {
   id: string;
   service: Providers;
   acsUrl?: string;
