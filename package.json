@@ -6,6 +6,9 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "author": "sbauch",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "license": "MIT",
   "scripts": {
     "lint": "eslint --fix",
