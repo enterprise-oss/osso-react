@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint --fix",
     "build": "rollup -c",
-    "develop": "rollup -c --watch"
+    "develop": "rollup -c rollup-dev.config.js --watch"
   },
   "devDependencies": {
     "@types/node": "^14.0.14",
