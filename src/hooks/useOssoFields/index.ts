@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { OssoProviderDetails, ProviderMap, Providers } from './index.types';
 
 const providers: ProviderMap<Providers> = {

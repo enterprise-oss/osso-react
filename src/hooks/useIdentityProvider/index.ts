@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/react-hooks';
 import OssoContext from '../../apollo';
 import { Providers } from '../useOssoFields/index.types';
 import { ACCOUNT_QUERY } from '../useEnterpriseAccount/index';
-import { EnterpriseAccount } from '../useEnterpriseAccounts/index.types';
+import { EnterpriseAccount } from './index.types';
 
 const CREATE_PROVIDER = gql`
   mutation CreateIdentityProvider($enterpriseAccountId: ID!, $providerService: IdentityProviderService!) {

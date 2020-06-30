@@ -3,7 +3,7 @@ import { ApolloError } from 'apollo-client';
 import { gql } from 'apollo-boost';
 import { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { EnterpriseAccount } from '../useEnterpriseAccounts/index.types';
+import { EnterpriseAccount } from './index.types';
 
 export const ACCOUNT_QUERY = gql`
   query EnterpriseAccount($domain: String!) {
