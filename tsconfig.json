@@ -10,6 +10,12 @@
     "esModuleInterop": true,
     "moduleResolution": "Node",
     "skipLibCheck": false,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "~*": [
+        "./src/*"
+      ]
+    }
   }
 }

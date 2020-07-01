@@ -1,4 +1,4 @@
-import OssoContext from '../../apollo';
+import OssoContext from '~/apollo';
 import { ApolloError } from 'apollo-client';
 import { gql } from 'apollo-boost';
 import { useContext } from 'react';

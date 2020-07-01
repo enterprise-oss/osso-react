@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost';
 import { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
-import OssoContext from '../../apollo';
+import OssoContext from '~/apollo';
 
 const PROVIDER_QUERY = gql`
   query IdentityProvider($id: ID!) {

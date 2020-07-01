@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost';
 import { useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import OssoContext from '../../apollo';
+import OssoContext from '~/apollo';
 import { Providers } from '../useOssoFields/index.types';
 import { ACCOUNT_QUERY } from '../useEnterpriseAccount/index';
 import { EnterpriseAccount } from './index.types';

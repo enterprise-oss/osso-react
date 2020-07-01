@@ -1,1 +1,1 @@
-export { OssoProviderDetails, ProviderMap, Providers } from '../../types';
+export { OssoProviderDetails, ProviderMap, Providers } from '~/types';
