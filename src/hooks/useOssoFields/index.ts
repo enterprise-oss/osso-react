@@ -66,7 +66,9 @@ const useOssoFields = (): {
   fieldsForProvider: (provider: Providers) => OssoProviderDetails;
   providers: ProviderMap<Providers>;
 } => {
-  const fieldsForProvider = (provider: Providers) => providers[provider];
+  const fieldsForProvider = (provider: Providers) => {
+    return providers[provider];
+  };
 
   return {
     providers,

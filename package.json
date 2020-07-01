@@ -1,6 +1,6 @@
 {
   "name": "@enterprise-oss/osso",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -11,27 +11,34 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
-    "develop": "rollup -c rollup-dev.config.js --watch",
+    "build": "tsc && rollup -c",
+    "clean": "rm -rf dist",
+    "develop": "tsc && rollup -c rollup-dev.config.js --watch",
     "lint": "eslint --fix",
-    "test": "jest",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "jest"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
     "@types/node": "^14.0.14",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
+    "babel-jest": "^26.1.0",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.1.0",
     "prettier": "^2.0.5",
     "rollup": "^2.18.1",
     "rollup-plugin-typescript2": "^0.27.1",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
@@ -40,10 +47,18 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "graphql": "^15.1.0",
-    "react-apollo": "^3.1.5",
-    "typescript": "^3.9.5"
+    "react-apollo": "^3.1.5"
   },
   "peerDependencies": {
     "react": "^16.13.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/examples"
+    ]
   }
 }

@@ -1,1 +1,3 @@
-export * from './OssoGeneratedFields';
+import OssoGeneratedFields from './OssoGeneratedFields';
+
+export { OssoGeneratedFields };

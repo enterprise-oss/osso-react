@@ -1,5 +1,4 @@
 import OssoContext, { OssoProvider } from './apollo';
-
-export * from './components/index';
+import { OssoGeneratedFields } from './components/index';
 export * from './hooks/index';
-export { OssoContext, OssoProvider };
+export { OssoGeneratedFields, OssoContext, OssoProvider };

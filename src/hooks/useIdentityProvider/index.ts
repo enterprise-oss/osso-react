@@ -1,29 +1,23 @@
 import { ApolloError } from 'apollo-client';
 import { gql } from 'apollo-boost';
 import { useContext } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 
 import OssoContext from '../../apollo';
-import { Providers } from '../useOssoFields/index.types';
-import { ACCOUNT_QUERY } from '../useEnterpriseAccount/index';
-import { EnterpriseAccount } from './index.types';
 
-const CREATE_PROVIDER = gql`
-  mutation CreateIdentityProvider($enterpriseAccountId: ID!, $providerService: IdentityProviderService!) {
-    createIdentityProvider(input: { enterpriseAccountId: $enterpriseAccountId, providerService: $providerService }) {
-      identityProvider {
-        id
-        domain
-        enterpriseAccountId
-        service
-        acsUrl
-      }
+const PROVIDER_QUERY = gql`
+  query IdentityProvider($id: ID!) {
+    identityProvider(id: $id) {
+      id
+      service
+      acsUrl
     }
   }
 `;
 
-const useIdentityProvider = (): {
-  createProvider: (enterpriseAccountId: string, providerService: Providers) => void;
+const useProvider = (
+  providerId: string,
+): {
   data: any | any[];
   loading: boolean;
   error?: ApolloError;
@@ -34,45 +28,16 @@ const useIdentityProvider = (): {
     throw new Error('useProvider must be used inside an OssoProvider');
   }
 
-  const [createProvider, { data, loading, error }] = useMutation(CREATE_PROVIDER, {
+  const { data, loading, error } = useQuery(PROVIDER_QUERY, {
+    variables: { id: providerId },
     client,
-    update(
-      cache,
-      {
-        data: {
-          createIdentityProvider: { identityProvider },
-        },
-      },
-    ) {
-      const data = cache.readQuery({
-        query: ACCOUNT_QUERY,
-        variables: { domain: identityProvider.domain },
-      });
-
-      const enterpriseAccount: EnterpriseAccount | null = (data as any).enterpriseAccount;
-
-      if (!enterpriseAccount) return;
-
-      cache.writeQuery({
-        query: ACCOUNT_QUERY,
-        variables: { domain: identityProvider.domain },
-        data: {
-          enterpriseAccount: {
-            ...enterpriseAccount,
-            identityProviders: [...enterpriseAccount.identityProviders, identityProvider],
-          },
-        },
-      });
-    },
   });
 
   return {
-    createProvider: (enterpriseAccountId: string, providerService: Providers) =>
-      createProvider({ variables: { enterpriseAccountId, providerService } }),
     data,
     loading,
     error,
   };
 };
 
-export default useIdentityProvider;
+export default useProvider;

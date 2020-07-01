@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import CSS from 'csstype';
 import { IdentityProvider, OssoInput, OssoInputProps, OssoProviderDetails } from './index.types';
 
@@ -12,17 +12,13 @@ export default function OssoGeneratedFields({
   identityProvider: IdentityProvider;
   InputComponent: React.FC<OssoInputProps>;
   containerStyle?: CSS.Properties;
-}): any {
+}): ReactElement {
   return (
-    <form style={containerStyle}>
+    <div style={containerStyle}>
       {providerDetails.ossoGeneratedFields.map((field: OssoInput) => (
-        <InputComponent
-          key={field.name}
-          {...field.inputProps}
-          value={identityProvider[field.name as keyof IdentityProvider]}
-        />
+        <InputComponent key={field.name} {...field.inputProps} value={identityProvider[field.name]} />
       ))}
-    </form>
+    </div>
   );
 }
 
