@@ -1,11 +1,12 @@
-import { ApolloError } from 'apollo-client';
-import { gql } from 'apollo-boost';
-import { useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { ApolloError } from 'apollo-client';
+import { useContext } from 'react';
 
 import OssoContext from '~/apollo';
-import { Providers } from '../useOssoFields/index.types';
+
 import { ACCOUNT_QUERY } from '../useEnterpriseAccount/index';
+import { Providers } from '../useOssoFields/index.types';
 import { EnterpriseAccount } from './index.types';
 
 const CREATE_PROVIDER = gql`

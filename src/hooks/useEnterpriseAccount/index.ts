@@ -1,8 +1,10 @@
-import OssoContext from '~/apollo';
-import { ApolloError } from 'apollo-client';
-import { gql } from 'apollo-boost';
-import { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { ApolloError } from 'apollo-client';
+import { useContext } from 'react';
+
+import OssoContext from '~/apollo';
+
 import { EnterpriseAccount } from './index.types';
 
 export const ACCOUNT_QUERY = gql`

@@ -1,5 +1,6 @@
-import React, { ReactElement } from 'react';
 import CSS from 'csstype';
+import React, { ReactElement } from 'react';
+
 import { IdentityProvider, OssoInput, OssoInputProps, OssoProviderDetails } from './index.types';
 
 export default function OssoGeneratedFields({

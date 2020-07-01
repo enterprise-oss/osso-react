@@ -1,7 +1,7 @@
-import React, { createContext, ReactElement } from 'react';
-import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
+import React, { createContext, ReactElement } from 'react';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({

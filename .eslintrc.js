@@ -23,8 +23,10 @@ module.exports = {
     'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
     'plugin:prettier/recommended',
   ],
+  plugins: ['simple-import-sort'],
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    'sort-imports': 'off',
+    'import/order': 'off',
+    'simple-import-sort/sort': 'error',
   },
 };
