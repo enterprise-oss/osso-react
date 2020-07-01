@@ -19,55 +19,31 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@apollo/react-hooks": "^3.1.5",
-    "@babel/core": "^7.10.4",
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-info": "^5.3.19",
-    "@storybook/addon-knobs": "^5.3.19",
-    "@storybook/addon-links": "^5.3.19",
-    "@storybook/addons": "^5.3.19",
-    "@storybook/react": "^5.3.19",
     "@types/node": "^14.0.14",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
-    "apollo-boost": "^0.4.9",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-client": "^2.6.10",
-    "apollo-link-http": "^1.5.17",
-    "babel-loader": "^8.1.0",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
-    "graphql": "^15.1.0",
-    "jest": "^26.1.0",
     "prettier": "^2.0.5",
-    "react-docgen-typescript-loader": "^3.7.2",
     "rollup": "^2.18.1",
     "rollup-plugin-typescript2": "^0.27.1",
-    "ts-loader": "^7.0.5",
-    "tslib": "^2.0.0",
-    "typescript": "^3.9.5"
+    "tslib": "^2.0.0"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
-    "antd": "^4.4.0",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "graphql": "^15.1.0",
-    "react": "^16.13.1"
+    "react-apollo": "^3.1.5",
+    "typescript": "^3.9.5"
   },
   "peerDependencies": {
-    "@apollo/react-hooks": "^3.1.5",
-    "apollo-boost": "^0.4.9",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-client": "^2.6.10",
-    "apollo-link-http": "^1.5.17",
-    "graphql": "^15.1.0",
     "react": "^16.13.1"
   }
 }
