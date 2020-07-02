@@ -7,9 +7,10 @@ export interface OssoInputProps {
   id: string;
   label: string;
   value?: string;
-  type: 'text' | 'file';
+  type: 'text' | 'textarea' | 'file';
   readOnly: boolean;
   copyable?: boolean;
+  onChange?: (value: string) => void;
 }
 
 export interface OssoInput {
@@ -17,15 +18,20 @@ export interface OssoInput {
   inputProps: OssoInputProps;
 }
 
-export type ProviderMap<T extends string> = { [key in T]: OssoProviderDetails };
+export type ProviderMap<T extends string> = { [key in T]: OssoProvider };
 
-export type OssoProviderDetails = {
+type IdpGeneratedFieldKeys = 'metadataXml' | 'metadataUrl' | 'manual';
+
+type IdpGeneratedFields<T extends IdpGeneratedFieldKeys> = {
+  [key in T]?: OssoInputProps | OssoInput[];
+};
+
+export type OssoProvider = {
   value: Providers;
   label: string;
   ossoGeneratedFields: OssoInput[];
-  idpGeneratedFields: OssoInput[];
+  idpGeneratedFields: IdpGeneratedFields<Partial<IdpGeneratedFieldKeys>>;
   serviceProviderMetadata: boolean;
-  idpMetadata: boolean;
 };
 
 export interface IdentityProvider {
@@ -52,3 +58,9 @@ export interface EnterpriseAccount {
 export interface EnterpriseAccountData {
   enterpriseAccounts: EnterpriseAccount[];
 }
+
+export type IdentityProviderFormState = {
+  service?: Providers;
+  ssoUrl?: string;
+  ssoCert?: string;
+};

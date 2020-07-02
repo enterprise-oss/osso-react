@@ -4,14 +4,13 @@ import { ApolloError } from 'apollo-client';
 import { useContext } from 'react';
 
 import OssoContext from '~/apollo';
+import { ACCOUNT_QUERY } from '~/hooks/useEnterpriseAccount/index';
 
-import { ACCOUNT_QUERY } from '../useEnterpriseAccount/index';
-import { Providers } from '../useOssoFields/index.types';
-import { EnterpriseAccount } from './index.types';
+import { EnterpriseAccount, Providers } from './index.types';
 
 const CREATE_PROVIDER = gql`
-  mutation CreateIdentityProvider($enterpriseAccountId: ID!, $providerService: IdentityProviderService!) {
-    createIdentityProvider(input: { enterpriseAccountId: $enterpriseAccountId, providerService: $providerService }) {
+  mutation CreateIdentityProvider($input: CreateIdentityProviderInput!) {
+    createIdentityProvider(input: $input) {
       identityProvider {
         id
         domain
@@ -25,14 +24,14 @@ const CREATE_PROVIDER = gql`
 
 const createIdentityProvider = (): {
   createProvider: (enterpriseAccountId: string, providerService: Providers) => void;
-  data: any | any[];
+  data?: EnterpriseAccount[];
   loading: boolean;
   error?: ApolloError;
 } => {
   const client = useContext(OssoContext);
 
   if (client === undefined) {
-    throw new Error('useProvider must be used inside an OssoProvider');
+    throw new Error('createIdentityProvider must be used inside an OssoProvider');
   }
 
   const [createProvider, { data, loading, error }] = useMutation(CREATE_PROVIDER, {
@@ -45,12 +44,12 @@ const createIdentityProvider = (): {
         },
       },
     ) {
-      const data = cache.readQuery({
+      const data: { enterpriseAccount: EnterpriseAccount } | null = cache.readQuery({
         query: ACCOUNT_QUERY,
         variables: { domain: identityProvider.domain },
       });
 
-      const enterpriseAccount: EnterpriseAccount | null = (data as any).enterpriseAccount;
+      const enterpriseAccount = data?.enterpriseAccount;
 
       if (!enterpriseAccount) return;
 
@@ -68,7 +67,7 @@ const createIdentityProvider = (): {
   });
 
   return {
-    createProvider: (enterpriseAccountId: string, providerService: Providers) =>
+    createProvider: (enterpriseAccountId: string, providerService?: Providers) =>
       createProvider({ variables: { enterpriseAccountId, providerService } }),
     data,
     loading,

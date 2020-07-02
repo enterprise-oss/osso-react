@@ -5,12 +5,16 @@ import { useContext } from 'react';
 
 import OssoContext from '~/apollo';
 
+import { IdentityProvider } from './index.types';
+
 const PROVIDER_QUERY = gql`
   query IdentityProvider($id: ID!) {
     identityProvider(id: $id) {
       id
       service
       acsUrl
+      ssoCert
+      ssoUrl
     }
   }
 `;
@@ -18,7 +22,7 @@ const PROVIDER_QUERY = gql`
 const useProvider = (
   providerId: string,
 ): {
-  data: any | any[];
+  data?: { identityProvider: IdentityProvider };
   loading: boolean;
   error?: ApolloError;
 } => {

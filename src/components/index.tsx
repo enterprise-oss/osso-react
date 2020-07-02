@@ -1,3 +1,4 @@
+import IdpGeneratedFields from './IdpGeneratedFields';
 import OssoGeneratedFields from './OssoGeneratedFields';
 
-export { OssoGeneratedFields };
+export { IdpGeneratedFields, OssoGeneratedFields };

@@ -1,23 +1,31 @@
 import CSS from 'csstype';
 import React, { ReactElement } from 'react';
 
-import { IdentityProvider, OssoInput, OssoInputProps, OssoProviderDetails } from './index.types';
+import { useIdentityProvider, useOssoFields } from '~/hooks';
+
+import { IdentityProvider, OssoInput, OssoInputProps } from './index.types';
 
 export default function OssoGeneratedFields({
-  providerDetails,
   identityProvider,
   InputComponent,
   containerStyle,
 }: {
-  providerDetails: OssoProviderDetails;
-  identityProvider: IdentityProvider;
+  identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;
   InputComponent: React.FC<OssoInputProps>;
   containerStyle?: CSS.Properties;
-}): ReactElement {
+}): ReactElement | null {
+  const { loading, data } = useIdentityProvider(identityProvider.id);
+  const { fieldsForProvider } = useOssoFields();
+  if (loading || !data) return null;
+
+  const providerDetails = fieldsForProvider(data.identityProvider.service);
+  const fullIdentityProvider = Object.assign(identityProvider, data?.identityProvider);
+
   return (
     <div style={containerStyle}>
-      {providerDetails.ossoGeneratedFields.map((field: OssoInput) => (
-        <InputComponent key={field.name} {...field.inputProps} value={identityProvider[field.name]} />
+      {loading && <p>Loading</p>}
+      {providerDetails?.ossoGeneratedFields.map((field: OssoInput) => (
+        <InputComponent key={field.name} {...field.inputProps} value={fullIdentityProvider[field.name]} />
       ))}
     </div>
   );
@@ -26,7 +34,7 @@ export default function OssoGeneratedFields({
 const HTMLInputComponent = ({ label, ...inputProps }: OssoInputProps) => (
   <label>
     {label}
-    <input {...inputProps} />
+    <input {...inputProps} onChange={undefined} />
   </label>
 );
 

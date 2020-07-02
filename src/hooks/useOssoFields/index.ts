@@ -1,69 +1,13 @@
-import { OssoProviderDetails, ProviderMap, Providers } from './index.types';
+import { OssoProvider, ProviderMap, Providers } from './index.types';
+import { azure, okta } from './providers';
 
 const providers: ProviderMap<Providers> = {
-  [Providers.Azure]: {
-    value: Providers.Azure,
-    label: 'Azure',
-    ossoGeneratedFields: [
-      {
-        name: 'acsUrl',
-        inputProps: {
-          id: 'osso-acs-url',
-          label: 'Reply URL (Assertion Consumer Service URL)',
-          type: 'text',
-          readOnly: true,
-          copyable: true,
-        },
-      },
-      {
-        name: 'id',
-        inputProps: {
-          id: 'osso-entity-id',
-          label: 'Identifier (Entity ID)',
-          type: 'text',
-          readOnly: true,
-          copyable: true,
-        },
-      },
-    ],
-    idpGeneratedFields: [],
-    serviceProviderMetadata: false,
-    idpMetadata: true,
-  },
-
-  [Providers.Okta]: {
-    value: Providers.Okta,
-    label: 'Okta',
-    ossoGeneratedFields: [
-      {
-        name: 'acsUrl',
-        inputProps: {
-          id: 'osso-acs-url',
-          label: 'Single Sign On URL',
-          type: 'text',
-          readOnly: true,
-          copyable: true,
-        },
-      },
-      {
-        name: 'id',
-        inputProps: {
-          id: 'osso-entity-id',
-          label: 'SP Audience ID',
-          type: 'text',
-          readOnly: true,
-          copyable: true,
-        },
-      },
-    ],
-    serviceProviderMetadata: false,
-    idpGeneratedFields: [],
-    idpMetadata: true,
-  },
+  [Providers.Azure]: azure,
+  [Providers.Okta]: okta,
 };
 
 const useOssoFields = (): {
-  fieldsForProvider: (provider: Providers) => OssoProviderDetails;
+  fieldsForProvider: (provider: Providers) => OssoProvider;
   providers: ProviderMap<Providers>;
 } => {
   const fieldsForProvider = (provider: Providers) => {
