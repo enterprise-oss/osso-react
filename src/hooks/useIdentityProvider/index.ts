@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost';
 import { ApolloError } from 'apollo-client';
 import { useContext } from 'react';
 
-import OssoContext from '~/apollo';
+import OssoContext from '~/client';
 
 import { IdentityProvider } from './index.types';
 
@@ -26,7 +26,7 @@ const useProvider = (
   loading: boolean;
   error?: ApolloError;
 } => {
-  const client = useContext(OssoContext);
+  const { client } = useContext(OssoContext);
 
   if (client === undefined) {
     throw new Error('useProvider must be used inside an OssoProvider');

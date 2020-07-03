@@ -1,9 +1,9 @@
-import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { ApolloError } from 'apollo-client';
-import { useContext } from 'react';
+import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 
-import OssoContext from '~/apollo';
+import OssoContext from '~/client';
 
 import { EnterpriseAccountData } from './index.types';
 
@@ -19,17 +19,31 @@ const ACCOUNTS_QUERY = gql`
 `;
 
 const useEnterpriseAccounts = (): {
-  data: EnterpriseAccountData;
+  data: EnterpriseAccountData | null;
   loading: boolean;
-  error?: ApolloError;
+  error?: ApolloError | string;
 } => {
-  const client = useContext(OssoContext);
+  const context = useContext(OssoContext);
+  console.log(context);
+  const client = context?.client;
+  console.log(client);
 
-  if (client === undefined) {
-    throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
-  }
+  const [data, setData] = useState({} as EnterpriseAccountData);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(undefined);
 
-  const { data, loading, error } = useQuery(ACCOUNTS_QUERY, { client });
+  useEffect(() => {
+    client
+      ?.query({ query: ACCOUNTS_QUERY })
+      .then((response) => {
+        setData(response?.data);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setError(e);
+        setLoading(false);
+      });
+  }, [client]);
 
   return {
     data,
@@ -39,3 +53,11 @@ const useEnterpriseAccounts = (): {
 };
 
 export default useEnterpriseAccounts;
+
+// if (client === undefined) {
+//   return {
+//     data: null,
+//     loading: false,
+//     error: 'useEnterpriseAccounts must be used inside an OssoProvider',
+//   };
+// }

@@ -49,7 +49,6 @@ export default function IdpGeneratedFields({
   containerStyle?: CSS.Properties;
 }): ReactElement | null {
   const [state, dispatch] = useReducer(configReducer, initialConfigState);
-  console.log(state);
   const { loading, data } = useIdentityProvider(identityProvider.id);
   const { fieldsForProvider } = useOssoFields();
   const { configureProvider } = configureIdentityProvider();

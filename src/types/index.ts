@@ -1,3 +1,6 @@
+import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+import { ReactElement } from 'react';
+
 export enum Providers {
   Azure = 'AZURE',
   Okta = 'OKTA',
@@ -63,4 +66,17 @@ export type IdentityProviderFormState = {
   service?: Providers;
   ssoUrl?: string;
   ssoCert?: string;
+};
+
+export type OssoClientOptions = {
+  uri: string;
+};
+
+export type OssoContextValue = {
+  client?: ApolloClient<NormalizedCacheObject>;
+};
+
+export type OssoProviderProps = {
+  children: ReactElement;
+  client?: OssoClientOptions;
 };

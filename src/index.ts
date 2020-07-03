@@ -1,4 +1,4 @@
-import OssoContext, { OssoProvider } from './apollo';
+import OssoContext, { OssoProvider } from './client';
 import { IdpGeneratedFields, OssoGeneratedFields } from './components/index';
 
 export * from './types/index';
