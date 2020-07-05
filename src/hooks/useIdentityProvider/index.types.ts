@@ -1,3 +1,3 @@
-import { IdentityProvider } from '~/types';
+import { IdentityProvider } from '~types';
 
 export { IdentityProvider };

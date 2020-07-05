@@ -1,9 +1,7 @@
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import { ApolloError } from 'apollo-client';
+import { ApolloError, gql, useQuery } from '@apollo/client';
 import { useContext } from 'react';
 
-import OssoContext from '~/client';
+import OssoContext from '~client';
 
 import { IdentityProvider } from './index.types';
 

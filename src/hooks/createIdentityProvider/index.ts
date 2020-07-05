@@ -1,10 +1,8 @@
-import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import { ApolloError } from 'apollo-client';
+import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
-import OssoContext from '~/client';
-import { ACCOUNT_QUERY } from '~/hooks/useEnterpriseAccount/index';
+import OssoContext from '~client';
+import { ACCOUNT_QUERY } from '~hooks/useEnterpriseAccount/index';
 
 import { EnterpriseAccount, Providers } from './index.types';
 
@@ -67,8 +65,10 @@ const createIdentityProvider = (): {
   });
 
   return {
-    createProvider: (enterpriseAccountId: string, providerService?: Providers) =>
-      createProvider({ variables: { enterpriseAccountId, providerService } }),
+    createProvider: (enterpriseAccountId: string, providerService?: Providers) => {
+      console.log({ variables: { input: { enterpriseAccountId, providerService } } });
+      createProvider({ variables: { input: { enterpriseAccountId, providerService } } });
+    },
     data,
     loading,
     error,

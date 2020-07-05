@@ -1,9 +1,17 @@
 import CSS from 'csstype';
-import React, { ReactElement, useReducer } from 'react';
+import React, { ReactElement, useEffect, useReducer, useState } from 'react';
 
-import { configureIdentityProvider, useIdentityProvider, useOssoFields } from '~/hooks';
+import { configureIdentityProvider, useIdentityProvider, useOssoFields } from '~hooks';
 
-import { IdentityProvider, IdentityProviderFormState, OssoInput, OssoInputProps, Providers } from './index.types';
+import {
+  IdentityProvider,
+  IdentityProviderFormState,
+  IdpGeneratedFieldKeys,
+  IdpGeneratedFields,
+  OssoInput,
+  OssoInputProps,
+  Providers,
+} from './index.types';
 
 const initialConfigState: IdentityProviderFormState = {
   service: undefined,
@@ -15,7 +23,8 @@ type Action =
   | { field: keyof IdentityProviderFormState; value: string }
   | { field: 'service'; value: Providers }
   | { field: 'metadataXml'; value: string }
-  | { field: 'metadataUrl'; value: string };
+  | { field: 'metadataUrl'; value: string }
+  | { field: '*'; value: IdentityProviderFormState };
 
 function configReducer(state: IdentityProviderFormState, action: Action): IdentityProviderFormState {
   switch (action.field) {
@@ -30,12 +39,13 @@ function configReducer(state: IdentityProviderFormState, action: Action): Identi
       return state;
     case 'metadataUrl':
       // TODO: fetch, parse and return;
-
       return state;
+    case '*':
+      return { ...state, ...action.value };
   }
 }
 
-export default function IdpGeneratedFields({
+export default function IdpGeneratedFieldsComponent({
   identityProvider,
   InputComponent,
   UploadComponent,
@@ -49,24 +59,38 @@ export default function IdpGeneratedFields({
   containerStyle?: CSS.Properties;
 }): ReactElement | null {
   const [state, dispatch] = useReducer(configReducer, initialConfigState);
+  const [fields, setFields] = useState<IdpGeneratedFields<IdpGeneratedFieldKeys>>({
+    metadataUrl: undefined,
+    metadataXml: undefined,
+    manual: [],
+  });
   const { loading, data } = useIdentityProvider(identityProvider.id);
   const { fieldsForProvider } = useOssoFields();
   const { configureProvider } = configureIdentityProvider();
 
-  if (loading || !data) return null;
+  const fullIdentityProvider = Object.assign(identityProvider, data?.identityProvider) as IdentityProvider;
 
-  const providerDetails = fieldsForProvider(data.identityProvider.service);
-  const { idpGeneratedFields } = providerDetails;
-  const fullIdentityProvider = Object.assign(identityProvider, data?.identityProvider);
+  useEffect(() => {
+    dispatch({
+      field: '*',
+      value: {
+        service: fullIdentityProvider.service,
+        ssoUrl: fullIdentityProvider.ssoUrl,
+        ssoCert: fullIdentityProvider.ssoCert,
+      },
+    });
+
+    const providerDetails = fieldsForProvider(fullIdentityProvider.service);
+    if (providerDetails) setFields(providerDetails.idpGeneratedFields);
+  }, [loading]);
+
+  const { metadataUrl, metadataXml, manual } = fields;
 
   return (
     <div style={containerStyle}>
-      {loading && <p>Loading</p>}
-
-      {idpGeneratedFields?.metadataXml && <UploadComponent {...(idpGeneratedFields?.metadataXml as OssoInputProps)} />}
-      {idpGeneratedFields?.metadataUrl && <InputComponent {...(idpGeneratedFields?.metadataUrl as OssoInputProps)} />}
-
-      {(idpGeneratedFields?.manual as OssoInput[]).map((field: OssoInput) => (
+      {metadataXml && <UploadComponent {...(metadataXml as OssoInputProps)} />}
+      {metadataUrl && <InputComponent {...(metadataUrl as OssoInputProps)} />}
+      {(manual as OssoInput[])?.map((field: OssoInput) => (
         <InputComponent
           key={field.name}
           onChange={(value) =>
@@ -76,7 +100,7 @@ export default function IdpGeneratedFields({
             })
           }
           {...field.inputProps}
-          value={fullIdentityProvider[field.name]}
+          value={state[field.name as keyof IdentityProviderFormState]}
         />
       ))}
       <ButtonComponent onClick={() => configureProvider(fullIdentityProvider.id, state)}>Save</ButtonComponent>
@@ -100,7 +124,7 @@ const HTMLInputComponent = ({ label, onChange, ...inputProps }: OssoInputProps) 
   </label>
 );
 
-IdpGeneratedFields.defaultProps = {
+IdpGeneratedFieldsComponent.defaultProps = {
   ButtonComponent: HTMLButtonComponent,
   InputComponent: HTMLInputComponent,
   UploadComponent: HTMLInputComponent,

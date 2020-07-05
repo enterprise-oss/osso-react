@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.5-alpha.11",
+  "version": "0.0.5-alpha.16",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -11,8 +11,9 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
-    "build": "tsc && rollup -c",
+    "build": "rollup -c",
     "clean": "rm -rf dist",
+    "yalc-dev": "yalc-watch",
     "develop": "tsc && rollup -c rollup-dev.config.js --watch",
     "lint": "tsc && eslint ./src --fix",
     "test": "jest"
@@ -29,7 +30,7 @@
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
-    "babel-jest": "^26.1.0",
+    "babel-jest": "^24.9.0",
     "babel-plugin-root-import": "^6.5.0",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
@@ -38,28 +39,22 @@
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "rollup": "^2.18.1",
     "rollup-plugin-root-import": "^1.0.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "tslib": "^2.0.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "yalc-watch": "^0.0.6"
   },
   "dependencies": {
-    "@apollo/react-hooks": "^3.1.5",
-    "apollo-boost": "^0.4.9",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-client": "^2.6.10",
-    "apollo-link-http": "^1.5.17",
-    "graphql": "^15.1.0",
-    "react-apollo": "^3.1.5"
+    "@apollo/client": "^3.0.0-rc.10",
+    "graphql": "^15.1.0"
   },
   "peerDependencies": {
     "react": "^16.13.1"
   },
-  "bundledDependencies": [
-    "@apollo/react-hooks"
-  ],
   "jest": {
     "moduleNameMapper": {
       "\\.(png|svg)$": "<rootDir>/__mocks__/fileMock.js",
@@ -69,8 +64,12 @@
       "<rootDir>/examples"
     ],
     "files": [
-      "dist",
-      "examples"
+      "dist"
     ]
+  },
+  "yalcWatch": {
+    "watchFolder": "dist",
+    "buildWatchCommand": "tsc && rollup -c rollup-dev.config.js --watch",
+    "extensions": "js,png,svg,gif,jpeg,css,map"
   }
 }

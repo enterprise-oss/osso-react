@@ -1,5 +1,4 @@
 import './index.css';
-import 'antd/dist/antd.css';
 
 import { OssoProvider } from '@enterprise-oss/osso';
 import React from 'react';

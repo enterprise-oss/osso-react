@@ -1,4 +1,4 @@
-import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ReactElement } from 'react';
 
 export enum Providers {
@@ -23,9 +23,9 @@ export interface OssoInput {
 
 export type ProviderMap<T extends string> = { [key in T]: OssoProvider };
 
-type IdpGeneratedFieldKeys = 'metadataXml' | 'metadataUrl' | 'manual';
+export type IdpGeneratedFieldKeys = 'metadataXml' | 'metadataUrl' | 'manual';
 
-type IdpGeneratedFields<T extends IdpGeneratedFieldKeys> = {
+export type IdpGeneratedFields<T extends IdpGeneratedFieldKeys> = {
   [key in T]?: OssoInputProps | OssoInput[];
 };
 
@@ -70,6 +70,7 @@ export type IdentityProviderFormState = {
 
 export type OssoClientOptions = {
   uri: string;
+  cors?: string;
 };
 
 export type OssoContextValue = {

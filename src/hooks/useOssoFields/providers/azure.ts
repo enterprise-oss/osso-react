@@ -1,4 +1,4 @@
-import { OssoProvider, Providers } from '~/types';
+import { OssoProvider, Providers } from '~types';
 
 export default {
   value: Providers.Azure,
@@ -7,7 +7,7 @@ export default {
     {
       name: 'acsUrl',
       inputProps: {
-        id: 'osso-acs-url',
+        id: 'osso-azure-acs-url',
         label: 'Reply URL (Assertion Consumer Service URL)',
         type: 'text',
         readOnly: true,
@@ -17,7 +17,7 @@ export default {
     {
       name: 'id',
       inputProps: {
-        id: 'osso-entity-id',
+        id: 'osso-azure-entity-id',
         label: 'Identifier (Entity ID)',
         type: 'text',
         readOnly: true,
@@ -42,13 +42,23 @@ export default {
     },
     manual: [
       {
-        name: 'acsUrl',
+        name: 'ssoUrl',
         inputProps: {
-          id: 'osso-entity-id',
-          label: 'SP Audience ID',
+          id: 'osso-azure-sso-url',
+          label: 'Identity Provider Single Sign-On URL',
           type: 'text',
-          readOnly: true,
-          copyable: true,
+          readOnly: false,
+          copyable: false,
+        },
+      },
+      {
+        name: 'ssoCert',
+        inputProps: {
+          id: 'osso-azure-sso-cert',
+          label: 'X.509 Certificate',
+          type: 'textarea',
+          readOnly: false,
+          copyable: false,
         },
       },
     ],

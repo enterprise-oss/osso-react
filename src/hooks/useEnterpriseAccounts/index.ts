@@ -1,9 +1,8 @@
-import { gql } from 'apollo-boost';
-import { ApolloError } from 'apollo-client';
+import { ApolloError, gql } from '@apollo/client';
 import { useState } from 'react';
 import { useContext, useEffect } from 'react';
 
-import OssoContext from '~/client';
+import OssoContext from '~client';
 
 import { EnterpriseAccountData } from './index.types';
 
@@ -24,10 +23,7 @@ const useEnterpriseAccounts = (): {
   error?: ApolloError | string;
 } => {
   const context = useContext(OssoContext);
-  console.log(context);
   const client = context?.client;
-  console.log(client);
-
   const [data, setData] = useState({} as EnterpriseAccountData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
@@ -45,6 +41,14 @@ const useEnterpriseAccounts = (): {
       });
   }, [client]);
 
+  if (client === undefined) {
+    return {
+      data: null,
+      loading: false,
+      error: 'useEnterpriseAccounts must be used inside an OssoProvider',
+    };
+  }
+
   return {
     data,
     loading,
@@ -53,11 +57,3 @@ const useEnterpriseAccounts = (): {
 };
 
 export default useEnterpriseAccounts;
-
-// if (client === undefined) {
-//   return {
-//     data: null,
-//     loading: false,
-//     error: 'useEnterpriseAccounts must be used inside an OssoProvider',
-//   };
-// }

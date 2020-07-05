@@ -1,9 +1,7 @@
-import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import { ApolloError } from 'apollo-client';
+import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
-import OssoContext from '~/client';
+import OssoContext from '~client';
 
 import { IdentityProvider, IdentityProviderFormState } from './index.types';
 

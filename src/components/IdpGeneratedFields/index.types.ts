@@ -5,4 +5,6 @@ export {
   OssoInputProps,
   OssoProvider,
   Providers,
-} from '~/types';
+  IdpGeneratedFields,
+  IdpGeneratedFieldKeys,
+} from '~types';

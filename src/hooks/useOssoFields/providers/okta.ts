@@ -1,4 +1,4 @@
-import { OssoProvider, Providers } from '~/types';
+import { OssoProvider, Providers } from '~types';
 
 export default {
   value: Providers.Okta,
@@ -7,8 +7,8 @@ export default {
     {
       name: 'acsUrl',
       inputProps: {
-        id: 'osso-acs-url',
-        label: 'Reply URL (Assertion Consumer Service URL)',
+        id: 'osso-okta-acs-url',
+        label: 'Single sign on URL',
         type: 'text',
         readOnly: true,
         copyable: true,
@@ -17,8 +17,8 @@ export default {
     {
       name: 'id',
       inputProps: {
-        id: 'osso-entity-id',
-        label: 'Identifier (Entity ID)',
+        id: 'osso-okta-entity-id',
+        label: 'Audience URI (SP Entity ID) ',
         type: 'text',
         readOnly: true,
         copyable: true,
