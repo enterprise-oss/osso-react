@@ -2,7 +2,7 @@ steps:
 
   - commands: 
     - "yarn install"
-    - "tsc -p client --declaration false"
+    - "tsc --declaration false --noEmit"
     label: ":typescript:"
 
   - wait
