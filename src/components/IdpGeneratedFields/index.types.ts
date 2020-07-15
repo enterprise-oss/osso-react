@@ -7,4 +7,4 @@ export {
   Providers,
   IdpGeneratedFields,
   IdpGeneratedFieldKeys,
-} from '~types';
+} from '../../types';

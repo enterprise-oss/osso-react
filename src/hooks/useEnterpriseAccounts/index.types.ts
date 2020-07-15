@@ -1,1 +1,1 @@
-export { EnterpriseAccountData } from '~types';
+export { EnterpriseAccountData } from '../../types';

@@ -1,4 +1,4 @@
-import { OssoProvider, Providers } from '~types';
+import { OssoProvider, Providers } from '../index.types';
 
 export default {
   value: Providers.Azure,

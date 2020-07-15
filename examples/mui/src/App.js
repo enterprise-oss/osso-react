@@ -19,15 +19,6 @@ const InputComponent = ({ onChange, label, copyable, ...inputProps }) => (
   </FormControl>
 );
 
-// // Provide a component for upload inputs rendered by Osso.
-// const UploadComponent = () => (
-//   <Upload.Dragger name="files">
-//     <p className="ant-upload-drag-icon"></p>
-//     <p className="ant-upload-text">Click to choose or drag XML Federated Metadata file</p>
-//     <p className="ant-upload-hint">.XML files will be parsed for configuration</p>
-//   </Upload.Dragger>
-// );
-
 function App() {
   const [step, setStep] = useState(1);
   const [provider, setProvider] = useState('');

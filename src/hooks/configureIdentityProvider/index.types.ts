@@ -1,1 +1,1 @@
-export { IdentityProvider, IdentityProviderFormState } from '~types';
+export { IdentityProvider, IdentityProviderFormState } from '../../types';

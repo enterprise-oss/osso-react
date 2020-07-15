@@ -1,0 +1,27 @@
+steps:
+
+  - commands: 
+    - "yarn install"
+    - "tsc -p client --declaration false"
+    label: ":typescript:"
+
+  - wait
+  
+  - commands: 
+    - "yarn install"
+    - "yarn lint"
+    label: ":eslint:"
+
+  - wait
+  
+  - commands: 
+    - "yarn install"
+    - "yarn test"
+    label: ":jest:"
+
+  - wait
+
+  - commands: 
+      - "yarn install"
+      - "yarn build"
+    label: ":rollup:"
