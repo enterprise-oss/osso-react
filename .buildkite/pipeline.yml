@@ -1,5 +1,4 @@
 steps:
-
   - commands: 
     - "yarn install"
     - "yarn tsc --declaration false --noEmit"
