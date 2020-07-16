@@ -1,4 +1,4 @@
-import { ApolloError, gql } from '@apollo/client';
+import { ApolloError, gql, useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { useContext, useEffect } from 'react';
 
@@ -6,7 +6,7 @@ import OssoContext from '~client';
 
 import { EnterpriseAccountData } from './index.types';
 
-const ACCOUNTS_QUERY = gql`
+export const ACCOUNTS_QUERY = gql`
   query EnterpriseAccounts {
     enterpriseAccounts {
       id
@@ -22,32 +22,34 @@ const useEnterpriseAccounts = (): {
   loading: boolean;
   error?: ApolloError | string;
 } => {
-  const context = useContext(OssoContext);
-  const client = context?.client;
-  const [data, setData] = useState({} as EnterpriseAccountData);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(undefined);
-
-  useEffect(() => {
-    client
-      ?.query({ query: ACCOUNTS_QUERY })
-      .then((response) => {
-        setData(response?.data);
-        setLoading(false);
-      })
-      .catch((e) => {
-        setError(e);
-        setLoading(false);
-      });
-  }, [client]);
+  const { client } = useContext(OssoContext);
 
   if (client === undefined) {
-    return {
-      data: null,
-      loading: false,
-      error: 'useEnterpriseAccounts must be used inside an OssoProvider',
-    };
+    throw new Error('createEnterpriseAccount must be used inside an OssoProvider');
   }
+
+  const { data, loading, error } = useQuery(ACCOUNTS_QUERY, { client });
+
+  // useEffect(() => {
+  //   client
+  //     ?.query({ query: ACCOUNTS_QUERY })
+  //     .then((response) => {
+  //       setData(response?.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((e) => {
+  //       setError(e);
+  //       setLoading(false);
+  //     });
+  // }, [client]);
+
+  // if (client === undefined) {
+  //   return {
+  //     data: null,
+  //     loading: false,
+  //     error: 'useEnterpriseAccounts must be used inside an OssoProvider',
+  //   };
+  // }
 
   return {
     data,
