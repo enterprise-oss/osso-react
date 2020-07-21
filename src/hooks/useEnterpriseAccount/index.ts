@@ -16,8 +16,8 @@ export const ACCOUNT_QUERY = gql`
         id
         service
         acsUrl
-        ssoCert
         ssoUrl
+        configured
       }
     }
   }

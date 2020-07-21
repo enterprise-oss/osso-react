@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.5-alpha.27",
+  "version": "0.0.5-alpha.28",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -44,6 +44,7 @@
     "prettier": "^2.0.5",
     "rollup": "^2.18.1",
     "rollup-plugin-root-import": "^1.0.0",
+    "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "tslib": "^2.0.0",
     "typescript": "^3.9.5",
@@ -51,9 +52,11 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-rc.10",
+    "fast-xml-parser": "^3.17.4",
     "graphql": "^15.1.0"
   },
   "peerDependencies": {
+    "fast-xml-parser": "^3.17.4",
     "react": "^16.13.1"
   },
   "jest": {

@@ -3,6 +3,7 @@ import { useContext } from 'react';
 
 import OssoContext from '~client';
 import { ACCOUNT_QUERY } from '~hooks/useEnterpriseAccount/index';
+import { IdentityProvider } from '~types';
 
 import { EnterpriseAccount, Providers } from './index.types';
 
@@ -22,7 +23,7 @@ const CREATE_PROVIDER = gql`
 
 const createIdentityProvider = (): {
   createProvider: (enterpriseAccountId: string, providerService: Providers) => void;
-  data?: EnterpriseAccount[];
+  data?: IdentityProvider;
   loading: boolean;
   error?: ApolloError;
 } => {
@@ -65,9 +66,8 @@ const createIdentityProvider = (): {
   });
 
   return {
-    createProvider: (enterpriseAccountId: string, providerService?: Providers) => {
-      console.log({ variables: { input: { enterpriseAccountId, providerService } } });
-      createProvider({ variables: { input: { enterpriseAccountId, providerService } } });
+    createProvider: (enterpriseAccountId: string, service?: Providers) => {
+      createProvider({ variables: { input: { enterpriseAccountId, service } } });
     },
     data,
     loading,
