@@ -30,27 +30,6 @@ const useEnterpriseAccounts = (): {
 
   const { data, loading, error } = useQuery(ACCOUNTS_QUERY, { client });
 
-  // useEffect(() => {
-  //   client
-  //     ?.query({ query: ACCOUNTS_QUERY })
-  //     .then((response) => {
-  //       setData(response?.data);
-  //       setLoading(false);
-  //     })
-  //     .catch((e) => {
-  //       setError(e);
-  //       setLoading(false);
-  //     });
-  // }, [client]);
-
-  // if (client === undefined) {
-  //   return {
-  //     data: null,
-  //     loading: false,
-  //     error: 'useEnterpriseAccounts must be used inside an OssoProvider',
-  //   };
-  // }
-
   return {
     data,
     loading,

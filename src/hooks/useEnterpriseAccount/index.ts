@@ -1,5 +1,5 @@
-import { ApolloError, gql } from '@apollo/client';
-import { useContext, useEffect, useState } from 'react';
+import { ApolloError, gql, useQuery } from '@apollo/client';
+import { useContext } from 'react';
 
 import OssoContext from '~client';
 
@@ -31,39 +31,12 @@ const useEnterpriseAccount = (
   error?: ApolloError;
 } => {
   const { client } = useContext(OssoContext);
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(undefined);
 
   if (client === undefined) {
     throw new Error('useEnterpriseAccount must be used inside an OssoProvider');
   }
 
-  useEffect(() => {
-    client
-      ?.query({ query: ACCOUNT_QUERY, variables: { domain } })
-      .then((response) => {
-        setData(response?.data);
-        setLoading(false);
-      })
-      .catch((e) => {
-        setError(e);
-        setLoading(false);
-      });
-  }, [client]);
-
-  const observable = client.watchQuery({ query: ACCOUNT_QUERY, variables: { domain } });
-
-  observable
-    .result()
-    .then((response) => {
-      setData(response?.data);
-      setLoading(false);
-    })
-    .catch((e) => {
-      setError(e);
-      setLoading(false);
-    });
+  const { data, loading, error } = useQuery(ACCOUNT_QUERY, { client, variables: { domain } });
 
   return {
     data,
