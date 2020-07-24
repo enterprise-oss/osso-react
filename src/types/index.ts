@@ -57,11 +57,19 @@ export type OssoProvider = {
   serviceProviderMetadata: boolean;
 };
 
+export enum IdentityProviderStatus {
+  pending = 'Pending',
+  configured = 'Configured',
+  active = 'Active',
+  error = 'Error',
+}
+
 export interface IdentityProvider {
   id: string;
   service: Providers;
   acsUrl?: string;
-  [value: string]: string | Providers | undefined;
+  status: IdentityProviderStatus;
+  [value: string]: string | Providers | IdentityProviderStatus | undefined;
 }
 
 enum Status {
@@ -79,7 +87,13 @@ export interface EnterpriseAccount {
 }
 
 export interface EnterpriseAccountData {
-  enterpriseAccounts: EnterpriseAccount[];
+  enterpriseAccounts: {
+    totalCount: number;
+    edges: { node: EnterpriseAccount }[];
+    pageInfo: {
+      hasNextPage: boolean;
+    };
+  };
 }
 
 export type IdentityProviderFormState = {

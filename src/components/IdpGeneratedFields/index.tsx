@@ -58,6 +58,7 @@ export default function IdpGeneratedFieldsComponent({
   UploadComponent,
   ButtonComponent,
   containerStyle,
+  classes,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;
   onChange: (formState: IdentityProviderFormState) => void;
@@ -65,6 +66,10 @@ export default function IdpGeneratedFieldsComponent({
   UploadComponent: React.FC<OssoInputProps>;
   ButtonComponent: React.FC<OssoButtonComponentProps>;
   containerStyle?: CSS.Properties;
+  classes: {
+    container?: string;
+    formInstructions?: string;
+  };
 }): ReactElement | null {
   const [state, dispatch] = useReducer(configReducer, initialConfigState);
   const [fields, setFields] = useState<IdpGeneratedFields<IdpGeneratedFieldKeys>>({
@@ -96,22 +101,26 @@ export default function IdpGeneratedFieldsComponent({
     onChange(state);
   }, [state]);
 
-  const { metadataUrl, metadataXml, manual } = fields;
+  const { metadataXml, manual } = fields;
 
   return (
-    <div style={containerStyle}>
+    <div className={classes?.container}>
       {metadataXml && (
-        <UploadComponent
-          {...(metadataXml as OssoInputProps)}
-          onChange={(value) =>
-            dispatch({
-              field: 'metadataXml',
-              value,
-            })
-          }
-        />
+        <>
+          <h3 className={classes?.formInstructions}>Upload Federated Metadata XML</h3>
+          <UploadComponent
+            {...(metadataXml as OssoInputProps)}
+            onChange={(value) =>
+              dispatch({
+                field: 'metadataXml',
+                value,
+              })
+            }
+          />
+        </>
       )}
-      <hr style={{ margin: '24px 0' }} />
+
+      {/* TODO: CORS issues may cause us to drop this option  
       {metadataUrl && (
         <InputComponent
           {...(metadataUrl as OssoInputProps)}
@@ -122,7 +131,9 @@ export default function IdpGeneratedFieldsComponent({
             })
           }
         />
-      )}
+      )} */}
+
+      <h3 className={classes.formInstructions}>Or, add configuration manually:</h3>
       {(manual as OssoInput[])?.map((field: OssoInput) => {
         return (
           <InputComponent
@@ -143,6 +154,10 @@ export default function IdpGeneratedFieldsComponent({
     </div>
   );
 }
+
+IdpGeneratedFieldsComponent.defaultProps = {
+  metadataCopy: '',
+};
 
 const HTMLButtonComponent = ({ children, onClick }: OssoButtonComponentProps) => (
   <button onClick={onClick}>{children}</button>

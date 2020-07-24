@@ -14,7 +14,7 @@ const PROVIDER_QUERY = gql`
       documentationPdfUrl
       ssoCert
       ssoUrl
-      configured
+      status
     }
   }
 `;

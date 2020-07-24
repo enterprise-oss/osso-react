@@ -16,7 +16,7 @@ const CONFIGURE_PROVIDER = gql`
         acsUrl
         ssoCert
         ssoUrl
-        configured
+        status
       }
     }
   }

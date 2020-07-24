@@ -17,7 +17,8 @@ export const ACCOUNT_QUERY = gql`
         service
         acsUrl
         ssoUrl
-        configured
+        status
+        documentationPdfUrl
       }
     }
   }
