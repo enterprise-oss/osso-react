@@ -1,14 +1,13 @@
-import { ApolloError, ApolloQueryResult, gql, useQuery } from '@apollo/client';
-import { useState } from 'react';
-import { useContext, useEffect } from 'react';
+import { ApolloError, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
+import { useContext } from 'react';
 
 import OssoContext from '~client';
 
 import { EnterpriseAccountData } from './index.types';
 
 export const ACCOUNTS_QUERY = gql`
-  query EnterpriseAccounts($first: Int) {
-    enterpriseAccounts(first: $first) {
+  query EnterpriseAccounts($first: Int!, $after: String) {
+    enterpriseAccounts(first: $first, after: $after) {
       pageInfo {
         hasNextPage
         endCursor
@@ -35,13 +34,18 @@ export const ACCOUNTS_QUERY = gql`
   }
 `;
 
+type Variables = {
+  first: number;
+  after?: string;
+};
+
 const useEnterpriseAccounts = (
   { limit } = { limit: 10 },
 ): {
   data: EnterpriseAccountData | null;
   loading: boolean;
   error?: ApolloError | string;
-  fetchMore: any;
+  fetchMore: (options: FetchMoreQueryOptions<Variables, keyof Variables>) => void;
 } => {
   const { client } = useContext(OssoContext);
 
@@ -53,6 +57,7 @@ const useEnterpriseAccounts = (
     client,
     variables: {
       first: limit,
+      after: null,
     },
   });
 

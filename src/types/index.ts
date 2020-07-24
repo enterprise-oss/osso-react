@@ -92,6 +92,7 @@ export interface EnterpriseAccountData {
     edges: { node: EnterpriseAccount }[];
     pageInfo: {
       hasNextPage: boolean;
+      endCursor?: string;
     };
   };
 }

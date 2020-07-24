@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import OssoContext from '~client';
 import { ACCOUNTS_QUERY } from '~hooks/useEnterpriseAccounts/index';
 
-import { EnterpriseAccount } from './index.types';
+import { EnterpriseAccount, EnterpriseAccountData } from './index.types';
 
 const CREATE_ACCOUNT = gql`
   mutation CreateEnterpriseAccount($input: CreateEnterpriseAccountInput!) {
@@ -21,7 +21,7 @@ const CREATE_ACCOUNT = gql`
 
 const createEnterpriseAccount = (): {
   createAccount: (name: string, domain: string) => void;
-  data?: EnterpriseAccount;
+  data?: EnterpriseAccountData;
   loading: boolean;
   error?: ApolloError;
 } => {
@@ -41,14 +41,28 @@ const createEnterpriseAccount = (): {
         },
       },
     ) {
-      const data: { enterpriseAccounts: EnterpriseAccount[] } | null = cache.readQuery({
+      const data: EnterpriseAccountData | null = cache.readQuery({
         query: ACCOUNTS_QUERY,
       });
+
+      const existing = data?.enterpriseAccounts || {
+        totalCount: 0,
+        edges: [],
+      };
+
+      const newEdge = {
+        __typename: 'EnterpriseAccountEdge',
+        node: enterpriseAccount,
+      };
 
       cache.writeQuery({
         query: ACCOUNTS_QUERY,
         data: {
-          enterpriseAccounts: [...(data?.enterpriseAccounts as EnterpriseAccount[]), enterpriseAccount],
+          enterpriseAccounts: {
+            ...existing,
+            totalCount: enterpriseAccount.totalCount + 1,
+            edges: [...existing.edges, newEdge],
+          },
         },
       });
     },
