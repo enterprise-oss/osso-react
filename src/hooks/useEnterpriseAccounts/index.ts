@@ -1,4 +1,4 @@
-import { ApolloError, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
+import { ApolloError, ApolloQueryResult, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~client';
@@ -6,8 +6,8 @@ import OssoContext from '~client';
 import { EnterpriseAccountData } from './index.types';
 
 export const ACCOUNTS_QUERY = gql`
-  query EnterpriseAccounts($first: Int!, $after: String) {
-    enterpriseAccounts(first: $first, after: $after) {
+  query EnterpriseAccounts($first: Int!, $after: String, $sortColumn: String, $sortOrder: String) {
+    enterpriseAccounts(first: $first, after: $after, sortColumn: $sortColumn, sortOrder: $sortOrder) {
       pageInfo {
         hasNextPage
         endCursor
@@ -37,6 +37,8 @@ export const ACCOUNTS_QUERY = gql`
 type Variables = {
   first: number;
   after?: string;
+  sortOrder?: string;
+  sortColumn?: string;
 };
 
 const useEnterpriseAccounts = (
@@ -46,19 +48,22 @@ const useEnterpriseAccounts = (
   loading: boolean;
   error?: ApolloError | string;
   fetchMore: (options: FetchMoreQueryOptions<Variables, keyof Variables>) => void;
+  refetch: (variables?: Partial<Variables>) => Promise<ApolloQueryResult<EnterpriseAccountData>>;
 } => {
   const { client } = useContext(OssoContext);
 
   if (client === undefined) {
-    throw new Error('createEnterpriseAccount must be used inside an OssoProvider');
+    throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
-  const { data, loading, error, fetchMore } = useQuery(ACCOUNTS_QUERY, {
+  const { data, loading, error, fetchMore, refetch } = useQuery(ACCOUNTS_QUERY, {
     client,
     variables: {
       first: limit,
-      after: null,
-    },
+      after: undefined,
+      sortOrder: undefined,
+      sortColumn: undefined,
+    } as Variables,
   });
 
   return {
@@ -66,6 +71,7 @@ const useEnterpriseAccounts = (
     loading,
     error,
     fetchMore,
+    refetch,
   };
 };
 
