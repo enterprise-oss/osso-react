@@ -4,3 +4,4 @@ dist
 **.yalc
 **yalc.lock
 **.DS_Store
+__artifacts__

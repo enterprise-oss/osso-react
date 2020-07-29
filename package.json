@@ -56,7 +56,8 @@
     "@apollo/client": "^3.0.0-rc.10",
     "@types/jest": "^26.0.7",
     "fast-xml-parser": "^3.17.4",
-    "graphql": "^15.1.0"
+    "graphql": "^15.1.0",
+    "pdf-lib": "^1.9.0"
   },
   "peerDependencies": {
     "fast-xml-parser": "^3.17.4",
@@ -79,7 +80,7 @@
     ],
     "transform": {
       "\\.js$": "babel-jest",
-      "\\.(html|xml|txt)$": "<rootDir>/__mocks__/stringTransform.js"
+      "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js"
     }
   },
   "yalcWatch": {

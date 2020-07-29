@@ -66,10 +66,18 @@ export enum IdentityProviderStatus {
 
 export interface IdentityProvider {
   id: string;
+  documentationPdfUrl?: string;
   service: Providers;
   acsUrl?: string;
+  ssoCert?: string;
+  ssoUrl: string;
   status: IdentityProviderStatus;
-  [value: string]: string | Providers | IdentityProviderStatus | undefined;
+}
+
+export interface ConfiguredIdentityProvider extends IdentityProvider {
+  documentationPdfUrl: string;
+  acsUrl: string;
+  ssoCert: string;
 }
 
 enum Status {

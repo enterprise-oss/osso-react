@@ -36,7 +36,11 @@ export default function OssoGeneratedFieldsComponent({
   return (
     <div style={containerStyle}>
       {fields?.manual?.map((field: OssoInput) => (
-        <InputComponent key={field.name} {...field.inputProps} value={fullIdentityProvider[field.name]} />
+        <InputComponent
+          key={field.name}
+          {...field.inputProps}
+          value={fullIdentityProvider[field.name as keyof IdentityProvider]}
+        />
       ))}
       {fields?.documentationPdfUrl && (
         <LinkComponent {...fields?.documentationPdfUrl} href={fullIdentityProvider.documentationPdfUrl}>
