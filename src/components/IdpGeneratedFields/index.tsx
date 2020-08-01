@@ -57,7 +57,6 @@ export default function IdpGeneratedFieldsComponent({
   InputComponent,
   UploadComponent,
   ButtonComponent,
-  containerStyle,
   classes,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;

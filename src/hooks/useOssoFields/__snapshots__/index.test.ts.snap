@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fieldsForProvider it returns the expected fields 1`] = `
+Object {
+  "icon": "test-file-stub",
+  "idpGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-azure-sso-url",
+          "label": "Identity Provider Single Sign-On URL",
+          "readOnly": false,
+          "type": "text",
+        },
+        "name": "ssoUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-azure-sso-cert",
+          "label": "X.509 Certificate",
+          "readOnly": false,
+          "type": "textarea",
+        },
+        "name": "ssoCert",
+      },
+    ],
+    "metadataXml": Object {
+      "accept": ".xml",
+      "copyable": false,
+      "id": "osso-azure-metadata-xml",
+      "label": "Metadata XML",
+      "readOnly": false,
+      "type": "textarea",
+    },
+  },
+  "label": "Azure",
+  "ossoGeneratedFields": Object {
+    "documentationPdfUrl": Object {
+      "id": "osso-azure-documentation-download",
+      "label": "Documentation PDF",
+      "type": "text",
+    },
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-azure-acs-url",
+          "label": "Reply URL (Assertion Consumer Service URL)",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-azure-entity-id",
+          "label": "Identifier (Entity ID)",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "id",
+      },
+    ],
+  },
+  "serviceProviderMetadata": false,
+  "value": "AZURE",
+}
+`;
+
+exports[`fieldsForProvider it returns the expected fields 2`] = `
+Object {
+  "icon": "test-file-stub",
+  "idpGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-okta-sso-url",
+          "label": "Identity Provider Single Sign-On URL",
+          "readOnly": false,
+          "type": "text",
+        },
+        "name": "ssoUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-okta-sso-cert",
+          "label": "X.509 Certificate",
+          "readOnly": false,
+          "type": "textarea",
+        },
+        "name": "ssoCert",
+      },
+    ],
+    "metadataXml": Object {
+      "accept": ".xml",
+      "copyable": false,
+      "id": "osso-okta-metadata-xml",
+      "label": "Metadata XML",
+      "readOnly": false,
+      "type": "textarea",
+    },
+  },
+  "label": "Okta",
+  "ossoGeneratedFields": Object {
+    "documentationPdfUrl": Object {
+      "id": "osso-okta-documentation-download",
+      "label": "Documentation PDF",
+      "type": "text",
+    },
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-okta-acs-url",
+          "label": "Single sign on URL",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-okta-entity-id",
+          "label": "Audience URI (SP Entity ID)",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "id",
+      },
+    ],
+  },
+  "serviceProviderMetadata": false,
+  "value": "OKTA",
+}
+`;
+
+exports[`providers contains an array of Identity Providers in the tuple 1`] = `
+Array [
+  Object {
+    "icon": "test-file-stub",
+    "label": "Azure",
+    "value": "AZURE",
+  },
+  Object {
+    "icon": "test-file-stub",
+    "label": "Okta",
+    "value": "OKTA",
+  },
+]
+`;

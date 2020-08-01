@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import OssoContext from '~client';
 import { ACCOUNTS_QUERY } from '~hooks/useEnterpriseAccounts/index';
 
-import { EnterpriseAccount, EnterpriseAccountData } from './index.types';
+import { EnterpriseAccountData } from './index.types';
 
 const CREATE_ACCOUNT = gql`
   mutation CreateEnterpriseAccount($input: CreateEnterpriseAccountInput!) {
