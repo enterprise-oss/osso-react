@@ -5,3 +5,4 @@ dist
 **yalc.lock
 **.DS_Store
 __artifacts__/**
+!__artifacts__/.gitkeep
