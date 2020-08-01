@@ -1,9 +1,9 @@
 import alias from '@rollup/plugin-alias';
+import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
-const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 const input = 'src/index.ts';
 
 const external = [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})];
@@ -15,6 +15,7 @@ const plugins = [
   typescript({
     typescript: require('typescript'),
   }),
+  svg({ base64: true }),
 ];
 
 export default [

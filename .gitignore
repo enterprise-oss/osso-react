@@ -3,3 +3,5 @@ dist
 .yarn-error.log
 **.yalc
 **yalc.lock
+**.DS_Store
+__artifacts__/**

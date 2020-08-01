@@ -11,8 +11,10 @@ const PROVIDER_QUERY = gql`
       id
       service
       acsUrl
+      documentationPdfUrl
       ssoCert
       ssoUrl
+      status
     }
   }
 `;

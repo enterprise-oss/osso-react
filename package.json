@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.5-alpha.27",
+  "version": "0.0.5-alpha.36",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -40,30 +40,48 @@
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.1.0",
+    "jest-raw-loader": "^1.0.1",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "rollup": "^2.18.1",
     "rollup-plugin-root-import": "^1.0.0",
+    "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-typescript2": "^0.27.1",
+    "ts-jest": "^26.1.4",
     "tslib": "^2.0.0",
     "typescript": "^3.9.5",
     "yalc-watch": "^0.0.6"
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-rc.10",
-    "graphql": "^15.1.0"
+    "@types/jest": "^26.0.7",
+    "fast-xml-parser": "^3.17.4",
+    "graphql": "^15.1.0",
+    "pdf-lib": "^1.9.0"
   },
   "peerDependencies": {
+    "fast-xml-parser": "^3.17.4",
     "react": "^16.13.1"
   },
   "jest": {
+    "preset": "ts-jest",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
     "moduleNameMapper": {
       "\\.(png|svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/examples"
-    ]
+    ],
+    "transform": {
+      "\\.js$": "babel-jest",
+      "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js"
+    }
   },
   "yalcWatch": {
     "watchFolder": "dist",

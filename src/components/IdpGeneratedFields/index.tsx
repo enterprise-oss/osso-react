@@ -1,13 +1,15 @@
 import CSS from 'csstype';
 import React, { ReactElement, useEffect, useReducer, useState } from 'react';
 
-import { configureIdentityProvider, useIdentityProvider, useOssoFields } from '~hooks';
+import { configureIdentityProvider, useIdentityProvider, useOssoFields } from '~/hooks';
+import parseXmlData from '~/utils/metadataXmlParser/metadataXmlParser';
 
 import {
   IdentityProvider,
   IdentityProviderFormState,
   IdpGeneratedFieldKeys,
   IdpGeneratedFields,
+  OssoButtonComponentProps,
   OssoInput,
   OssoInputProps,
   Providers,
@@ -35,11 +37,15 @@ function configReducer(state: IdentityProviderFormState, action: Action): Identi
     case 'ssoUrl':
       return { ...state, ssoUrl: action.value };
     case 'metadataXml':
-      // TODO: parse and return;
-      return state;
+      if (action.value === '') {
+        return { ...state, ssoUrl: '', ssoCert: '' };
+      }
+      console.log('action value', action.value);
+      return { ...state, ...parseXmlData(action.value) };
     case 'metadataUrl':
-      // TODO: fetch, parse and return;
-      return state;
+      // TODO: Okta and Azure block CORS, we can try to proxy, or ditch this approach
+      fetch(action.value).then((response) => console.log(response.text()));
+      return { ...state, ssoUrl: 'FETCHED_AND_PARSED_URL', ssoCert: 'FETCHED_AND_PARSED_CERT' };
     case '*':
       return { ...state, ...action.value };
   }
@@ -47,16 +53,23 @@ function configReducer(state: IdentityProviderFormState, action: Action): Identi
 
 export default function IdpGeneratedFieldsComponent({
   identityProvider,
+  onChange,
   InputComponent,
   UploadComponent,
   ButtonComponent,
   containerStyle,
+  classes,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;
+  onChange: (formState: IdentityProviderFormState) => void;
   InputComponent: React.FC<OssoInputProps>;
   UploadComponent: React.FC<OssoInputProps>;
-  ButtonComponent: React.FC<ButtonComponentProps>;
+  ButtonComponent: React.FC<OssoButtonComponentProps>;
   containerStyle?: CSS.Properties;
+  classes: {
+    container?: string;
+    formInstructions?: string;
+  };
 }): ReactElement | null {
   const [state, dispatch] = useReducer(configReducer, initialConfigState);
   const [fields, setFields] = useState<IdpGeneratedFields<IdpGeneratedFieldKeys>>({
@@ -84,36 +97,69 @@ export default function IdpGeneratedFieldsComponent({
     if (providerDetails) setFields(providerDetails.idpGeneratedFields);
   }, [loading]);
 
-  const { metadataUrl, metadataXml, manual } = fields;
+  useEffect(() => {
+    onChange(state);
+  }, [state]);
+
+  const { metadataXml, manual } = fields;
 
   return (
-    <div style={containerStyle}>
-      {metadataXml && <UploadComponent {...(metadataXml as OssoInputProps)} />}
-      {metadataUrl && <InputComponent {...(metadataUrl as OssoInputProps)} />}
-      {(manual as OssoInput[])?.map((field: OssoInput) => (
+    <div className={classes?.container}>
+      {metadataXml && (
+        <>
+          <h3 className={classes?.formInstructions}>Upload Federated Metadata XML</h3>
+          <UploadComponent
+            {...(metadataXml as OssoInputProps)}
+            onChange={(value) =>
+              dispatch({
+                field: 'metadataXml',
+                value,
+              })
+            }
+          />
+        </>
+      )}
+
+      {/* TODO: CORS issues may cause us to drop this option  
+      {metadataUrl && (
         <InputComponent
-          key={field.name}
+          {...(metadataUrl as OssoInputProps)}
           onChange={(value) =>
             dispatch({
-              field: field.name as keyof IdentityProviderFormState,
+              field: 'metadataUrl',
               value,
             })
           }
-          {...field.inputProps}
-          value={state[field.name as keyof IdentityProviderFormState]}
         />
-      ))}
+      )} */}
+
+      <h3 className={classes.formInstructions}>Or, add configuration manually:</h3>
+      {(manual as OssoInput[])?.map((field: OssoInput) => {
+        return (
+          <InputComponent
+            key={field.name}
+            onChange={(value) =>
+              dispatch({
+                field: field.name as keyof IdentityProviderFormState,
+                value,
+              })
+            }
+            {...field.inputProps}
+            name={field.name}
+            value={state[field.name as keyof IdentityProviderFormState]}
+          />
+        );
+      })}
       <ButtonComponent onClick={() => configureProvider(fullIdentityProvider.id, state)}>Save</ButtonComponent>
     </div>
   );
 }
 
-type ButtonComponentProps = {
-  children: ReactElement | string;
-  onClick: () => void;
+IdpGeneratedFieldsComponent.defaultProps = {
+  metadataCopy: '',
 };
 
-const HTMLButtonComponent = ({ children, onClick }: ButtonComponentProps) => (
+const HTMLButtonComponent = ({ children, onClick }: OssoButtonComponentProps) => (
   <button onClick={onClick}>{children}</button>
 );
 

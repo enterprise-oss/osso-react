@@ -1,9 +1,18 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement } from 'react';
 
 import { OssoClientOptions, OssoContextValue, OssoProviderProps } from './index.types';
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        enterpriseAccounts: relayStylePagination(),
+      },
+    },
+  },
+});
 let link: ApolloLink;
 let client: ApolloClient<NormalizedCacheObject>;
 

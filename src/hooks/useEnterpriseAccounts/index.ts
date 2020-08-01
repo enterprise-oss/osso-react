@@ -1,58 +1,77 @@
-import { ApolloError, gql } from '@apollo/client';
-import { useState } from 'react';
-import { useContext, useEffect } from 'react';
+import { ApolloError, ApolloQueryResult, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
+import { useContext } from 'react';
 
 import OssoContext from '~client';
 
 import { EnterpriseAccountData } from './index.types';
 
-const ACCOUNTS_QUERY = gql`
-  query EnterpriseAccounts {
-    enterpriseAccounts {
-      id
-      domain
-      name
-      status
+export const ACCOUNTS_QUERY = gql`
+  query EnterpriseAccounts($first: Int!, $after: String, $sortColumn: String, $sortOrder: String) {
+    enterpriseAccounts(first: $first, after: $after, sortColumn: $sortColumn, sortOrder: $sortOrder) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      totalCount
+      edges {
+        node {
+          domain
+          id
+          identityProviders {
+            id
+            service
+            domain
+            acsUrl
+            ssoCert
+            ssoUrl
+            status
+          }
+          name
+          status
+        }
+      }
     }
   }
 `;
 
-const useEnterpriseAccounts = (): {
+type Variables = {
+  first: number;
+  after?: string;
+  sortOrder?: string;
+  sortColumn?: string;
+};
+
+const useEnterpriseAccounts = (
+  { limit } = { limit: 10 },
+): {
   data: EnterpriseAccountData | null;
   loading: boolean;
   error?: ApolloError | string;
+  fetchMore: (options: FetchMoreQueryOptions<Variables, keyof Variables>) => void;
+  refetch: (variables?: Partial<Variables>) => Promise<ApolloQueryResult<EnterpriseAccountData>>;
 } => {
-  const context = useContext(OssoContext);
-  const client = context?.client;
-  const [data, setData] = useState({} as EnterpriseAccountData);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(undefined);
-
-  useEffect(() => {
-    client
-      ?.query({ query: ACCOUNTS_QUERY })
-      .then((response) => {
-        setData(response?.data);
-        setLoading(false);
-      })
-      .catch((e) => {
-        setError(e);
-        setLoading(false);
-      });
-  }, [client]);
+  const { client } = useContext(OssoContext);
 
   if (client === undefined) {
-    return {
-      data: null,
-      loading: false,
-      error: 'useEnterpriseAccounts must be used inside an OssoProvider',
-    };
+    throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
+
+  const { data, loading, error, fetchMore, refetch } = useQuery(ACCOUNTS_QUERY, {
+    client,
+    variables: {
+      first: limit,
+      after: undefined,
+      sortOrder: undefined,
+      sortColumn: undefined,
+    } as Variables,
+  });
 
   return {
     data,
     loading,
     error,
+    fetchMore,
+    refetch,
   };
 };
 

@@ -1,6 +1,7 @@
 export {
   IdentityProvider,
   IdentityProviderFormState,
+  OssoButtonComponentProps,
   OssoInput,
   OssoInputProps,
   OssoProvider,

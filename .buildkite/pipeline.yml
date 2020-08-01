@@ -17,6 +17,8 @@ steps:
     - "yarn install"
     - "yarn test"
     label: ":jest:"
+    artifact_paths:
+      - __artifacts__/*.pdf
 
   - wait
 

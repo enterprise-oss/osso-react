@@ -6,14 +6,27 @@ export enum Providers {
   Okta = 'OKTA',
 }
 
+export type OssoButtonComponentProps = {
+  children: ReactElement | string;
+  onClick: () => void;
+};
+
+export type OssoLinkComponentProps = {
+  children: ReactElement | string;
+  href?: string;
+  label: string;
+};
+
 export interface OssoInputProps {
+  accept?: string;
   id: string;
   label: string;
+  name?: string;
   value?: string;
   type: 'text' | 'textarea' | 'file';
   readOnly: boolean;
   copyable?: boolean;
-  onChange?: (value: string) => void;
+  onChange?: (value: string) => void; // TODO:
 }
 
 export interface OssoInput {
@@ -22,6 +35,12 @@ export interface OssoInput {
 }
 
 export type ProviderMap<T extends string> = { [key in T]: OssoProvider };
+
+export type OssoGeneratedFieldKeys = 'manual' | 'documentationPdfUrl';
+export type OssoGeneratedFields<T extends OssoGeneratedFieldKeys> = {
+  manual: OssoInput[];
+  documentationPdfUrl: OssoInputProps;
+};
 
 export type IdpGeneratedFieldKeys = 'metadataXml' | 'metadataUrl' | 'manual';
 
@@ -32,16 +51,33 @@ export type IdpGeneratedFields<T extends IdpGeneratedFieldKeys> = {
 export type OssoProvider = {
   value: Providers;
   label: string;
-  ossoGeneratedFields: OssoInput[];
+  icon: string;
+  ossoGeneratedFields: OssoGeneratedFields<Partial<OssoGeneratedFieldKeys>>;
   idpGeneratedFields: IdpGeneratedFields<Partial<IdpGeneratedFieldKeys>>;
   serviceProviderMetadata: boolean;
 };
 
+export enum IdentityProviderStatus {
+  pending = 'Pending',
+  configured = 'Configured',
+  active = 'Active',
+  error = 'Error',
+}
+
 export interface IdentityProvider {
   id: string;
+  documentationPdfUrl?: string;
   service: Providers;
   acsUrl?: string;
-  [value: string]: string | Providers | undefined;
+  ssoCert?: string;
+  ssoUrl: string;
+  status: IdentityProviderStatus;
+}
+
+export interface ConfiguredIdentityProvider extends IdentityProvider {
+  documentationPdfUrl: string;
+  acsUrl: string;
+  ssoCert: string;
 }
 
 enum Status {
@@ -59,7 +95,14 @@ export interface EnterpriseAccount {
 }
 
 export interface EnterpriseAccountData {
-  enterpriseAccounts: EnterpriseAccount[];
+  enterpriseAccounts: {
+    totalCount: number;
+    edges: { node: EnterpriseAccount }[];
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor?: string;
+    };
+  };
 }
 
 export type IdentityProviderFormState = {
