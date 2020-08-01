@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fieldsForProvider it returns the expected fields 1`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 1`] = `
 Object {
   "icon": "test-file-stub",
   "idpGeneratedFields": Object {
@@ -70,7 +70,7 @@ Object {
 }
 `;
 
-exports[`fieldsForProvider it returns the expected fields 2`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 2`] = `
 Object {
   "icon": "test-file-stub",
   "idpGeneratedFields": Object {
