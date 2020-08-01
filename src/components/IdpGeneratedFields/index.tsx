@@ -1,8 +1,8 @@
 import CSS from 'csstype';
 import React, { ReactElement, useEffect, useReducer, useState } from 'react';
 
-import { configureIdentityProvider, useIdentityProvider, useOssoFields } from '~hooks';
-import parseXmlData from '~utils/metadataXmlParser/metadataXmlParser';
+import { configureIdentityProvider, useIdentityProvider, useOssoFields } from '~/hooks';
+import parseXmlData from '~/utils/metadataXmlParser/metadataXmlParser';
 
 import {
   IdentityProvider,
