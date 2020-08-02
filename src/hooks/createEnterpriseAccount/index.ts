@@ -25,14 +25,14 @@ const createEnterpriseAccount = (): {
   loading: boolean;
   error?: ApolloError;
 } => {
-  const { client } = useContext(OssoContext);
+  // const { client } = useContext(OssoContext);
 
-  if (client === undefined) {
-    throw new Error('createEnterpriseAccount must be used inside an OssoProvider');
-  }
+  // if (client === undefined) {
+  //   throw new Error('createEnterpriseAccount must be used inside an OssoProvider');
+  // }
 
   const [createAccount, { data, loading, error }] = useMutation(CREATE_ACCOUNT, {
-    client,
+    // client,
     update(
       cache,
       {

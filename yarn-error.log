@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/Cellar/node/14.4.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add -D @types/pdf-lib
+  /usr/local/Cellar/node/14.4.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add -D @types/react-testing-library
 
 PATH: 
-  /Users/sambauch/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/sambauch/.rbenv/shims:/Users/sambauch/Library/Android/sdk/emulator:/Users/sambauch/Library/Android/sdk/tools:/Users/sambauch/Library/Android/sdk/tools/bin:/Users/sambauch/Library/Android/sdk/platform-tools:/Users/sambauch/.fzf/bin:/Users/sambauch/Library/Android/sdk/emulator:/Users/sambauch/Library/Android/sdk/tools:/Users/sambauch/Library/Android/sdk/tools/bin:/Users/sambauch/Library/Android/sdk/platform-tools
+  /Users/sambauch/.rbenv/shims:/Users/sambauch/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/sambauch/Library/Android/sdk/emulator:/Users/sambauch/Library/Android/sdk/tools:/Users/sambauch/Library/Android/sdk/tools/bin:/Users/sambauch/Library/Android/sdk/platform-tools:/Users/sambauch/.fzf/bin:/Users/sambauch/Library/Android/sdk/emulator:/Users/sambauch/Library/Android/sdk/tools:/Users/sambauch/Library/Android/sdk/tools/bin:/Users/sambauch/Library/Android/sdk/platform-tools
 
 Yarn version: 
   1.22.4
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fpdf-lib: Not found
+  Error: https://registry.yarnpkg.com/@types%2freact-testing-library: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:66987:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:140748:22)
       at Request.emit (events.js:315:20)
@@ -55,6 +55,8 @@ npm manifest:
       "@babel/preset-typescript": "^7.10.4",
       "@rollup/plugin-alias": "^3.1.1",
       "@rollup/plugin-babel": "^5.0.4",
+      "@testing-library/react-hooks": "^3.4.1",
+      "@types/faker": "^4.1.12",
       "@types/node": "^14.0.14",
       "@types/react": "^16.9.41",
       "@types/react-dom": "^16.9.8",
@@ -67,11 +69,16 @@ npm manifest:
       "eslint-plugin-prettier": "^3.1.4",
       "eslint-plugin-react": "^7.20.0",
       "eslint-plugin-simple-import-sort": "^5.0.3",
+      "faker": "^4.1.0",
       "identity-obj-proxy": "^3.0.0",
       "jest": "^26.1.0",
+      "jest-fetch-mock": "^3.0.3",
       "jest-raw-loader": "^1.0.1",
       "nodemon": "^2.0.4",
       "prettier": "^2.0.5",
+      "react": "^16.13.1",
+      "react-test-renderer": "^16.13.1",
+      "react-testing-library": "^8.0.1",
       "rollup": "^2.18.1",
       "rollup-plugin-root-import": "^1.0.0",
       "rollup-plugin-svg": "^2.0.0",
@@ -102,14 +109,18 @@ npm manifest:
       ],
       "moduleNameMapper": {
         "\\.(png|svg)$": "<rootDir>/__mocks__/fileMock.js",
-        "\\.(css|less)$": "identity-obj-proxy"
+        "\\.(css|less)$": "identity-obj-proxy",
+        "^~.*$": "<rootDir>/src/"
       },
+      "setupFiles": [
+        "<rootDir>/jest.setup.js"
+      ],
       "testPathIgnorePatterns": [
         "<rootDir>/examples"
       ],
       "transform": {
         "\\.js$": "babel-jest",
-        "\\.(html|xml|txt)$": "<rootDir>/__mocks__/stringTransform.js"
+        "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js"
       }
     },
     "yalcWatch": {
@@ -1053,6 +1064,13 @@ Lockfile:
       core-js-pure "^3.0.0"
       regenerator-runtime "^0.13.4"
   
+  "@babel/runtime@^7.5.4":
+    version "7.11.0"
+    resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.0.tgz#f10245877042a815e07f7e693faff0ae9d3a2aac"
+    integrity sha512-qArkXsjJq7H+T86WrIFV0Fnu/tNOkZ4cgXmjkzAu3b/58D5mFIO8JH/y77t7C9q0OdDRdh9s7Ue5GasYssxtXw==
+    dependencies:
+      regenerator-runtime "^0.13.4"
+  
   "@babel/runtime@^7.8.4":
     version "7.10.4"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.4.tgz#a6724f1a6b8d2f6ea5236dbfe58c7d7ea9c5eb99"
@@ -1430,6 +1448,14 @@ Lockfile:
     dependencies:
       defer-to-connect "^1.0.1"
   
+  "@testing-library/react-hooks@^3.4.1":
+    version "3.4.1"
+    resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-3.4.1.tgz#1f8ccd21208086ec228d9743fe40b69d0efcd7e5"
+    integrity sha512-LbzvE7oKsVzuW1cxA/aOeNgeVvmHWG2p/WSzalIGyWuqZT3jVcNDT5KPEwy36sUYWde0Qsh32xqIUFXukeywXg==
+    dependencies:
+      "@babel/runtime" "^7.5.4"
+      "@types/testing-library__react-hooks" "^3.3.0"
+  
   "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.0", "@types/babel__core@^7.1.7":
     version "7.1.9"
     resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.9.tgz#77e59d438522a6fb898fa43dc3455c6e72f3963d"
@@ -1484,6 +1510,11 @@ Lockfile:
     version "0.0.39"
     resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
     integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
+  
+  "@types/faker@^4.1.12":
+    version "4.1.12"
+    resolved "https://registry.yarnpkg.com/@types/faker/-/faker-4.1.12.tgz#065d37343677df1aa757c622650bd14666c42602"
+    integrity sha512-0MEyzJrLLs1WaOCx9ULK6FzdCSj2EuxdSP9kvuxxdBEGujZYUOZ4vkPXdgu3dhyg/pOdn7VCatelYX7k0YShlA==
   
   "@types/graceful-fs@^4.1.2":
     version "4.1.3"
@@ -1564,6 +1595,13 @@ Lockfile:
     dependencies:
       "@types/react" "*"
   
+  "@types/react-test-renderer@*":
+    version "16.9.2"
+    resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.9.2.tgz#e1c408831e8183e5ad748fdece02214a7c2ab6c5"
+    integrity sha512-4eJr1JFLIAlWhzDkBCkhrOIWOvOxcCAfQh+jiKg7l/nNZcCIL2MHl2dZhogIFKyHzedVWHaVP1Yydq/Ruu4agw==
+    dependencies:
+      "@types/react" "*"
+  
   "@types/react@*", "@types/react@^16.9.41":
     version "16.9.41"
     resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.41.tgz#925137ee4d2ff406a0ecf29e8e9237390844002e"
@@ -1576,6 +1614,13 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
     integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+  
+  "@types/testing-library__react-hooks@^3.3.0":
+    version "3.4.0"
+    resolved "https://registry.yarnpkg.com/@types/testing-library__react-hooks/-/testing-library__react-hooks-3.4.0.tgz#be148b7fa7d19cd3349c4ef9d9534486bc582fcc"
+    integrity sha512-QYLZipqt1hpwYsBU63Ssa557v5wWbncqL36No59LI7W3nCMYKrLWTnYGn2griZ6v/3n5nKXNYkTeYpqPHY7Ukg==
+    dependencies:
+      "@types/react-test-renderer" "*"
   
   "@types/yargs-parser@*":
     version "15.0.0"
@@ -2355,6 +2400,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
     integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
   
+  cross-fetch@^3.0.4:
+    version "3.0.5"
+    resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.5.tgz#2739d2981892e7ab488a7ad03b92df2816e03f4c"
+    integrity sha512-FFLcLtraisj5eteosnX1gf01qYDCOc4fDy0+euOt8Kn9YBY2NtXL/pCoYPavw24NIQkQqm5ZOLsGD5Zzj0gyew==
+    dependencies:
+      node-fetch "2.6.0"
+  
   cross-spawn@^6.0.0:
     version "6.0.5"
     resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -2932,6 +2984,11 @@ Lockfile:
     version "1.4.0"
     resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
     integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
+  
+  faker@^4.1.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/faker/-/faker-4.1.0.tgz#1e45bbbecc6774b3c195fad2835109c6d748cc3f"
+    integrity sha1-HkW7vsxndLPBlfrSg1EJxtdIzD8=
   
   fast-deep-equal@^3.1.1:
     version "3.1.3"
@@ -3874,6 +3931,14 @@ Lockfile:
       jest-mock "^26.1.0"
       jest-util "^26.1.0"
   
+  jest-fetch-mock@^3.0.3:
+    version "3.0.3"
+    resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-3.0.3.tgz#31749c456ae27b8919d69824f1c2bd85fe0a1f3b"
+    integrity sha512-Ux1nWprtLrdrH4XwE7O7InRY6psIi3GOsqNESJgMJ+M5cv4A8Lh7SN9d2V2kKRZ8ebAfcd1LNyZguAOb6JiDqw==
+    dependencies:
+      cross-fetch "^3.0.4"
+      promise-polyfill "^8.1.3"
+  
   jest-get-type@^25.2.6:
     version "25.2.6"
     resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-25.2.6.tgz#0b0a32fab8908b44d508be81681487dbabb8d877"
@@ -4455,7 +4520,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
     integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
   
-  loose-envify@^1.0.0, loose-envify@^1.4.0:
+  loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
     version "1.4.0"
     resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
     integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -4630,6 +4695,11 @@ Lockfile:
     version "1.0.5"
     resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
     integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
+  
+  node-fetch@2.6.0:
+    version "2.6.0"
+    resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+    integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
   
   node-int64@^0.4.0:
     version "0.4.0"
@@ -5086,6 +5156,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
     integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
   
+  promise-polyfill@^8.1.3:
+    version "8.1.3"
+    resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.1.3.tgz#8c99b3cf53f3a91c68226ffde7bde81d7f904116"
+    integrity sha512-MG5r82wBzh7pSKDRa9y+vllNHz3e3d4CNj1PQE4BQYxLme0gKYYBm9YENq+UkEikyZ0XbiGWxYlVw3Rl9O/U8g==
+  
   prompts@^2.0.1:
     version "2.3.2"
     resolved "https://registry.yarnpkg.com/prompts/-/prompts-2.3.2.tgz#480572d89ecf39566d2bd3fe2c9fccb7c4c0b068"
@@ -5094,7 +5169,7 @@ Lockfile:
       kleur "^3.0.3"
       sisteransi "^1.0.4"
   
-  prop-types@^15.7.2:
+  prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5148,10 +5223,34 @@ Lockfile:
       minimist "^1.2.0"
       strip-json-comments "~2.0.1"
   
-  react-is@^16.12.0, react-is@^16.8.1:
+  react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.6:
     version "16.13.1"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
     integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+  
+  react-test-renderer@^16.13.1:
+    version "16.13.1"
+    resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
+    integrity sha512-Sn2VRyOK2YJJldOqoh8Tn/lWQ+ZiKhyZTPtaO0Q6yNj+QDbmRkVFap6pZPy3YQk8DScRDfyqm/KxKYP9gCMRiQ==
+    dependencies:
+      object-assign "^4.1.1"
+      prop-types "^15.6.2"
+      react-is "^16.8.6"
+      scheduler "^0.19.1"
+  
+  react-testing-library@^8.0.1:
+    version "8.0.1"
+    resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-8.0.1.tgz#b3dd43bce3fa88423cf0a23292fb819023c227cc"
+    integrity sha512-Gq4JC9r3prA4hYwo7afcbHHMFckO29+5Nrh2KblAEPuK/DWaU0bJE1vtpAgLhzhY9bBirmcgjjIHljHEwGAXKw==
+  
+  react@^16.13.1:
+    version "16.13.1"
+    resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
+    integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
+    dependencies:
+      loose-envify "^1.1.0"
+      object-assign "^4.1.1"
+      prop-types "^15.6.2"
   
   read-pkg-up@^4.0.0:
     version "4.0.0"
@@ -5526,6 +5625,14 @@ Lockfile:
     integrity sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
     dependencies:
       xmlchars "^2.2.0"
+  
+  scheduler@^0.19.1:
+    version "0.19.1"
+    resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
+    integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+    dependencies:
+      loose-envify "^1.1.0"
+      object-assign "^4.1.1"
   
   semver-diff@^3.1.1:
     version "3.1.1"

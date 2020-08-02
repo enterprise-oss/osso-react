@@ -1,7 +1,15 @@
-import { ApolloError, ApolloQueryResult, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
-import { useContext } from 'react';
-
-import OssoContext from '~client';
+import {
+  ApolloClient,
+  ApolloError,
+  ApolloQueryResult,
+  FetchMoreQueryOptions,
+  gql,
+  InMemoryCache,
+  useLazyQuery,
+  useQuery,
+} from '@apollo/client';
+import { useApolloClient } from '@apollo/client';
+import { useContext, useEffect } from 'react';
 
 import { EnterpriseAccountData } from './index.types';
 
@@ -47,24 +55,30 @@ const useEnterpriseAccounts = (
   data: EnterpriseAccountData | null;
   loading: boolean;
   error?: ApolloError | string;
-  fetchMore: (options: FetchMoreQueryOptions<Variables, keyof Variables>) => void;
-  refetch: (variables?: Partial<Variables>) => Promise<ApolloQueryResult<EnterpriseAccountData>>;
+  fetchMore: any; //(options: FetchMoreQueryOptions<Variables, keyof Variables>) => void;
+  refetch: ((variables?: Partial<Variables> | undefined) => Promise<ApolloQueryResult<any>>) | undefined; //(options: FetchMoreQueryOptions<Variables, keyof Variables>) => void; //(variables?: Partial<Variables>) => Promise<ApolloQueryResult<EnterpriseAccountData>>;
 } => {
-  const { client } = useContext(OssoContext);
+  let client: ApolloClient<unknown>;
 
-  if (client === undefined) {
+  try {
+    client = useApolloClient();
+  } catch (error) {
     throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
-  const { data, loading, error, fetchMore, refetch } = useQuery(ACCOUNTS_QUERY, {
+  const [query, { data, loading, error, refetch, fetchMore }] = useLazyQuery(ACCOUNTS_QUERY, {
     client,
     variables: {
       first: limit,
       after: undefined,
-      sortOrder: undefined,
-      sortColumn: undefined,
+      sortOrder: 'desc',
+      sortColumn: 'created_at',
     } as Variables,
   });
+
+  useEffect(() => {
+    query();
+  }, []);
 
   return {
     data,

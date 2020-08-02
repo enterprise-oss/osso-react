@@ -1,4 +1,11 @@
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client';
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement } from 'react';
 
@@ -43,7 +50,12 @@ const OssoContext = createContext(defaultValue);
 
 const OssoProvider = ({ children, client: clientOptions }: OssoProviderProps): ReactElement => {
   const client = buildClient(clientOptions);
-  return <OssoContext.Provider value={{ client }}>{children} </OssoContext.Provider>;
+
+  return (
+    <ApolloProvider key="osso" client={client}>
+      {children}
+    </ApolloProvider>
+  );
 };
 
 export default OssoContext;
