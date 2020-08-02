@@ -1,12 +1,4 @@
-import {
-  ApolloClient,
-  ApolloError,
-  ApolloQueryResult,
-  FetchMoreQueryOptions,
-  gql,
-  InMemoryCache,
-  useQuery,
-} from '@apollo/client';
+import { ApolloClient, ApolloError, ApolloQueryResult, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
 import { useApolloClient } from '@apollo/client';
 
 import { EnterpriseAccountData } from './index.types';
@@ -47,10 +39,6 @@ type Variables = {
   sortColumn?: string;
 };
 
-const throwNoProvider = () => {
-  throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
-};
-
 const useEnterpriseAccounts = (
   { limit } = { limit: 10 },
 ): {
@@ -60,12 +48,12 @@ const useEnterpriseAccounts = (
   fetchMore: (options: FetchMoreQueryOptions<Variables, keyof Variables>) => void;
   refetch: (variables?: Partial<Variables>) => Promise<ApolloQueryResult<EnterpriseAccountData>>;
 } => {
-  let client: ApolloClient<InMemoryCache>;
+  let client: ApolloClient<unknown>;
 
   try {
-    client = useApolloClient() as ApolloClient<InMemoryCache>;
+    client = useApolloClient();
   } catch (error) {
-    throwNoProvider();
+    throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
   const { data, loading, error, refetch, fetchMore } = useQuery(ACCOUNTS_QUERY, {
