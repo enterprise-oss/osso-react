@@ -1,20 +1,22 @@
-import { MockedProvider } from '@apollo/client/testing';
 import { act, renderHook } from '@testing-library/react-hooks';
+import fetch from 'jest-fetch-mock';
 import React, { ReactElement } from 'react';
 
-import enterpriseAccountsQueryMock from './__mocks__';
+import { OssoProvider } from '~/client';
+
+import response from './__mocks__';
 import useEnterpriseAccounts from './index';
 
 const mockedProvider = ({ children }: { children: ReactElement }) => (
-  <MockedProvider addTypename={false} mocks={enterpriseAccountsQueryMock}>
-    {children}
-  </MockedProvider>
+  <OssoProvider client={{ uri: 'example' }}>{children}</OssoProvider>
 );
 
 describe('client context', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let rendered: any;
   test('fetches accounts in an <OssoProvider>', async (done) => {
+    fetch.mockResponseOnce(JSON.stringify({ data: response }));
+
     act(() => {
       rendered = renderHook(() => useEnterpriseAccounts(), {
         wrapper: mockedProvider,

@@ -82,7 +82,7 @@
     "moduleNameMapper": {
       "\\.(png|svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy",
-      "^~.*$": "<rootDir>/src/"
+      "^~\/(.*)$": "<rootDir>/src/$1"
     },
     "setupFiles": [
       "<rootDir>/jest.setup.js"

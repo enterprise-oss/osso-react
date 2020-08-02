@@ -1,4 +1,4 @@
-// require('jest-fetch-mock').enableMocks();
+require('jest-fetch-mock').enableMocks();
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

@@ -1,4 +1,7 @@
-import { ApolloClient, ApolloError, gql, useApolloClient, useQuery } from '@apollo/client';
+import { ApolloError, gql, useQuery } from '@apollo/client';
+import { useContext } from 'react';
+
+import OssoContext from '~/client';
 
 import { EnterpriseAccount } from './index.types';
 
@@ -28,13 +31,11 @@ export type UseEnterpriseAccountReturnTuple = {
 };
 
 const useEnterpriseAccount = (domain: string): UseEnterpriseAccountReturnTuple => {
-  let client: ApolloClient<unknown>;
-  try {
-    client = useApolloClient();
-  } catch (error) {
+  const { client } = useContext(OssoContext);
+
+  if (client === undefined) {
     throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
-
   const { data, loading, error } = useQuery(ACCOUNT_QUERY, { client, variables: { domain } });
 
   return {

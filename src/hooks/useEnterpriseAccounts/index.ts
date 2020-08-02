@@ -1,5 +1,7 @@
-import { ApolloClient, ApolloError, ApolloQueryResult, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
-import { useApolloClient } from '@apollo/client';
+import { ApolloError, ApolloQueryResult, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
+import { useContext } from 'react';
+
+import OssoContext from '~/client';
 
 import { EnterpriseAccountData } from './index.types';
 
@@ -48,11 +50,9 @@ const useEnterpriseAccounts = (
   fetchMore: (options: FetchMoreQueryOptions<Variables, keyof Variables>) => void;
   refetch: (variables?: Partial<Variables>) => Promise<ApolloQueryResult<EnterpriseAccountData>>;
 } => {
-  let client: ApolloClient<unknown>;
+  const { client } = useContext(OssoContext);
 
-  try {
-    client = useApolloClient();
-  } catch (error) {
+  if (client === undefined) {
     throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
