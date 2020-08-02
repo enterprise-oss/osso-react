@@ -34,6 +34,7 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
   return new ApolloClient({
     cache,
     link,
+    name: 'osso',
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',

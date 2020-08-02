@@ -1,7 +1,7 @@
 import { OssoProvider, ProviderMap, ProviderOption, Providers } from './index.types';
 import * as allProviders from './providers';
 
-const providerMap = Object.entries(allProviders).reduce((map, [_key, provider]) => {
+const providerMap = Object.values(allProviders).reduce((map, provider) => {
   return { ...map, [provider.value as Providers]: provider };
 }, {} as ProviderMap<Providers>);
 
