@@ -21,13 +21,13 @@ export const ACCOUNT_QUERY = gql`
   }
 `;
 
-const useEnterpriseAccount = (
-  domain: string,
-): {
+export type UseEnterpriseAccountReturnTuple = {
   data: { enterpriseAccount?: EnterpriseAccount };
   loading: boolean;
   error?: ApolloError;
-} => {
+};
+
+const useEnterpriseAccount = (domain: string): UseEnterpriseAccountReturnTuple => {
   let client: ApolloClient<unknown>;
   try {
     client = useApolloClient();
