@@ -1,5 +1,7 @@
-import { ApolloClient, ApolloError, gql, useApolloClient, useMutation } from '@apollo/client';
+import { ApolloError, gql, useMutation } from '@apollo/client';
+import { useContext } from 'react';
 
+import OssoContext from '~/client';
 import { ACCOUNTS_QUERY } from '~hooks/useEnterpriseAccounts/index';
 
 import { EnterpriseAccountData } from './index.types';
@@ -23,11 +25,9 @@ const createEnterpriseAccount = (): {
   loading: boolean;
   error?: ApolloError;
 } => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let client: ApolloClient<any>;
-  try {
-    client = useApolloClient();
-  } catch (error) {
+  const { client } = useContext(OssoContext);
+
+  if (client === undefined) {
     throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
