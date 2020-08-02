@@ -1,5 +1,3 @@
-import { ACCOUNTS_QUERY } from './index';
-
 export default {
   enterpriseAccounts: {
     pageInfo: {
