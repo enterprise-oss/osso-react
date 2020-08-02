@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 
 import { OssoProvider } from '~/client';
 
-import response, { domain } from './__mocks__';
+import response, { domain } from './__fixtures__';
 import useEnterpriseAccount from './index';
 
 const mockedProvider = ({ children }: { children: ReactElement }) => (
