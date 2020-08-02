@@ -1,10 +1,10 @@
 import { ApolloError, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
-import OssoContext from '~client';
+import OssoContext from '~/client';
 import { ACCOUNTS_QUERY } from '~hooks/useEnterpriseAccounts/index';
 
-import { EnterpriseAccount, EnterpriseAccountData } from './index.types';
+import { EnterpriseAccountData } from './index.types';
 
 const CREATE_ACCOUNT = gql`
   mutation CreateEnterpriseAccount($input: CreateEnterpriseAccountInput!) {
@@ -28,7 +28,7 @@ const createEnterpriseAccount = (): {
   const { client } = useContext(OssoContext);
 
   if (client === undefined) {
-    throw new Error('createEnterpriseAccount must be used inside an OssoProvider');
+    throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
   const [createAccount, { data, loading, error }] = useMutation(CREATE_ACCOUNT, {

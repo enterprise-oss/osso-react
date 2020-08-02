@@ -24,7 +24,7 @@ export default function OssoGeneratedFieldsComponent({
   containerStyle?: CSS.Properties;
 }): ReactElement | null {
   const [fields, setFields] = useState<OssoGeneratedFields<OssoGeneratedFieldKeys>>();
-  const { loading, data } = useIdentityProvider(identityProvider.id);
+  const { data } = useIdentityProvider(identityProvider.id);
   const { fieldsForProvider } = useOssoFields();
   const fullIdentityProvider = Object.assign(identityProvider, data?.identityProvider);
 

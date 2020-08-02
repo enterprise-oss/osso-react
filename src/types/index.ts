@@ -6,6 +6,12 @@ export enum Providers {
   Okta = 'OKTA',
 }
 
+export type ProviderOption = {
+  value: Providers;
+  label: string;
+  icon: string;
+};
+
 export type OssoButtonComponentProps = {
   children: ReactElement | string;
   onClick: () => void;

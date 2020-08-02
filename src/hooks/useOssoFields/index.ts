@@ -1,22 +1,23 @@
-import { OssoProvider, ProviderMap, Providers } from './index.types';
-import { azure, okta } from './providers';
+import { OssoProvider, ProviderMap, ProviderOption, Providers } from './index.types';
+import * as allProviders from './providers';
 
-const providers: ProviderMap<Providers> = {
-  [Providers.Azure]: azure,
-  [Providers.Okta]: okta,
-};
+const providerMap = Object.values(allProviders).reduce((map, provider) => {
+  return { ...map, [provider.value as Providers]: provider };
+}, {} as ProviderMap<Providers>);
+
+const providers: ProviderOption[] = Object.values(allProviders).map((provider) => ({
+  value: provider.value,
+  icon: provider.icon,
+  label: provider.label,
+}));
 
 const useOssoFields = (): {
   fieldsForProvider: (provider: Providers) => OssoProvider;
-  providers: ProviderMap<Providers>;
+  providers: ProviderOption[];
 } => {
-  const fieldsForProvider = (provider: Providers) => {
-    return providers[provider];
-  };
-
   return {
     providers,
-    fieldsForProvider,
+    fieldsForProvider: (provider: Providers) => providerMap[provider],
   };
 };
 

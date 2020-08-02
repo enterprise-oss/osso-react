@@ -1,7 +1,7 @@
 import { ApolloError, gql, useQuery } from '@apollo/client';
 import { useContext } from 'react';
 
-import OssoContext from '~client';
+import OssoContext from '~/client';
 
 import { IdentityProvider } from './index.types';
 
@@ -29,7 +29,7 @@ const useProvider = (
   const { client } = useContext(OssoContext);
 
   if (client === undefined) {
-    throw new Error('useProvider must be used inside an OssoProvider');
+    throw new Error('useIdentityProvider must be used inside an OssoProvider');
   }
 
   const { data, loading, error } = useQuery(PROVIDER_QUERY, {

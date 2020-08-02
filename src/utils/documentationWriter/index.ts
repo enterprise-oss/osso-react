@@ -18,7 +18,7 @@ const generateDocumentation = async (
   identityProvider: IdentityProvider,
 ): Promise<Uint8Array> => {
   const pdfDoc = await PDFDocument.load(template);
-  const [firstPage, ...rest] = pdfDoc.getPages();
+  const firstPage = pdfDoc.getPages()[0];
 
   Object.entries(targetCoordinates).forEach(([key, coordinates]) => {
     const text = identityProvider[key as TIdentityProvider];

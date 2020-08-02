@@ -1,4 +1,4 @@
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement } from 'react';
 
@@ -14,7 +14,6 @@ const cache = new InMemoryCache({
   },
 });
 let link: ApolloLink;
-let client: ApolloClient<NormalizedCacheObject>;
 
 const buildClient = (clientOptions?: OssoClientOptions) => {
   const uri = clientOptions?.uri || '/graphql';
@@ -27,6 +26,7 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
   return new ApolloClient({
     cache,
     link,
+    name: 'osso',
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',
@@ -43,8 +43,9 @@ const OssoContext = createContext(defaultValue);
 
 const OssoProvider = ({ children, client: clientOptions }: OssoProviderProps): ReactElement => {
   const client = buildClient(clientOptions);
-  return <OssoContext.Provider value={{ client }}>{children} </OssoContext.Provider>;
+
+  return <OssoContext.Provider value={{ client }}>{children}</OssoContext.Provider>;
 };
 
 export default OssoContext;
-export { OssoProvider, client };
+export { OssoProvider };

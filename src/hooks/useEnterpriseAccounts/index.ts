@@ -1,7 +1,7 @@
 import { ApolloError, ApolloQueryResult, FetchMoreQueryOptions, gql, useQuery } from '@apollo/client';
 import { useContext } from 'react';
 
-import OssoContext from '~client';
+import OssoContext from '~/client';
 
 import { EnterpriseAccountData } from './index.types';
 
@@ -56,13 +56,13 @@ const useEnterpriseAccounts = (
     throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
-  const { data, loading, error, fetchMore, refetch } = useQuery(ACCOUNTS_QUERY, {
+  const { data, loading, error, refetch, fetchMore } = useQuery(ACCOUNTS_QUERY, {
     client,
     variables: {
       first: limit,
       after: undefined,
-      sortOrder: undefined,
-      sortColumn: undefined,
+      sortOrder: 'desc',
+      sortColumn: 'created_at',
     } as Variables,
   });
 
