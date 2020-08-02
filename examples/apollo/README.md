@@ -1,1 +1,0 @@
-demo: https://codesandbox.io/s/github/enterprise-oss/osso-react/tree/main/examples/ant
