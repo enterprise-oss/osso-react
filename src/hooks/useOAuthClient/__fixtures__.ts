@@ -10,6 +10,7 @@ export default {
     clientSecret: '5122f0afe7c7a28ff53b87667756c734d83824b129c7f12a24ddb3b3a522d176',
     createdAt: '2020-08-07T13:50:37Z',
     updatedAt: '2020-08-07T13:50:37Z',
+    redirectUris: [],
     __typename: 'OauthClient',
   },
 };
