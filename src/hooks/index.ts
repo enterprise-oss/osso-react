@@ -5,6 +5,8 @@ import deleteEnterpriseAccount from './deleteEnterpriseAccount/index';
 import useEnterpriseAccount from './useEnterpriseAccount/index';
 import useEnterpriseAccounts from './useEnterpriseAccounts/index';
 import useIdentityProvider from './useIdentityProvider/index';
+import useOAuthClient from './useOAuthClient/index';
+import useOAuthClients from './useOAuthClients/index';
 import useOssoFields from './useOssoFields/index';
 
 export {
@@ -15,5 +17,7 @@ export {
   useEnterpriseAccount,
   useEnterpriseAccounts,
   useIdentityProvider,
+  useOAuthClient,
+  useOAuthClients,
   useOssoFields,
 };

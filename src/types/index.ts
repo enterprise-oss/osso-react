@@ -130,3 +130,22 @@ export type OssoProviderProps = {
   children: ReactElement;
   client?: OssoClientOptions;
 };
+
+type RedirectUri = {
+  id: string;
+  uri: string;
+  primary: boolean;
+};
+
+export interface OauthClient {
+  id?: string;
+  name: string;
+  clientId: string;
+  clientSecret: string;
+  redirectUris: RedirectUri[];
+  createdAt: string;
+  updatedAt: string;
+}
+export interface OAuthClientsData {
+  oauthClients: OauthClient[];
+}
