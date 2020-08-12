@@ -5,7 +5,7 @@ import OssoContext from '~/client';
 
 import { OAuthClientsData } from './index.types';
 
-const OAUTH_CLIENTS_QUERY = gql`
+export const OAUTH_CLIENTS_QUERY = gql`
   query OAuthClients {
     oauthClients {
       id

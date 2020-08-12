@@ -1,4 +1,5 @@
 import alias from '@rollup/plugin-alias';
+import graphql from 'rollup-plugin-graphql';
 import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -16,6 +17,7 @@ const plugins = [
     typescript: require('typescript'),
   }),
   svg({ base64: true }),
+  graphql(),
 ];
 
 export default [

@@ -9,10 +9,16 @@ const cache = new InMemoryCache({
     Query: {
       fields: {
         enterpriseAccounts: relayStylePagination(),
+        oauthClients: {
+          merge(_existing = [], incoming: any[]) {
+            return incoming;
+          },
+        },
       },
     },
   },
 });
+
 let link: ApolloLink;
 
 const buildClient = (clientOptions?: OssoClientOptions) => {

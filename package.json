@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.5-alpha.36",
+  "version": "0.0.5-alpha.37",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -52,6 +52,7 @@
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "rollup": "^2.18.1",
+    "rollup-plugin-graphql": "^0.1.0",
     "rollup-plugin-root-import": "^1.0.0",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-typescript2": "^0.27.1",
@@ -82,7 +83,7 @@
     "moduleNameMapper": {
       "\\.(png|svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy",
-      "^~\/(.*)$": "<rootDir>/src/$1"
+      "^~/(.*)$": "<rootDir>/src/$1"
     },
     "setupFiles": [
       "<rootDir>/jest.setup.js"

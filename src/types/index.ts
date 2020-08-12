@@ -98,6 +98,8 @@ export interface EnterpriseAccount {
   domain: string;
   status: Status;
   identityProviders: IdentityProvider[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EnterpriseAccountData {
@@ -131,7 +133,7 @@ export type OssoProviderProps = {
   client?: OssoClientOptions;
 };
 
-type RedirectUri = {
+export type RedirectUri = {
   id: string;
   uri: string;
   primary: boolean;
