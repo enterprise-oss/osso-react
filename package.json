@@ -46,6 +46,7 @@
     "jest": "^26.1.0",
     "jest-fetch-mock": "^3.0.3",
     "jest-raw-loader": "^1.0.1",
+    "jest-transform-graphql": "^2.1.0",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
@@ -93,6 +94,7 @@
     ],
     "transform": {
       "\\.js$": "babel-jest",
+      "\\.(gql|graphql)$": "jest-transform-graphql",
       "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js"
     }
   },
