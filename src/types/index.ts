@@ -78,6 +78,7 @@ export interface IdentityProvider {
   ssoCert?: string;
   ssoUrl: string;
   status: IdentityProviderStatus;
+  __typename?: 'IdentityProvider';
 }
 
 export interface ConfiguredIdentityProvider extends IdentityProvider {

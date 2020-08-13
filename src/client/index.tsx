@@ -37,6 +37,9 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
       watchQuery: {
         fetchPolicy: 'cache-and-network',
       },
+      query: {
+        fetchPolicy: 'cache-first',
+      },
     },
   });
 };
