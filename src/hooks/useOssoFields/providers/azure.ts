@@ -24,7 +24,7 @@ export default {
         },
       },
       {
-        name: 'id',
+        name: 'domain',
         inputProps: {
           id: 'osso-azure-entity-id',
           label: 'Identifier (Entity ID)',

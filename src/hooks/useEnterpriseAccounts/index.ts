@@ -37,7 +37,7 @@ export const ACCOUNTS_QUERY = gql`
 type Variables = {
   first: number;
   after?: string;
-  sortOrder?: string;
+  sortOrder?: 'ascend' | 'descend';
   sortColumn?: string;
 };
 
@@ -61,8 +61,8 @@ const useEnterpriseAccounts = (
     variables: {
       first: limit,
       after: undefined,
-      sortOrder: 'desc',
-      sortColumn: 'created_at',
+      sortOrder: 'ascend',
+      sortColumn: 'name',
     } as Variables,
   });
 

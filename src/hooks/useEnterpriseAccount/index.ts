@@ -20,6 +20,8 @@ export const ACCOUNT_QUERY = gql`
         status
         documentationPdfUrl
       }
+      createdAt
+      updatedAt
     }
   }
 `;

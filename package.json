@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.5-alpha.36",
+  "version": "0.0.5-alpha.41",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -46,12 +46,14 @@
     "jest": "^26.1.0",
     "jest-fetch-mock": "^3.0.3",
     "jest-raw-loader": "^1.0.1",
+    "jest-transform-graphql": "^2.1.0",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "rollup": "^2.18.1",
+    "rollup-plugin-graphql": "^0.1.0",
     "rollup-plugin-root-import": "^1.0.0",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-typescript2": "^0.27.1",
@@ -82,7 +84,7 @@
     "moduleNameMapper": {
       "\\.(png|svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy",
-      "^~\/(.*)$": "<rootDir>/src/$1"
+      "^~/(.*)$": "<rootDir>/src/$1"
     },
     "setupFiles": [
       "<rootDir>/jest.setup.js"
@@ -92,6 +94,7 @@
     ],
     "transform": {
       "\\.js$": "babel-jest",
+      "\\.(gql|graphql)$": "jest-transform-graphql",
       "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js"
     }
   },

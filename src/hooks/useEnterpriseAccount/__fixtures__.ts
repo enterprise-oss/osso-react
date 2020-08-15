@@ -19,5 +19,7 @@ export default {
         status: 'Pending',
       },
     ],
+    createdAt: '2020-08-12T18:40:00+0000',
+    updatedAt: '2020-08-12T18:40:00+0000',
   },
 };

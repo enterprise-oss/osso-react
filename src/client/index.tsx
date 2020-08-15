@@ -9,10 +9,25 @@ const cache = new InMemoryCache({
     Query: {
       fields: {
         enterpriseAccounts: relayStylePagination(),
+        oauthClients: {
+          merge(_existing = [], incoming: any[]) {
+            return incoming;
+          },
+        },
+      },
+    },
+    OauthClient: {
+      fields: {
+        redirectUris: {
+          merge(_existing = [], incoming: any[]) {
+            return incoming;
+          },
+        },
       },
     },
   },
 });
+
 let link: ApolloLink;
 
 const buildClient = (clientOptions?: OssoClientOptions) => {
@@ -26,10 +41,9 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
   return new ApolloClient({
     cache,
     link,
-    name: 'osso',
     defaultOptions: {
-      watchQuery: {
-        fetchPolicy: 'cache-and-network',
+      query: {
+        fetchPolicy: 'cache-first',
       },
     },
   });
@@ -43,7 +57,6 @@ const OssoContext = createContext(defaultValue);
 
 const OssoProvider = ({ children, client: clientOptions }: OssoProviderProps): ReactElement => {
   const client = buildClient(clientOptions);
-
   return <OssoContext.Provider value={{ client }}>{children}</OssoContext.Provider>;
 };
 

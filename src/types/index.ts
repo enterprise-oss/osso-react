@@ -78,6 +78,7 @@ export interface IdentityProvider {
   ssoCert?: string;
   ssoUrl: string;
   status: IdentityProviderStatus;
+  __typename?: 'IdentityProvider';
 }
 
 export interface ConfiguredIdentityProvider extends IdentityProvider {
@@ -98,6 +99,8 @@ export interface EnterpriseAccount {
   domain: string;
   status: Status;
   identityProviders: IdentityProvider[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EnterpriseAccountData {
@@ -130,3 +133,22 @@ export type OssoProviderProps = {
   children: ReactElement;
   client?: OssoClientOptions;
 };
+
+export type RedirectUri = {
+  id: string;
+  uri: string;
+  primary: boolean;
+};
+
+export interface OauthClient {
+  id?: string;
+  name: string;
+  clientId: string;
+  clientSecret: string;
+  redirectUris: RedirectUri[];
+  createdAt: string;
+  updatedAt: string;
+}
+export interface OAuthClientsData {
+  oauthClients: OauthClient[];
+}
