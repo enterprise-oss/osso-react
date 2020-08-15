@@ -24,7 +24,7 @@ export default {
         },
       },
       {
-        name: 'id',
+        name: 'domain',
         inputProps: {
           id: 'osso-okta-entity-id',
           label: 'Audience URI (SP Entity ID)',

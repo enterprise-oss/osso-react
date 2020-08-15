@@ -1,7 +1,0 @@
-mutation DeleteRedirectUri($input: DeleteOauthClientInput!) {
-  oauthClient: deleteOauthClient(input: $input) {
-    oauthClient {
-      id
-    }
-  }
-}

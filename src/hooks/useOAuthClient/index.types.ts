@@ -1,1 +1,1 @@
-export { OauthClient } from '../../types';
+export { OauthClient, OAuthClientsData } from '../../types';
