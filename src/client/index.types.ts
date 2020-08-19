@@ -1,1 +1,1 @@
-export { OssoClientOptions, OssoContextValue, OssoProviderProps } from '../types';
+export { OssoUser, OssoClientOptions, OssoContextValue, OssoProviderProps } from '../types';

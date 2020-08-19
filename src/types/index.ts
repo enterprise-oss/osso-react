@@ -127,6 +127,7 @@ export type OssoClientOptions = {
 
 export type OssoContextValue = {
   client?: ApolloClient<NormalizedCacheObject>;
+  currentUser?: OssoUser;
 };
 
 export type OssoProviderProps = {
@@ -152,3 +153,10 @@ export interface OauthClient {
 export interface OAuthClientsData {
   oauthClients: OauthClient[];
 }
+
+export type OssoUser = {
+  id: string;
+  email: string;
+  scope: 'admin' | 'internal' | 'end-user';
+  oauthClientId?: string;
+};
