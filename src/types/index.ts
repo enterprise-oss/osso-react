@@ -158,4 +158,5 @@ export type OssoUser = {
   id: string;
   email: string;
   scope: 'admin' | 'internal' | 'end-user';
+  oauthClientId?: string;
 };

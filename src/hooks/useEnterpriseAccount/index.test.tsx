@@ -1,17 +1,15 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import fetch from 'jest-fetch-mock';
-import React, { ReactElement } from 'react';
 
-import { OssoProvider } from '~/client';
+import { mockedProvider } from '~/client/index.test';
 
 import response, { domain } from './__fixtures__';
 import useEnterpriseAccount from './index';
 
-const mockedProvider = ({ children }: { children: ReactElement }) => (
-  <OssoProvider client={{ uri: 'example' }}>{children}</OssoProvider>
-);
-
 describe('client context', () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let rendered: any;
   test('fetches an account in an <OssoProvider>', async (done) => {
