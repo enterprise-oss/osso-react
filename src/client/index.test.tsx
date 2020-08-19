@@ -1,7 +1,7 @@
 // import '@testing-library/jest-dom/extend-expect';
 
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
-import { act, render } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import fetch from 'jest-fetch-mock';
 import React, { ReactElement, useContext } from 'react';
