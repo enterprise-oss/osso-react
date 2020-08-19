@@ -1,8 +1,8 @@
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloLink, gql, HttpLink, InMemoryCache } from '@apollo/client';
 import { relayStylePagination } from '@apollo/client/utilities';
-import React, { createContext, ReactElement } from 'react';
+import React, { createContext, ReactElement, useState } from 'react';
 
-import { OssoClientOptions, OssoContextValue, OssoProviderProps } from './index.types';
+import { OssoClientOptions, OssoContextValue, OssoProviderProps, OssoUser } from './index.types';
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -28,6 +28,17 @@ const cache = new InMemoryCache({
   },
 });
 
+export const CURRENT_USER_QUERY = gql`
+  query CurrentUser {
+    currentUser {
+      id
+      email
+      scope
+      oauthClientId
+    }
+  }
+`;
+
 let link: ApolloLink;
 
 const buildClient = (clientOptions?: OssoClientOptions) => {
@@ -38,7 +49,7 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
     credentials: clientOptions?.cors || 'same-origin',
   });
 
-  return new ApolloClient({
+  const client = new ApolloClient({
     cache,
     link,
     defaultOptions: {
@@ -47,6 +58,8 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
       },
     },
   });
+
+  return client;
 };
 
 const defaultValue: OssoContextValue = {
@@ -56,8 +69,18 @@ const defaultValue: OssoContextValue = {
 const OssoContext = createContext(defaultValue);
 
 const OssoProvider = ({ children, client: clientOptions }: OssoProviderProps): ReactElement => {
+  const [currentUser, setCurrentUser] = useState<OssoUser>();
   const client = buildClient(clientOptions);
-  return <OssoContext.Provider value={{ client }}>{children}</OssoContext.Provider>;
+  client
+    .query({ query: CURRENT_USER_QUERY })
+    .then(({ data }) => {
+      setCurrentUser(data.currentUser);
+    })
+    .catch((err) => {
+      throw err;
+    });
+
+  return <OssoContext.Provider value={{ client, currentUser }}>{children}</OssoContext.Provider>;
 };
 
 export default OssoContext;
