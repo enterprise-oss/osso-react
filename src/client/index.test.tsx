@@ -1,5 +1,3 @@
-// import '@testing-library/jest-dom/extend-expect';
-
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
