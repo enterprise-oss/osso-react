@@ -8,9 +8,10 @@ type Coordinates = {
   formatter?: (str: string) => void;
 };
 
-type TIdentityProvider = keyof Pick<ConfiguredIdentityProvider, 'acsUrl'>;
+type TIdentityProvider = keyof Partial<ConfiguredIdentityProvider>;
 const targetCoordinates: Record<TIdentityProvider, Coordinates> = {
-  acsUrl: { x: 60, y: 560 },
+  domain: { x: 359, y: 2729 },
+  acsUrl: { x: 359, y: 2753 },
 };
 
 const generateDocumentation = async (
@@ -35,7 +36,7 @@ const writeField = (page: PDFPage, text: string, coordinates: Coordinates) => {
   page.drawText(text, {
     x,
     y: height - y,
-    size: 32,
+    size: 12,
   });
 };
 
