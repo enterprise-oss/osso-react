@@ -32,6 +32,7 @@
     "@types/node": "^14.0.14",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
+    "@types/jest": "^26.0.7",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
     "babel-jest": "^24.9.0",
@@ -64,7 +65,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-rc.10",
-    "@types/jest": "^26.0.7",
+    "@pdf-lib/fontkit": "^1.0.0",
+    
+    "downloadjs": "^1.4.7",
     "fast-xml-parser": "^3.17.4",
     "graphql": "^15.1.0",
     "pdf-lib": "^1.9.0"

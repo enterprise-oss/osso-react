@@ -1,9 +1,11 @@
 import fs from 'fs';
+import fetch from 'jest-fetch-mock';
 
 import generateDocumentation from './index';
 
 describe('for Okta', () => {
   test('it writes a PDF', async (done) => {
+    fetch.dontMock();
     expect(function write() {
       fs.readFile('__fixtures__/okta.pdf', async (err, data) => {
         if (err) throw err;
@@ -22,6 +24,7 @@ describe('for Okta', () => {
 
 describe('for Azure ADFS', () => {
   test('it writes a PDF', async (done) => {
+    fetch.dontMock();
     expect(function write() {
       fs.readFile('__fixtures__/azure.pdf', async (err, data) => {
         if (err) throw err;
