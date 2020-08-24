@@ -1,7 +1,9 @@
 import fontkit from '@pdf-lib/fontkit';
 import { PDFDocument, PDFFont, PDFPage } from 'pdf-lib';
 
-import { IdentityProvider, Providers } from '~types';
+import { IdentityProvider, Providers } from '~/types';
+
+export const PDF_VERSION = 1;
 
 type Coordinates = {
   x: number;
