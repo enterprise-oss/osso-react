@@ -1,4 +1,5 @@
+import DownloadDocs from './DownloadDocs';
 import IdpGeneratedFields from './IdpGeneratedFields';
 import OssoGeneratedFields from './OssoGeneratedFields';
 
-export { IdpGeneratedFields, OssoGeneratedFields };
+export { DownloadDocs, IdpGeneratedFields, OssoGeneratedFields };

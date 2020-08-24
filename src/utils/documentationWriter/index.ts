@@ -1,7 +1,7 @@
 import fontkit from '@pdf-lib/fontkit';
 import { PDFDocument, PDFFont, PDFPage } from 'pdf-lib';
 
-import { ConfiguredIdentityProvider, IdentityProvider } from '~types';
+import { IdentityProvider, Providers } from '~types';
 
 type Coordinates = {
   x: number;
@@ -13,10 +13,15 @@ type Coordinates = {
   formatter?: (str: string) => void;
 };
 
-type TIdentityProvider = keyof Partial<ConfiguredIdentityProvider>;
-const targetCoordinates: Record<TIdentityProvider, Coordinates> = {
-  domain: { x: 55, y: 2726 },
-  acsUrl: { x: 55, y: 2778, size: 10 },
+const providerCoordinates = {
+  [Providers.Azure]: {
+    domain: { x: 55, y: 2726 },
+    acsUrl: { x: 55, y: 2778, size: 10 },
+  },
+  [Providers.Okta]: {
+    domain: { x: 55, y: 2726 },
+    acsUrl: { x: 55, y: 2778, size: 10 },
+  },
 };
 
 const generateDocumentation = async (
@@ -26,14 +31,14 @@ const generateDocumentation = async (
   const pdfDoc = await PDFDocument.load(template);
   pdfDoc.registerFontkit(fontkit);
 
-  const url = 'https://github.com/enterprise-oss/SFMonoFont/blob/master/SFMono-Regular.otf?raw=true';
+  const url = '/SFMono-Regular.otf';
   const fontBytes = await fetch(url).then((res) => res.arrayBuffer());
 
   const font = await pdfDoc.embedFont(fontBytes);
   const firstPage = pdfDoc.getPages()[0];
 
-  Object.entries(targetCoordinates).forEach(([key, coordinates]) => {
-    const text = identityProvider[key as TIdentityProvider];
+  Object.entries(providerCoordinates[identityProvider.service]).forEach(([key, coordinates]) => {
+    const text = identityProvider[key as keyof IdentityProvider];
     text && writeField(firstPage, text, { ...coordinates, font });
   });
 
@@ -50,11 +55,5 @@ const writeField = (page: PDFPage, text: string, coordinates: Coordinates) => {
     y: height - y,
   });
 };
-
-// const fetchTemplate = ({ service }: IdentityProvider): ArrayBuffer => {
-//   // make a fetch() call and use res.arrayBuffer()
-
-//   return new ArrayBuffer(600);
-// };
 
 export default generateDocumentation;

@@ -1,25 +1,27 @@
 import CSS from 'csstype';
+import downloadjs from 'downloadjs';
 import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useIdentityProvider, useOssoFields } from '~hooks';
+import generateDocumentation from '~utils/documentationWriter';
 
 import {
   IdentityProvider,
+  OssoButtonComponentProps,
   OssoGeneratedFieldKeys,
   OssoGeneratedFields,
   OssoInput,
   OssoInputProps,
-  OssoLinkComponentProps,
 } from './index.types';
 
 export default function OssoGeneratedFieldsComponent({
   identityProvider,
-  LinkComponent,
+  ButtonComponent,
   InputComponent,
   containerStyle,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;
-  LinkComponent: React.FC<OssoLinkComponentProps>;
+  ButtonComponent: React.FC<OssoButtonComponentProps>;
   InputComponent: React.FC<OssoInputProps>;
   containerStyle?: CSS.Properties;
 }): ReactElement | null {
@@ -33,6 +35,12 @@ export default function OssoGeneratedFieldsComponent({
     if (providerDetails) setFields(providerDetails.ossoGeneratedFields);
   }, [fullIdentityProvider.service]);
 
+  const downloadDocumentation = async () => {
+    const template = await fetch('azure.pdf').then((res) => res.arrayBuffer());
+    const pdf = await generateDocumentation(template, fullIdentityProvider);
+    downloadjs(pdf, 'Azure ADFS setup.pdf', 'application/pdf');
+  };
+
   return (
     <div style={containerStyle}>
       {fields?.manual?.map((field: OssoInput) => (
@@ -43,9 +51,7 @@ export default function OssoGeneratedFieldsComponent({
         />
       ))}
       {fields?.documentationPdfUrl && (
-        <LinkComponent {...fields?.documentationPdfUrl} href={fullIdentityProvider.documentationPdfUrl}>
-          Download Documentation
-        </LinkComponent>
+        <ButtonComponent onClick={downloadDocumentation}>Download Documentation</ButtonComponent>
       )}
     </div>
   );
