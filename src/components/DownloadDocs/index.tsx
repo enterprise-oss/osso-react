@@ -17,9 +17,12 @@ export default function DownloadDocs({
 
   const downloadDocumentation = async () => {
     if (!data) return;
-    const template = await fetch(`/pdfv${PDF_VERSION}/azure.pdf`).then((res) => res.arrayBuffer());
+    const {
+      identityProvider: { service, domain },
+    } = data;
+    const template = await fetch(`/pdfv${PDF_VERSION}/${service.toLowerCase()}.pdf`).then((res) => res.arrayBuffer());
     const pdf = await generateDocumentation(template, data.identityProvider);
-    download(pdf, 'Azure ADFS setup.pdf', 'application/pdf');
+    download(pdf, `${service} SAML setup - ${domain}.pdf`, 'application/pdf');
   };
 
   return data ? <ButtonComponent onClick={downloadDocumentation}>Download Documentation</ButtonComponent> : null;

@@ -13,11 +13,8 @@ export const PDF_VERSION = 1;
 type Coordinates = {
   x: number;
   y: number;
-  maxWidth?: number;
-  wordBreak?: string[];
   font?: PDFFont;
   size?: number;
-  formatter?: (str: string) => void;
 };
 
 const providerCoordinates = {
@@ -36,9 +33,9 @@ const generateDocumentation = async (
   identityProvider: IdentityProvider,
 ): Promise<Uint8Array> => {
   const pdfDoc = await PDFDocument.load(template);
+
   pdfDoc.registerFontkit(fontkit);
   const fontBytes = decode(SFMono);
-
   const font = await pdfDoc.embedFont(fontBytes);
   const firstPage = pdfDoc.getPages()[0];
 

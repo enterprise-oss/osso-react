@@ -1,9 +1,8 @@
 import CSS from 'csstype';
-import downloadjs from 'downloadjs';
 import React, { ReactElement, useEffect, useState } from 'react';
 
+import DownloadDocs from '~components/DownloadDocs';
 import { useIdentityProvider, useOssoFields } from '~hooks';
-import generateDocumentation from '~utils/documentationWriter';
 
 import {
   IdentityProvider,
@@ -35,12 +34,6 @@ export default function OssoGeneratedFieldsComponent({
     if (providerDetails) setFields(providerDetails.ossoGeneratedFields);
   }, [fullIdentityProvider.service]);
 
-  const downloadDocumentation = async () => {
-    const template = await fetch('azure.pdf').then((res) => res.arrayBuffer());
-    const pdf = await generateDocumentation(template, fullIdentityProvider);
-    downloadjs(pdf, 'Azure ADFS setup.pdf', 'application/pdf');
-  };
-
   return (
     <div style={containerStyle}>
       {fields?.manual?.map((field: OssoInput) => (
@@ -50,9 +43,7 @@ export default function OssoGeneratedFieldsComponent({
           value={fullIdentityProvider[field.name as keyof IdentityProvider]}
         />
       ))}
-      {fields?.documentationPdfUrl && (
-        <ButtonComponent onClick={downloadDocumentation}>Download Documentation</ButtonComponent>
-      )}
+      <DownloadDocs identityProvider={fullIdentityProvider} ButtonComponent={ButtonComponent} />
     </div>
   );
 }
