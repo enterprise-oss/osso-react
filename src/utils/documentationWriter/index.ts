@@ -1,6 +1,8 @@
 import fontkit from '@pdf-lib/fontkit';
+import { decode } from 'base64-arraybuffer';
 import { PDFDocument, PDFFont, PDFPage } from 'pdf-lib';
 
+import SFMono from '~/resources/SFMono-Regular.ttf';
 import { IdentityProvider, Providers } from '~/types';
 
 export const PDF_VERSION = 1;
@@ -32,9 +34,7 @@ const generateDocumentation = async (
 ): Promise<Uint8Array> => {
   const pdfDoc = await PDFDocument.load(template);
   pdfDoc.registerFontkit(fontkit);
-
-  const url = '/SFMono-Regular.otf';
-  const fontBytes = await fetch(url).then((res) => res.arrayBuffer());
+  const fontBytes = decode(SFMono);
 
   const font = await pdfDoc.embedFont(fontBytes);
   const firstPage = pdfDoc.getPages()[0];

@@ -17,9 +17,7 @@ export default function DownloadDocs({
 
   const downloadDocumentation = async () => {
     if (!data) return;
-
     const template = await fetch(`/pdfv${PDF_VERSION}/azure.pdf`).then((res) => res.arrayBuffer());
-
     const pdf = await generateDocumentation(template, data.identityProvider);
     download(pdf, 'Azure ADFS setup.pdf', 'application/pdf');
   };

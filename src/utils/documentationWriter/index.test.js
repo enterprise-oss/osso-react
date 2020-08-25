@@ -13,6 +13,7 @@ describe('for Okta', () => {
         const result = await generateDocumentation(uint8Array, {
           acsUrl: 'https://example.ossoapp.io/auth/saml/a2533317-1f77-473c-abbb-083d728253c9/callback',
           domain: 'example.com',
+          service: 'OKTA',
         });
         const path = `__artifacts__/okta-docs.pdf`;
         fs.writeFileSync(path, result);
@@ -32,6 +33,7 @@ describe('for Azure ADFS', () => {
         const result = await generateDocumentation(uint8Array, {
           acsUrl: 'https://example.ossoapp.io/auth/saml/a2533317-1f77-473c-abbb-083d728253c9/callback',
           domain: 'example.com',
+          service: 'AZURE',
         });
 
         const path = `__artifacts__/azure-docs.pdf`;
