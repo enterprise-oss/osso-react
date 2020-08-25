@@ -10,16 +10,16 @@ const input = 'src/index.ts';
 const external = [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})];
 
 const plugins = [
-  base64({
-    include: ['**/*.ttf'],
-  }),
   alias({
     entries: [{ find: '~', replacement: 'src' }],
   }),
+  base64({
+    include: 'src/resources/SFMono-Regular.ttf',
+  }),
+  svg({ base64: true }),
   typescript({
     typescript: require('typescript'),
   }),
-  svg({ base64: true }),
 ];
 
 export default [

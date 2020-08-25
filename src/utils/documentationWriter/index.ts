@@ -2,8 +2,11 @@ import fontkit from '@pdf-lib/fontkit';
 import { decode } from 'base64-arraybuffer';
 import { PDFDocument, PDFFont, PDFPage } from 'pdf-lib';
 
-import SFMono from '~/resources/SFMono-Regular.ttf';
 import { IdentityProvider, Providers } from '~/types';
+
+// NB: rollup plugins not playing well with each other,
+// so no root aliasing
+import SFMono from '../../resources/SFMono-Regular.ttf';
 
 export const PDF_VERSION = 1;
 

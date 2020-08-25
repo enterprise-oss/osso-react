@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/14.4.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js test
+  /usr/local/Cellar/node/14.4.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add -D @types/rollup-plugin-base64
 
 PATH: 
   /Users/sambauch/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/sambauch/.rbenv/shims:/Users/sambauch/Library/Android/sdk/emulator:/Users/sambauch/Library/Android/sdk/tools:/Users/sambauch/Library/Android/sdk/tools/bin:/Users/sambauch/Library/Android/sdk/platform-tools:/Users/sambauch/.fzf/bin:/Users/sambauch/Library/Android/sdk/emulator:/Users/sambauch/Library/Android/sdk/tools:/Users/sambauch/Library/Android/sdk/tools/bin:/Users/sambauch/Library/Android/sdk/platform-tools
@@ -14,12 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/sambauch/Code/enterprise-oss/frontend/osso/package.json: Unexpected token } in JSON at position 3255
-      at JSON.parse (<anonymous>)
-      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:310:30)
-      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:321:13
+  Error: https://registry.yarnpkg.com/@types%2frollup-plugin-base64: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:66987:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -50,7 +55,6 @@ npm manifest:
       "@babel/preset-typescript": "^7.10.4",
       "@rollup/plugin-alias": "^3.1.1",
       "@rollup/plugin-babel": "^5.0.4",
-      "@rollup/plugin-url": "^5.0.1",
       "@testing-library/react": "^10.4.7",
       "@testing-library/react-hooks": "^3.4.1",
       "@types/downloadjs": "^1.4.2",
@@ -63,7 +67,6 @@ npm manifest:
       "@typescript-eslint/parser": "^3.4.0",
       "babel-jest": "^24.9.0",
       "babel-plugin-root-import": "^6.5.0",
-      "datauri": "^3.0.0",
       "eslint": "^7.3.1",
       "eslint-config-prettier": "^6.11.0",
       "eslint-plugin-prettier": "^3.1.4",
@@ -102,8 +105,6 @@ npm manifest:
       "pdf-lib": "^1.9.0"
     },
     "peerDependencies": {
-      "downloadjs": "^1.4.7",
-      "fast-xml-parser": "^3.17.4",
       "react": "^16.13.1"
     },
     "jest": {
@@ -117,20 +118,19 @@ npm manifest:
       "moduleNameMapper": {
         "\\.(png|svg)$": "<rootDir>/__mocks__/fileMock.js",
         "\\.(css|less)$": "identity-obj-proxy",
-        "^~/(.*)$": "<rootDir>/src/$1",
-        "\\.(ttf)$": "<rootDir>/__mocks__/base64Transform.js"
-  
+        "^~/(.*)$": "<rootDir>/src/$1"
       },
       "setupFiles": [
         "<rootDir>/jest.setup.js"
       ],
       "testPathIgnorePatterns": [
-        "<rootDir>/examples"
+        "<rootDir>/examples/*"
       ],
       "transform": {
         "\\.js$": "babel-jest",
         "\\.(gql|graphql)$": "jest-transform-graphql",
         "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js",
+        "\\.(ttf)$": "<rootDir>/__mocks__/base64Transform.js"
       }
     },
     "yalcWatch": {
@@ -1441,16 +1441,7 @@ Lockfile:
       "@babel/helper-module-imports" "^7.7.4"
       "@rollup/pluginutils" "^3.0.8"
   
-  "@rollup/plugin-url@^5.0.1":
-    version "5.0.1"
-    resolved "https://registry.yarnpkg.com/@rollup/plugin-url/-/plugin-url-5.0.1.tgz#77fc9f56100cd83cfb45109adf7d48af1c8ecdbf"
-    integrity sha512-/dO8Ic+vR9VtMkHjmFBWzISjX0iDwrB3vLg8sy4A7hxu2Uk0J09kAXbtku7gJb1fqVcJUIByFG5d/4sgNh1DvA==
-    dependencies:
-      "@rollup/pluginutils" "^3.0.4"
-      make-dir "^3.0.0"
-      mime "^2.4.4"
-  
-  "@rollup/pluginutils@^3.0.4", "@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.1.0":
+  "@rollup/pluginutils@^3.0.8", "@rollup/pluginutils@^3.1.0":
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"
     integrity sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==
@@ -2549,14 +2540,6 @@ Lockfile:
       whatwg-mimetype "^2.3.0"
       whatwg-url "^8.0.0"
   
-  datauri@^3.0.0:
-    version "3.0.0"
-    resolved "https://registry.yarnpkg.com/datauri/-/datauri-3.0.0.tgz#6196997e9a7bbbee81b60e8c8acb1a2c871e2349"
-    integrity sha512-NeDFuUPV1YCpCn8MUIcDk1QnuyenUHs7f4Q5P0n9FFA0neKFrfEH9esR+YMW95BplbYfdmjbs0Pl/ZGAaM2QHQ==
-    dependencies:
-      image-size "0.8.3"
-      mimer "1.1.0"
-  
   date-fns@^2.0.1:
     version "2.14.0"
     resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.14.0.tgz#359a87a265bb34ef2e38f93ecf63ac453f9bc7ba"
@@ -3532,13 +3515,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
     integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
   
-  image-size@0.8.3:
-    version "0.8.3"
-    resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.8.3.tgz#f0b568857e034f29baffd37013587f2c0cad8b46"
-    integrity sha512-SMtq1AJ+aqHB45c3FsB4ERK0UCiA2d3H1uq8s+8T0Pf8A3W4teyBQyaFaktH6xvZqh+npwlKU7i4fJo0r7TYTg==
-    dependencies:
-      queue "6.0.1"
-  
   import-fresh@^3.0.0:
     version "3.2.1"
     resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.2.1.tgz#633ff618506e793af5ac91bf48b72677e15cbe66"
@@ -3573,7 +3549,7 @@ Lockfile:
       once "^1.3.0"
       wrappy "1"
   
-  inherits@2, inherits@~2.0.3:
+  inherits@2:
     version "2.0.4"
     resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
     integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
@@ -4738,16 +4714,6 @@ Lockfile:
     dependencies:
       mime-db "1.44.0"
   
-  mime@^2.4.4:
-    version "2.4.6"
-    resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.6.tgz#e5b407c90db442f2beb5b162373d07b69affa4d1"
-    integrity sha512-RZKhC3EmpBchfTGBVb8fb+RL2cWyw/32lshnsETttkBAyAUXSGHxbEJWWRXc751DrIxG1q04b8QwMbAwkRPpUA==
-  
-  mimer@1.1.0:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/mimer/-/mimer-1.1.0.tgz#2cb67f7093998e772a0e62c090f77daa1b8a2dbe"
-    integrity sha512-y9dVfy2uiycQvDNiAYW6zp49ZhFlXDMr5wfdOiMbdzGM/0N5LNR6HTUn3un+WUQcM0koaw8FMTG1bt5EnHJdvQ==
-  
   mimic-fn@^2.1.0:
     version "2.1.0"
     resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
@@ -5348,13 +5314,6 @@ Lockfile:
     version "6.5.2"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
     integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
-  
-  queue@6.0.1:
-    version "6.0.1"
-    resolved "https://registry.yarnpkg.com/queue/-/queue-6.0.1.tgz#abd5a5b0376912f070a25729e0b6a7d565683791"
-    integrity sha512-AJBQabRCCNr9ANq8v77RJEv73DPbn55cdTb+Giq4X0AVnNVZvMHlYp7XlQiN+1npCZj1DuSmaA2hYVUUDgxFDg==
-    dependencies:
-      inherits "~2.0.3"
   
   rc@^1.2.8:
     version "1.2.8"
