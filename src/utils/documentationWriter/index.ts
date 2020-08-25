@@ -22,8 +22,8 @@ type Coordinates = {
 
 const providerCoordinates = {
   [Providers.Azure]: {
-    domain: { x: 55, y: 2726 },
-    acsUrl: { x: 55, y: 2778, size: 10 },
+    domain: { x: 55, y: 2799 },
+    acsUrl: { x: 55, y: 2851, size: 10 },
   },
   [Providers.Okta]: {
     domain: { x: 55, y: 2726 },
