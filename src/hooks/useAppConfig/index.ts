@@ -10,7 +10,7 @@ const useAppConfig = (): {
   data: { appConfig: AppConfig };
   loading: boolean;
   error?: ApolloError | string;
-  update: (args: AppConfigInput) => Promise<FetchResult>;
+  update: (args: AppConfig) => Promise<FetchResult>;
 } => {
   const { client } = useContext(OssoContext);
 
