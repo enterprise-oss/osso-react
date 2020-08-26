@@ -20,11 +20,11 @@ type Coordinates = {
 const providerCoordinates = {
   [Providers.Azure]: {
     domain: { x: 55, y: 2799 },
-    acsUrl: { x: 55, y: 2851, size: 10 },
+    acsUrl: { x: 55, y: 2851 },
   },
   [Providers.Okta]: {
-    domain: { x: 55, y: 2726 },
-    acsUrl: { x: 55, y: 2778, size: 10 },
+    domain: { x: 55, y: 2094 },
+    acsUrl: { x: 55, y: 1936 },
   },
 };
 
@@ -52,7 +52,7 @@ const writeField = (page: PDFPage, text: string, coordinates: Coordinates) => {
   const { y, ...rest } = coordinates;
 
   page.drawText(text, {
-    size: 12,
+    size: 10,
     ...rest,
     y: height - y,
   });
