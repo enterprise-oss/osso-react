@@ -2,7 +2,7 @@ import fontkit from '@pdf-lib/fontkit';
 import { decode } from 'base64-arraybuffer';
 import { PDFDocument, PDFFont, PDFPage } from 'pdf-lib';
 
-import { IdentityProvider, Providers } from '~/types';
+import { AppConfig, IdentityProvider, Providers } from '~/types';
 
 // NB: rollup plugins not playing well with each other,
 // so no root aliasing
@@ -21,16 +21,21 @@ const providerCoordinates = {
   [Providers.Azure]: {
     domain: { x: 55, y: 2799 },
     acsUrl: { x: 55, y: 2851 },
+    name: { x: 395, y: 933 },
+    // logoUrl: { x: 55, y: 2000 },
   },
   [Providers.Okta]: {
     domain: { x: 55, y: 2094 },
     acsUrl: { x: 55, y: 1936 },
+    name: { x: 215, y: 1543 },
+    logoUrl: { x: 320, y: 1578 },
   },
 };
 
 const generateDocumentation = async (
   template: ArrayBuffer,
   identityProvider: IdentityProvider,
+  appConfig: AppConfig,
 ): Promise<Uint8Array> => {
   const pdfDoc = await PDFDocument.load(template);
 
@@ -40,7 +45,8 @@ const generateDocumentation = async (
   const firstPage = pdfDoc.getPages()[0];
 
   Object.entries(providerCoordinates[identityProvider.service]).forEach(([key, coordinates]) => {
-    const text = identityProvider[key as keyof IdentityProvider];
+    const text = identityProvider[key as keyof IdentityProvider] || appConfig[key as keyof AppConfig];
+
     text && writeField(firstPage, text, { ...coordinates, font });
   });
 
