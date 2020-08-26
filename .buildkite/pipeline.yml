@@ -23,10 +23,10 @@ steps:
 
   - wait
 
-  - name: ":codeclimate: Report coverage"
+  - name: ":codeclimate:"
     plugins:
       - jobready/codeclimate-test-reporter#v2.0:
-          artifact: "coverage/clover.xml"
+          artifact: "coverage/lcov.info"
           input_type: lcov
           debug: true
           prefix: '/var/lib/buildkite-agent/builds/enterprise-oss-bk-1/enterpriseoss/osso-react/'
