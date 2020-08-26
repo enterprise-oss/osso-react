@@ -1,6 +1,12 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ReactElement } from 'react';
 
+export type AppConfig = {
+  name?: string;
+  logoUrl?: string;
+  contactEmail?: string;
+};
+
 export enum Providers {
   Azure = 'AZURE',
   Okta = 'OKTA',
