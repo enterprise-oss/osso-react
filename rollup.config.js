@@ -1,4 +1,5 @@
 import alias from '@rollup/plugin-alias';
+import { base64 } from 'rollup-plugin-base64';
 import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -12,10 +13,13 @@ const plugins = [
   alias({
     entries: [{ find: '~', replacement: 'src' }],
   }),
+  base64({
+    include: 'src/resources/SFMono-Regular.ttf',
+  }),
+  svg({ base64: true }),
   typescript({
     typescript: require('typescript'),
   }),
-  svg({ base64: true }),
 ];
 
 export default [

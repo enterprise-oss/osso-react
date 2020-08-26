@@ -1,6 +1,12 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ReactElement } from 'react';
 
+export type AppConfig = {
+  name?: string;
+  logoUrl?: string;
+  contactEmail?: string;
+};
+
 export enum Providers {
   Azure = 'AZURE',
   Okta = 'OKTA',
@@ -72,6 +78,7 @@ export enum IdentityProviderStatus {
 
 export interface IdentityProvider {
   id: string;
+  domain: string;
   documentationPdfUrl?: string;
   service: Providers;
   acsUrl?: string;
@@ -81,10 +88,9 @@ export interface IdentityProvider {
   __typename?: 'IdentityProvider';
 }
 
-export interface ConfiguredIdentityProvider extends IdentityProvider {
-  documentationPdfUrl: string;
+export interface ConfiguredIdentityProvider {
   acsUrl: string;
-  ssoCert: string;
+  domain: string;
 }
 
 enum Status {

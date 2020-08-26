@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.5-alpha.42",
+  "version": "0.0.5-alpha.43",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -26,9 +26,12 @@
     "@babel/preset-typescript": "^7.10.4",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-url": "^5.0.1",
     "@testing-library/react": "^10.4.7",
     "@testing-library/react-hooks": "^3.4.1",
+    "@types/downloadjs": "^1.4.2",
     "@types/faker": "^4.1.12",
+    "@types/jest": "^26.0.7",
     "@types/node": "^14.0.14",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
@@ -47,12 +50,14 @@
     "jest-fetch-mock": "^3.0.3",
     "jest-raw-loader": "^1.0.1",
     "jest-transform-graphql": "^2.1.0",
+    "js-base64": "^3.4.5",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "rollup": "^2.18.1",
+    "rollup-plugin-base64": "^1.0.1",
     "rollup-plugin-graphql": "^0.1.0",
     "rollup-plugin-root-import": "^1.0.0",
     "rollup-plugin-svg": "^2.0.0",
@@ -64,13 +69,14 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-rc.10",
-    "@types/jest": "^26.0.7",
+    "@pdf-lib/fontkit": "^1.0.0",
+    "base64-arraybuffer": "^0.2.0",
+    "downloadjs": "^1.4.7",
     "fast-xml-parser": "^3.17.4",
     "graphql": "^15.1.0",
     "pdf-lib": "^1.9.0"
   },
   "peerDependencies": {
-    "fast-xml-parser": "^3.17.4",
     "react": "^16.13.1"
   },
   "jest": {
@@ -90,12 +96,13 @@
       "<rootDir>/jest.setup.js"
     ],
     "testPathIgnorePatterns": [
-      "<rootDir>/examples"
+      "<rootDir>/examples/*"
     ],
     "transform": {
       "\\.js$": "babel-jest",
       "\\.(gql|graphql)$": "jest-transform-graphql",
-      "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js"
+      "\\.(html|xml|txt|pdf)$": "<rootDir>/__mocks__/stringTransform.js",
+      "\\.(ttf)$": "<rootDir>/__mocks__/base64Transform.js"
     }
   },
   "yalcWatch": {

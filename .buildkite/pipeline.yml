@@ -15,11 +15,20 @@ steps:
   
   - commands: 
     - "yarn install"
-    - "yarn test"
+    - "yarn test --collectCoverage"
     label: ":jest:"
     artifact_paths:
       - __artifacts__/*.pdf
+      - coverage/*
 
+  - wait
+
+  - name: ":codeclimate:"
+    plugins:
+      - jobready/codeclimate-test-reporter#v2.0:
+          artifact: "coverage/lcov.info"
+          input_type: lcov
+          prefix: '/var/lib/buildkite-agent/builds/enterprise-oss-bk-1/enterpriseoss/osso-react/'
   - wait
 
   - commands: 

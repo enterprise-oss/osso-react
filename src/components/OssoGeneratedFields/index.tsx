@@ -1,25 +1,26 @@
 import CSS from 'csstype';
 import React, { ReactElement, useEffect, useState } from 'react';
 
+import DownloadDocs from '~components/DownloadDocs';
 import { useIdentityProvider, useOssoFields } from '~hooks';
 
 import {
   IdentityProvider,
+  OssoButtonComponentProps,
   OssoGeneratedFieldKeys,
   OssoGeneratedFields,
   OssoInput,
   OssoInputProps,
-  OssoLinkComponentProps,
 } from './index.types';
 
 export default function OssoGeneratedFieldsComponent({
   identityProvider,
-  LinkComponent,
+  ButtonComponent,
   InputComponent,
   containerStyle,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;
-  LinkComponent: React.FC<OssoLinkComponentProps>;
+  ButtonComponent: React.FC<OssoButtonComponentProps>;
   InputComponent: React.FC<OssoInputProps>;
   containerStyle?: CSS.Properties;
 }): ReactElement | null {
@@ -42,11 +43,7 @@ export default function OssoGeneratedFieldsComponent({
           value={fullIdentityProvider[field.name as keyof IdentityProvider]}
         />
       ))}
-      {fields?.documentationPdfUrl && (
-        <LinkComponent {...fields?.documentationPdfUrl} href={fullIdentityProvider.documentationPdfUrl}>
-          Download Documentation
-        </LinkComponent>
-      )}
+      <DownloadDocs identityProvider={fullIdentityProvider} ButtonComponent={ButtonComponent} />
     </div>
   );
 }

@@ -9,9 +9,9 @@ const PROVIDER_QUERY = gql`
   query IdentityProvider($id: ID!) {
     identityProvider(id: $id) {
       id
+      domain
       service
       acsUrl
-      documentationPdfUrl
       ssoCert
       ssoUrl
       status
