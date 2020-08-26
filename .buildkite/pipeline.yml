@@ -28,7 +28,6 @@ steps:
       - jobready/codeclimate-test-reporter#v2.0:
           artifact: "coverage/lcov.info"
           input_type: lcov
-          debug: true
           prefix: '/var/lib/buildkite-agent/builds/enterprise-oss-bk-1/enterpriseoss/osso-react/'
   - wait
 
