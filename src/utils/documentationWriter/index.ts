@@ -19,16 +19,18 @@ type Coordinates = {
 
 const providerCoordinates = {
   [Providers.Azure]: {
-    domain: { x: 55, y: 2799 },
-    acsUrl: { x: 55, y: 2851 },
-    name: { x: 395, y: 933 },
+    contactEmail: { x: 45, y: 388 },
+    name: { x: 395, y: 962 },
+    domain: { x: 55, y: 2828 },
+    acsUrl: { x: 55, y: 2880 },
     // logoUrl: { x: 55, y: 2000 },
   },
   [Providers.Okta]: {
-    domain: { x: 55, y: 2094 },
-    acsUrl: { x: 55, y: 1936 },
-    name: { x: 215, y: 1543 },
-    logoUrl: { x: 320, y: 1578 },
+    contactEmail: { x: 45, y: 388 },
+    name: { x: 215, y: 1615 },
+    logoUrl: { x: 81, y: 1684 },
+    acsUrl: { x: 55, y: 2009 },
+    domain: { x: 55, y: 2167 },
   },
 };
 
