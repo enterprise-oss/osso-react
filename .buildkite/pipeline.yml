@@ -26,8 +26,9 @@ steps:
   - name: ":codeclimate: Report coverage"
     plugins:
       - jobready/codeclimate-test-reporter#v2.0:
-          artifact: "coverage/coverage-final.json"
+          artifact: "coverage/clover.xml"
           input_type: lcov
+          debug: true
           prefix: '/var/lib/buildkite-agent/builds/enterprise-oss-bk-1/enterpriseoss/osso-react/'
   - wait
 
