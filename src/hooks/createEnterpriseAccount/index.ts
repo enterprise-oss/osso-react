@@ -20,7 +20,7 @@ const CREATE_ACCOUNT = gql`
 `;
 
 const createEnterpriseAccount = (): {
-  createAccount: (name: string, domain: string) => void;
+  createAccount: (name: string, domain: string, oauthClientId: string | undefined) => void;
   data?: EnterpriseAccountData;
   loading: boolean;
   error?: ApolloError;
@@ -69,8 +69,8 @@ const createEnterpriseAccount = (): {
   });
 
   return {
-    createAccount: (name: string, domain: string) => {
-      createAccount({ variables: { input: { name, domain } } });
+    createAccount: (name: string, domain: string, oauthClientId = undefined) => {
+      createAccount({ variables: { input: { name, domain, oauthClientId } } });
     },
     data,
     loading,
