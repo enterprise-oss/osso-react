@@ -14,7 +14,6 @@
     "build": "rollup -c",
     "clean": "rm -rf dist",
     "yalc-dev": "yalc-watch",
-    "develop": "tsc && rollup -c rollup-dev.config.js --watch",
     "lint": "eslint ./src",
     "format": "tsc && eslint ./src --fix",
     "test": "jest"

@@ -7,7 +7,11 @@ import pkg from './package.json';
 
 const input = 'src/index.ts';
 
-const external = [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})];
+const external = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+  '@apollo/client/utilities',
+];
 
 const plugins = [
   alias({
@@ -27,7 +31,7 @@ export default [
     input,
     output: {
       file: pkg.module,
-      format: 'esm',
+      format: 'es',
       sourcemap: true,
     },
     plugins,
