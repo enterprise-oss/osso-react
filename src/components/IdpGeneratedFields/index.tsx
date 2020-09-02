@@ -58,6 +58,7 @@ export default function IdpGeneratedFieldsComponent({
   UploadComponent,
   ButtonComponent,
   classes,
+  errors,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;
   onChange: (formState: IdentityProviderFormState) => void;
@@ -65,6 +66,7 @@ export default function IdpGeneratedFieldsComponent({
   UploadComponent: React.FC<OssoInputProps>;
   ButtonComponent: React.FC<OssoButtonComponentProps>;
   containerStyle?: CSS.Properties;
+  errors?: any[];
   classes: {
     container?: string;
     formInstructions?: string;
@@ -101,7 +103,7 @@ export default function IdpGeneratedFieldsComponent({
   }, [state]);
 
   const { metadataXml, manual } = fields;
-
+  console.log(errors);
   return (
     <div className={classes?.container}>
       {metadataXml && (
@@ -118,19 +120,6 @@ export default function IdpGeneratedFieldsComponent({
           />
         </>
       )}
-
-      {/* TODO: CORS issues may cause us to drop this option  
-      {metadataUrl && (
-        <InputComponent
-          {...(metadataUrl as OssoInputProps)}
-          onChange={(value) =>
-            dispatch({
-              field: 'metadataUrl',
-              value,
-            })
-          }
-        />
-      )} */}
 
       <h3 className={classes.formInstructions}>Or, add configuration manually:</h3>
       {(manual as OssoInput[])?.map((field: OssoInput) => {

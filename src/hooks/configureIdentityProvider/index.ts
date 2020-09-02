@@ -23,7 +23,7 @@ const CONFIGURE_PROVIDER = gql`
 `;
 
 const configureIdentityProvider = (): {
-  configureProvider: (id: string, providerData: IdentityProviderFormState) => void;
+  configureProvider: (id: string, providerData: IdentityProviderFormState) => Promise<any>;
   data?: IdentityProvider;
   loading: boolean;
   error?: ApolloError;

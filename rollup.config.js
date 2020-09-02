@@ -1,4 +1,5 @@
 import alias from '@rollup/plugin-alias';
+import babel from '@rollup/plugin-babel';
 import { base64 } from 'rollup-plugin-base64';
 import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript2';
@@ -16,6 +17,10 @@ const external = [
 const plugins = [
   alias({
     entries: [{ find: '~', replacement: 'src' }],
+  }),
+  babel({
+    exclude: 'node_modules/**',
+    presets: [['env', { modules: false }], 'react'],
   }),
   base64({
     include: 'src/resources/SFMono-Regular.ttf',

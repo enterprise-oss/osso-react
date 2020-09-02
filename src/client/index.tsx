@@ -1,32 +1,34 @@
 import { ApolloClient, ApolloLink, gql, HttpLink, InMemoryCache } from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement, useState } from 'react';
 
 import { OssoClientOptions, OssoContextValue, OssoProviderProps, OssoUser } from './index.types';
 
-const cache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        enterpriseAccounts: relayStylePagination(),
-        oauthClients: {
-          merge(_existing = [], incoming: any[]) {
-            return incoming;
+const buildCache = () =>
+  new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          enterpriseAccounts: relayStylePagination(),
+          oauthClients: {
+            merge(_existing = [], incoming: any[]) {
+              return incoming;
+            },
+          },
+        },
+      },
+      OauthClient: {
+        fields: {
+          redirectUris: {
+            merge(_existing = [], incoming: any[]) {
+              return incoming;
+            },
           },
         },
       },
     },
-    OauthClient: {
-      fields: {
-        redirectUris: {
-          merge(_existing = [], incoming: any[]) {
-            return incoming;
-          },
-        },
-      },
-    },
-  },
-});
+  });
 
 export const CURRENT_USER_QUERY = gql`
   query CurrentUser {
@@ -49,8 +51,17 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
     credentials: clientOptions?.cors || 'same-origin',
   });
 
+  // const error = onError(({ graphQLErrors, networkError }) => {
+  //   if (graphQLErrors)
+  //     graphQLErrors.map(({ message, locations, path }) =>
+  //       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
+  //     );
+
+  //   if (networkError) console.log(`[Network error]: ${networkError}`);
+  // });
+
   const client = new ApolloClient({
-    cache,
+    cache: buildCache(),
     link,
     defaultOptions: {
       query: {
