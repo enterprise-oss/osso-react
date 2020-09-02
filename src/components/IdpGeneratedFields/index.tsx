@@ -103,7 +103,7 @@ export default function IdpGeneratedFieldsComponent({
   }, [state]);
 
   const { metadataXml, manual } = fields;
-  console.log(errors);
+
   return (
     <div className={classes?.container}>
       {metadataXml && (

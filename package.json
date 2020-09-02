@@ -7,7 +7,6 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "author": "sbauch",
-  "sideEffects": false,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
