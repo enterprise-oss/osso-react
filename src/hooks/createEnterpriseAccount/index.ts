@@ -1,4 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { ApolloError, FetchResult, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~/client';
@@ -20,7 +20,7 @@ const CREATE_ACCOUNT = gql`
 `;
 
 const createEnterpriseAccount = (): {
-  createAccount: (name: string, domain: string, oauthClientId: string | undefined) => void;
+  createAccount: (name: string, domain: string, oauthClientId: string | undefined) => Promise<FetchResult>;
   data?: EnterpriseAccountData;
   loading: boolean;
   error?: ApolloError;
@@ -69,9 +69,8 @@ const createEnterpriseAccount = (): {
   });
 
   return {
-    createAccount: (name: string, domain: string, oauthClientId = undefined) => {
-      createAccount({ variables: { input: { name, domain, oauthClientId } } });
-    },
+    createAccount: (name: string, domain: string, oauthClientId = undefined) =>
+      createAccount({ variables: { input: { name, domain, oauthClientId } } }),
     data,
     loading,
     error,

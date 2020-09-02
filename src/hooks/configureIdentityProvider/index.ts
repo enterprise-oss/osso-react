@@ -1,4 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { ApolloError, FetchResult, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~client';
@@ -23,7 +23,7 @@ const CONFIGURE_PROVIDER = gql`
 `;
 
 const configureIdentityProvider = (): {
-  configureProvider: (id: string, providerData: IdentityProviderFormState) => void;
+  configureProvider: (id: string, providerData: IdentityProviderFormState) => Promise<FetchResult>;
   data?: IdentityProvider;
   loading: boolean;
   error?: ApolloError;

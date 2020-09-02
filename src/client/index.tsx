@@ -1,4 +1,4 @@
-import { ApolloClient, ApolloLink, gql, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, gql, HttpLink, InMemoryCache } from '@apollo/client';
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement, useState } from 'react';
 
@@ -39,12 +39,10 @@ export const CURRENT_USER_QUERY = gql`
   }
 `;
 
-let link: ApolloLink;
-
 const buildClient = (clientOptions?: OssoClientOptions) => {
   const uri = clientOptions?.uri || '/graphql';
 
-  link = new HttpLink({
+  const link = new HttpLink({
     uri,
     credentials: clientOptions?.cors || 'same-origin',
   });

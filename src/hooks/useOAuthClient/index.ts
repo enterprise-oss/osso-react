@@ -19,9 +19,9 @@ const useOAuthClient = (
   data: { oauthClient: OauthClient };
   loading: boolean;
   error?: ApolloError | string;
-  regenerateCredentials: () => Promise<FetchResult<string, Record<string, string>, Record<string, string>>>;
-  deleteClient: () => Promise<any>;
-  setRedirectUris: (redirectUris: RedirectUri[]) => Promise<any>;
+  regenerateCredentials: () => Promise<FetchResult>;
+  deleteClient: () => Promise<FetchResult>;
+  setRedirectUris: (redirectUris: RedirectUri[]) => Promise<FetchResult>;
 } => {
   const { client } = useContext(OssoContext);
 

@@ -35,6 +35,7 @@ export interface OssoInputProps {
   label: string;
   name?: string;
   value?: string;
+  error?: any;
   type: 'text' | 'textarea' | 'file';
   readOnly: boolean;
   copyable?: boolean;
