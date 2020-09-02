@@ -1,4 +1,4 @@
-import { ApolloClient, FetchResult, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { ReactElement } from 'react';
 
 export type AppConfig = {
