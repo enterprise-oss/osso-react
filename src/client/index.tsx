@@ -1,4 +1,4 @@
-import { ApolloClient, ApolloLink, gql, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, gql, HttpLink, InMemoryCache } from '@apollo/client';
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement, useState } from 'react';
 
