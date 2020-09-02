@@ -1,4 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { ApolloError, FetchResult, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~client';
@@ -22,7 +22,7 @@ const CREATE_PROVIDER = gql`
 `;
 
 const createIdentityProvider = (): {
-  createProvider: (enterpriseAccountId: string, providerService: Providers) => void;
+  createProvider: (enterpriseAccountId: string, providerService: Providers) => Promise<FetchResult>;
   data?: IdentityProvider;
   loading: boolean;
   error?: ApolloError;
@@ -66,9 +66,8 @@ const createIdentityProvider = (): {
   });
 
   return {
-    createProvider: (enterpriseAccountId: string, service?: Providers) => {
-      createProvider({ variables: { input: { enterpriseAccountId, service } } });
-    },
+    createProvider: (enterpriseAccountId: string, service?: Providers) =>
+      createProvider({ variables: { input: { enterpriseAccountId, service } } }),
     data,
     loading,
     error,

@@ -1,4 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { ApolloError, FetchResult, gql, MutationResult, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~client';
@@ -6,8 +6,8 @@ import OssoContext from '~client';
 import { IdentityProvider, IdentityProviderFormState } from './index.types';
 
 const CONFIGURE_PROVIDER = gql`
-  mutation ConfigureIdentityProvider($input: ConfigureIdentityProviderInput!) {
-    configureIdentityProvider(input: $input) {
+  mutation ConfigureIdentityProvider($id: ID!, $service: IdentityProviderService, $ssoUrl: String!, $ssoCert: String!) {
+    configureIdentityProvider(id: $id, service: $service, ssoUrl: $ssoUrl, ssoCert: $ssoCert) {
       identityProvider {
         id
         domain
@@ -23,7 +23,7 @@ const CONFIGURE_PROVIDER = gql`
 `;
 
 const configureIdentityProvider = (): {
-  configureProvider: (id: string, providerData: IdentityProviderFormState) => Promise<any>;
+  configureProvider: (id: string, providerData: IdentityProviderFormState) => Promise<FetchResult>;
   data?: IdentityProvider;
   loading: boolean;
   error?: ApolloError;
@@ -39,7 +39,7 @@ const configureIdentityProvider = (): {
   });
 
   return {
-    configureProvider: (id, configData) => configureProvider({ variables: { input: { id, ...configData } } }),
+    configureProvider: (id, configData) => configureProvider({ variables: { id, ...configData } }),
     data,
     loading,
     error,

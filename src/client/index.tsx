@@ -1,7 +1,8 @@
 import { ApolloClient, ApolloLink, gql, HttpLink, InMemoryCache } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement, useState } from 'react';
+
+import { OauthClient, RedirectUri } from '~types';
 
 import { OssoClientOptions, OssoContextValue, OssoProviderProps, OssoUser } from './index.types';
 
@@ -12,7 +13,7 @@ const buildCache = () =>
         fields: {
           enterpriseAccounts: relayStylePagination(),
           oauthClients: {
-            merge(_existing = [], incoming: any[]) {
+            merge(_existing = [], incoming: OauthClient[]) {
               return incoming;
             },
           },
@@ -21,7 +22,7 @@ const buildCache = () =>
       OauthClient: {
         fields: {
           redirectUris: {
-            merge(_existing = [], incoming: any[]) {
+            merge(_existing = [], incoming: RedirectUri[]) {
               return incoming;
             },
           },
@@ -50,15 +51,6 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
     uri,
     credentials: clientOptions?.cors || 'same-origin',
   });
-
-  // const error = onError(({ graphQLErrors, networkError }) => {
-  //   if (graphQLErrors)
-  //     graphQLErrors.map(({ message, locations, path }) =>
-  //       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
-  //     );
-
-  //   if (networkError) console.log(`[Network error]: ${networkError}`);
-  // });
 
   const client = new ApolloClient({
     cache: buildCache(),

@@ -1,4 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import { ApolloError, FetchResult, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~client';
@@ -17,7 +17,7 @@ const DELETE_ACCOUNT = gql`
 `;
 
 const deleteEnterpriseAccount = (): {
-  deleteAccount: (id: string) => void;
+  deleteAccount: (id: string) => Promise<FetchResult>;
   data?: EnterpriseAccount;
   loading: boolean;
   error?: ApolloError;
@@ -54,13 +54,11 @@ const deleteEnterpriseAccount = (): {
 
   const cacheDeleteAccount = (id: string) => {
     deleteId = id;
-    deleteAccount({ variables: { input: { id } } });
+    return deleteAccount({ variables: { input: { id } } });
   };
 
   return {
-    deleteAccount: (id: string) => {
-      cacheDeleteAccount(id);
-    },
+    deleteAccount: (id: string) => cacheDeleteAccount(id),
     data,
     loading,
     error,

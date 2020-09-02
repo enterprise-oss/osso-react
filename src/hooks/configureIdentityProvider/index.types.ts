@@ -1,1 +1,1 @@
-export { IdentityProvider, IdentityProviderFormState } from '../../types';
+export { IdentityProvider, IdentityProviderFormState, MutationResult } from '../../types';
