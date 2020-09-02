@@ -6,8 +6,8 @@ import OssoContext from '~client';
 import { IdentityProvider, IdentityProviderFormState } from './index.types';
 
 const CONFIGURE_PROVIDER = gql`
-  mutation ConfigureIdentityProvider($id: ID!, $service: IdentityProviderService, $ssoUrl: String!, $ssoCert: String!) {
-    configureIdentityProvider(id: $id, service: $service, ssoUrl: $ssoUrl, ssoCert: $ssoCert) {
+  mutation ConfigureIdentityProvider($input: ConfigureIdentityProviderInput!) {
+    configureIdentityProvider(input: $input) {
       identityProvider {
         id
         domain
@@ -39,7 +39,7 @@ const configureIdentityProvider = (): {
   });
 
   return {
-    configureProvider: (id, configData) => configureProvider({ variables: { id, ...configData } }),
+    configureProvider: (id, configData) => configureProvider({ variables: { input: { id, ...configData } } }),
     data,
     loading,
     error,

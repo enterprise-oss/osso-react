@@ -58,6 +58,7 @@ export default function IdpGeneratedFieldsComponent({
   UploadComponent,
   ButtonComponent,
   classes,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   errors,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;

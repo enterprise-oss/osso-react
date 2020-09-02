@@ -2,34 +2,31 @@ import { ApolloClient, ApolloLink, gql, HttpLink, InMemoryCache } from '@apollo/
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement, useState } from 'react';
 
-import { OauthClient, RedirectUri } from '~types';
-
 import { OssoClientOptions, OssoContextValue, OssoProviderProps, OssoUser } from './index.types';
 
-const buildCache = () =>
-  new InMemoryCache({
-    typePolicies: {
-      Query: {
-        fields: {
-          enterpriseAccounts: relayStylePagination(),
-          oauthClients: {
-            merge(_existing = [], incoming: OauthClient[]) {
-              return incoming;
-            },
-          },
-        },
-      },
-      OauthClient: {
-        fields: {
-          redirectUris: {
-            merge(_existing = [], incoming: RedirectUri[]) {
-              return incoming;
-            },
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        enterpriseAccounts: relayStylePagination(),
+        oauthClients: {
+          merge(_existing = [], incoming: any[]) {
+            return incoming;
           },
         },
       },
     },
-  });
+    OauthClient: {
+      fields: {
+        redirectUris: {
+          merge(_existing = [], incoming: any[]) {
+            return incoming;
+          },
+        },
+      },
+    },
+  },
+});
 
 export const CURRENT_USER_QUERY = gql`
   query CurrentUser {
@@ -42,18 +39,16 @@ export const CURRENT_USER_QUERY = gql`
   }
 `;
 
-let link: ApolloLink;
-
 const buildClient = (clientOptions?: OssoClientOptions) => {
   const uri = clientOptions?.uri || '/graphql';
 
-  link = new HttpLink({
+  const link = new HttpLink({
     uri,
     credentials: clientOptions?.cors || 'same-origin',
   });
 
   const client = new ApolloClient({
-    cache: buildCache(),
+    cache,
     link,
     defaultOptions: {
       query: {
