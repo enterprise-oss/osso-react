@@ -1,4 +1,4 @@
-import { ApolloError, FetchResult, gql, MutationResult, useMutation } from '@apollo/client';
+import { ApolloError, FetchResult, gql, useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~client';

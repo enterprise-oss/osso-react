@@ -167,5 +167,3 @@ export type OssoUser = {
   scope: 'admin' | 'internal' | 'end-user';
   oauthClientId?: string;
 };
-
-export type MutationResult = FetchResult<string, Record<string, string>, Record<string, string>>;
