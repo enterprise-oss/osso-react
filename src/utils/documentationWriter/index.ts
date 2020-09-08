@@ -22,14 +22,14 @@ const providerCoordinates = {
     contactEmail: { x: 45, y: 388 },
     name: { x: 395, y: 962 },
     domain: { x: 55, y: 2828 },
-    acsUrl: { x: 55, y: 2880 },
+    acsUrl: { x: 55, y: 2880, size: 8 },
     // logoUrl: { x: 55, y: 2000 },
   },
   [Providers.Okta]: {
     contactEmail: { x: 45, y: 388 },
     name: { x: 215, y: 1615 },
     logoUrl: { x: 81, y: 1684 },
-    acsUrl: { x: 55, y: 2009 },
+    acsUrl: { x: 55, y: 2009, size: 8 },
     domain: { x: 55, y: 2167 },
   },
 };
