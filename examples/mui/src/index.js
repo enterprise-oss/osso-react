@@ -8,7 +8,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <OssoProvider client={{ cors: 'no-cors', uri: 'https://example.com' }}>
+    <OssoProvider client={{ cors: 'same-origin', uri: 'https://example.com' }}>
       <App />
     </OssoProvider>
   </React.StrictMode>,
