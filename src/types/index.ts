@@ -10,6 +10,7 @@ export type AppConfig = {
 export enum Providers {
   Azure = 'AZURE',
   Okta = 'OKTA',
+  OneLogin = 'ONELOGIN',
 }
 
 export type ProviderOption = {
@@ -49,10 +50,9 @@ export interface OssoInput {
 
 export type ProviderMap<T extends string> = { [key in T]: OssoProvider };
 
-export type OssoGeneratedFieldKeys = 'manual' | 'documentationPdfUrl';
+export type OssoGeneratedFieldKeys = 'manual';
 export type OssoGeneratedFields<T extends OssoGeneratedFieldKeys> = {
   manual: OssoInput[];
-  documentationPdfUrl: OssoInputProps;
 };
 
 export type IdpGeneratedFieldKeys = 'metadataXml' | 'metadataUrl' | 'manual';
@@ -80,7 +80,6 @@ export enum IdentityProviderStatus {
 export interface IdentityProvider {
   id: string;
   domain: string;
-  documentationPdfUrl?: string;
   service: Providers;
   acsUrl?: string;
   ssoCert?: string;

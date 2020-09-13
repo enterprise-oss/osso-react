@@ -37,11 +37,6 @@ Object {
   },
   "label": "Azure",
   "ossoGeneratedFields": Object {
-    "documentationPdfUrl": Object {
-      "id": "osso-azure-documentation-download",
-      "label": "Documentation PDF",
-      "type": "text",
-    },
     "manual": Array [
       Object {
         "inputProps": Object {
@@ -107,11 +102,6 @@ Object {
   },
   "label": "Okta",
   "ossoGeneratedFields": Object {
-    "documentationPdfUrl": Object {
-      "id": "osso-okta-documentation-download",
-      "label": "Documentation PDF",
-      "type": "text",
-    },
     "manual": Array [
       Object {
         "inputProps": Object {
@@ -140,6 +130,71 @@ Object {
 }
 `;
 
+exports[`fieldsForProvider it returns the expected fields for each provider 3`] = `
+Object {
+  "icon": "test-file-stub",
+  "idpGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-one-login-sso-url",
+          "label": "Identity Provider Single Sign-On URL",
+          "readOnly": false,
+          "type": "text",
+        },
+        "name": "ssoUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-one-login-sso-cert",
+          "label": "X.509 Certificate",
+          "readOnly": false,
+          "type": "textarea",
+        },
+        "name": "ssoCert",
+      },
+    ],
+    "metadataXml": Object {
+      "accept": ".xml",
+      "copyable": false,
+      "id": "osso-one-login-metadata-xml",
+      "label": "Metadata XML",
+      "readOnly": false,
+      "type": "textarea",
+    },
+  },
+  "label": "OneLogin",
+  "ossoGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-one-login-acs-url",
+          "label": "Single sign on URL",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-one-login-entity-id",
+          "label": "Audience URI (SP Entity ID)",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "domain",
+      },
+    ],
+  },
+  "serviceProviderMetadata": false,
+  "value": "ONELOGIN",
+}
+`;
+
 exports[`providers contains an array of Identity Providers in the tuple 1`] = `
 Array [
   Object {
@@ -151,6 +206,11 @@ Array [
     "icon": "test-file-stub",
     "label": "Okta",
     "value": "OKTA",
+  },
+  Object {
+    "icon": "test-file-stub",
+    "label": "OneLogin",
+    "value": "ONELOGIN",
   },
 ]
 `;

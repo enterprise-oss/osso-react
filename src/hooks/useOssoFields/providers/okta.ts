@@ -7,11 +7,6 @@ export default {
   label: 'Okta',
   icon: Icon,
   ossoGeneratedFields: {
-    documentationPdfUrl: {
-      id: 'osso-okta-documentation-download',
-      label: 'Documentation PDF',
-      type: 'text',
-    },
     manual: [
       {
         name: 'acsUrl',

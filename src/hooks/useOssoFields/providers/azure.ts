@@ -7,11 +7,6 @@ export default {
   label: 'Azure',
   icon: Icon,
   ossoGeneratedFields: {
-    documentationPdfUrl: {
-      id: 'osso-azure-documentation-download',
-      label: 'Documentation PDF',
-      type: 'text',
-    },
     manual: [
       {
         name: 'acsUrl',
