@@ -1,15 +1,12 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.6",
+  "version": "0.0.6-alpha",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "author": "sbauch",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "scripts": {
     "build": "rollup -c",
     "clean": "rm -rf dist",
