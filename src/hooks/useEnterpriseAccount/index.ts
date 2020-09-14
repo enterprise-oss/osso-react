@@ -18,7 +18,6 @@ export const ACCOUNT_QUERY = gql`
         acsUrl
         ssoUrl
         status
-        documentationPdfUrl
       }
       createdAt
       updatedAt

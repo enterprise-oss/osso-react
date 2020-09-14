@@ -1,17 +1,17 @@
-import Icon from '~/resources/okta.svg';
+import Icon from '~/resources/one-login.svg';
 
 import { OssoProvider, Providers } from '../index.types';
 
 export default {
-  value: Providers.Okta,
-  label: 'Okta',
+  value: Providers.OneLogin,
+  label: 'OneLogin',
   icon: Icon,
   ossoGeneratedFields: {
     manual: [
       {
         name: 'acsUrl',
         inputProps: {
-          id: 'osso-okta-acs-url',
+          id: 'osso-one-login-acs-url',
           label: 'Single sign on URL',
           type: 'text',
           readOnly: true,
@@ -21,7 +21,7 @@ export default {
       {
         name: 'domain',
         inputProps: {
-          id: 'osso-okta-entity-id',
+          id: 'osso-one-login-entity-id',
           label: 'Audience URI (SP Entity ID)',
           type: 'text',
           readOnly: true,
@@ -33,25 +33,17 @@ export default {
   idpGeneratedFields: {
     metadataXml: {
       accept: '.xml',
-      id: 'osso-okta-metadata-xml',
+      id: 'osso-one-login-metadata-xml',
       label: 'Metadata XML',
       type: 'textarea',
       readOnly: false,
       copyable: false,
     },
-    // TODO: this needs to proxy the API due to CORS restrictions
-    // metadataUrl: {
-    //   id: 'osso-okta-metadata-url',
-    //   label: 'Metadata Endpoint',
-    //   type: 'text',
-    //   readOnly: false,
-    //   copyable: false,
-    // },
     manual: [
       {
         name: 'ssoUrl',
         inputProps: {
-          id: 'osso-okta-sso-url',
+          id: 'osso-one-login-sso-url',
           label: 'Identity Provider Single Sign-On URL',
           type: 'text',
           readOnly: false,
@@ -61,7 +53,7 @@ export default {
       {
         name: 'ssoCert',
         inputProps: {
-          id: 'osso-okta-sso-cert',
+          id: 'osso-one-login-sso-cert',
           label: 'X.509 Certificate',
           type: 'textarea',
           readOnly: false,

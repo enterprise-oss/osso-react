@@ -32,6 +32,13 @@ const providerCoordinates = {
     acsUrl: { x: 55, y: 2009, size: 8 },
     domain: { x: 55, y: 2167 },
   },
+  [Providers.OneLogin]: {
+    contactEmail: { x: 45, y: 388 },
+    name: { x: 215, y: 1615 },
+    logoUrl: { x: 81, y: 1684 },
+    acsUrl: { x: 55, y: 2009, size: 8 },
+    domain: { x: 55, y: 2167 },
+  },
 };
 
 const generateDocumentation = async (
