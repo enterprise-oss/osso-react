@@ -35,6 +35,7 @@ steps:
       - "yarn install"
       - "yarn build"
     label: ":rollup:"
+    branches: "!main"
 
   - wait  
 
@@ -42,5 +43,8 @@ steps:
     branches: "main"
   
   - name: "Push :npm:"
-    commands: "npm publish"
+    commands: 
+    - "yarn install"
+    - "yarn build"
+    - "npm publish"
     branches: "main"
