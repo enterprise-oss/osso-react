@@ -195,6 +195,71 @@ Object {
 }
 `;
 
+exports[`fieldsForProvider it returns the expected fields for each provider 4`] = `
+Object {
+  "icon": "test-file-stub",
+  "idpGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-google-sso-url",
+          "label": "Identity Provider Single Sign-On URL",
+          "readOnly": false,
+          "type": "text",
+        },
+        "name": "ssoUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-google-sso-cert",
+          "label": "X.509 Certificate",
+          "readOnly": false,
+          "type": "textarea",
+        },
+        "name": "ssoCert",
+      },
+    ],
+    "metadataXml": Object {
+      "accept": ".xml",
+      "copyable": false,
+      "id": "osso-google-metadata-xml",
+      "label": "Metadata XML",
+      "readOnly": false,
+      "type": "textarea",
+    },
+  },
+  "label": "Google (SAML)",
+  "ossoGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-google-acs-url",
+          "label": "Single sign on URL",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-google-entity-id",
+          "label": "Audience URI (SP Entity ID)",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "domain",
+      },
+    ],
+  },
+  "serviceProviderMetadata": false,
+  "value": "GOOGLE",
+}
+`;
+
 exports[`providers contains an array of Identity Providers in the tuple 1`] = `
 Array [
   Object {
@@ -211,6 +276,11 @@ Array [
     "icon": "test-file-stub",
     "label": "OneLogin",
     "value": "ONELOGIN",
+  },
+  Object {
+    "icon": "test-file-stub",
+    "label": "Google (SAML)",
+    "value": "GOOGLE",
   },
 ]
 `;
