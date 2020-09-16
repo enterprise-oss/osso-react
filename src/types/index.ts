@@ -11,6 +11,7 @@ export enum Providers {
   Azure = 'AZURE',
   Okta = 'OKTA',
   OneLogin = 'ONELOGIN',
+  Google = 'GOOGLE',
 }
 
 export type ProviderOption = {

@@ -56,3 +56,5 @@ describe('for Azure ADFS', () => {
     }).not.toThrow();
   });
 });
+
+// TODO: test for OneLogin and Google
