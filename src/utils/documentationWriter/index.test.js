@@ -83,4 +83,4 @@ describe('for OneLogin', () => {
   });
 });
 
-// TODO: test for OneLogin and Google
+// TODO: test for Google

@@ -39,6 +39,7 @@ const providerCoordinates = {
     acsUrl: { x: 55, y: 2009, size: 8 },
     domain: { x: 55, y: 2167 },
   },
+  // TODO: map coordinates for below
   [Providers.OneLogin]: {
     contactEmail: { x: 42, y: 389 },
     name: { x: 326, y: 1044 },
@@ -49,6 +50,13 @@ const providerCoordinates = {
     recipient: { x: 56, y: 1607, size: 8 },
   },
   // TODO: map coordinates for below
+  [Providers.Google]: {
+    contactEmail: { x: 45, y: 388 },
+    name: { x: 215, y: 1615 },
+    logoUrl: { x: 81, y: 1684 },
+    acsUrl: { x: 55, y: 2009, size: 8 },
+    domain: { x: 55, y: 2167 },
+  },
   [Providers.Google]: {
     contactEmail: { x: 45, y: 388 },
     name: { x: 215, y: 1615 },
