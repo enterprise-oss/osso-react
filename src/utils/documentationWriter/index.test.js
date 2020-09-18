@@ -83,4 +83,28 @@ describe('for OneLogin', () => {
   });
 });
 
-// TODO: test for Google
+describe('for Google', () => {
+  test('it writes a PDF', async (done) => {
+    fetch.dontMock();
+    expect(function write() {
+      fs.readFile('__fixtures__/google.pdf', async (err, data) => {
+        if (err) throw err;
+        const uint8Array = new Uint8Array(data);
+        const result = await generateDocumentation(
+          uint8Array,
+          {
+            acsUrl: 'https://example.ossoapp.io/auth/saml/a2533317-1f77-473c-abbb-083d728253c9/callback',
+            domain: 'example.com',
+            service: 'GOOGLE',
+          },
+          appConfig,
+        );
+
+        const path = `__artifacts__/google-docs.pdf`;
+        fs.writeFileSync(path, result);
+
+        done();
+      });
+    }).not.toThrow();
+  });
+});
