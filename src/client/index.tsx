@@ -1,4 +1,5 @@
-import { ApolloClient, gql, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloLink, gql, HttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { relayStylePagination } from '@apollo/client/utilities';
 import React, { createContext, ReactElement, useState } from 'react';
 
@@ -40,11 +41,18 @@ export const CURRENT_USER_QUERY = gql`
 `;
 
 const buildClient = (clientOptions?: OssoClientOptions) => {
-  const uri = clientOptions?.uri || '/graphql';
+  const uri = clientOptions?.baseUrl ?? '' + '/graphql';
+
+  const headers = {} as Record<string, string>;
+
+  if (clientOptions?.jwt) {
+    headers['Authorization'] = clientOptions?.jwt;
+  }
 
   const link = new HttpLink({
     uri,
-    credentials: clientOptions?.cors || 'same-origin',
+    credentials: clientOptions?.jwt ? 'include' : undefined,
+    headers,
   });
 
   const client = new ApolloClient({
@@ -62,6 +70,7 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
 
 const defaultValue: OssoContextValue = {
   client: undefined,
+  baseUrl: undefined,
 };
 
 const OssoContext = createContext(defaultValue);
@@ -78,7 +87,11 @@ const OssoProvider = ({ children, client: clientOptions }: OssoProviderProps): R
       throw err;
     });
 
-  return <OssoContext.Provider value={{ client, currentUser }}>{children}</OssoContext.Provider>;
+  return (
+    <OssoContext.Provider value={{ client, currentUser, baseUrl: clientOptions?.baseUrl }}>
+      {children}
+    </OssoContext.Provider>
+  );
 };
 
 export default OssoContext;
