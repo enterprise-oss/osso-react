@@ -128,11 +128,13 @@ export type IdentityProviderFormState = {
 };
 
 export type OssoClientOptions = {
-  uri: string;
+  baseUrl?: string;
   cors?: string;
+  jwt?: string;
 };
 
 export type OssoContextValue = {
+  baseUrl?: string;
   client?: ApolloClient<NormalizedCacheObject>;
   currentUser?: OssoUser;
 };
