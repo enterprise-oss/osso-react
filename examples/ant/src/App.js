@@ -51,22 +51,6 @@ function App() {
   const [step, setStep] = useState(1);
   const [provider, setProvider] = useState();
   const { providers } = useOssoFields();
-
-  // Normally provided by GraphQL-based Osso hook, data here is mocked.
-  // If you've added <OssoProvider> with an Osso deployment URI, you
-  // only need to provide an object with an `id` for an identityProvider
-  // to <OssoGeneratedFields> - the component will manage it's own state
-  // and API calls.
-
-  // fetch('http://localhost:3000/pdfv1/okta.pdf', {
-  //   mode: 'cors',
-  //   // headers: client?.link?.options?.headers,
-  // })
-  //   .then((res) => res.arrayBuffer())
-  //   .then((ab) => console.log(ab));
-
-  // return null;
-
   const { data } = useEnterpriseAccount('example.com');
   const { createProvider, data: idpData } = createIdentityProvider();
   const identityProvider = idpData?.createIdentityProvider?.identityProvider;
