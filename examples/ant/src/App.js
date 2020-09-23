@@ -52,9 +52,9 @@ function App() {
   const [provider, setProvider] = useState();
   const { providers } = useOssoFields();
   const { data } = useEnterpriseAccount('example.com');
+
   const { createProvider, data: idpData } = createIdentityProvider();
   const identityProvider = idpData?.createIdentityProvider?.identityProvider;
-  console.log(identityProvider);
 
   return (
     <div className="App">
