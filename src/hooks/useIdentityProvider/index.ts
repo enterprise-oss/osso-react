@@ -1,4 +1,4 @@
-import { ApolloError, FetchResult, gql, useMutation, useQuery } from '@apollo/client';
+import { ApolloError, gql, useQuery } from '@apollo/client';
 import { useContext } from 'react';
 
 import OssoContext from '~/client';
@@ -19,23 +19,12 @@ const PROVIDER_QUERY = gql`
   }
 `;
 
-const DELETE_PROVIDER_MUTATION = gql`
-  mutation DeleteIdentityProvider($input: DeleteIdentityProviderInput!) {
-    deleteIdentityProvider(input: $input) {
-      identityProvider {
-        id
-      }
-    }
-  }
-`;
-
 const useProvider = (
   id: string,
 ): {
   data?: { identityProvider: IdentityProvider };
   loading: boolean;
   error?: ApolloError;
-  deleteProvider: () => Promise<FetchResult>;
 } => {
   const { client } = useContext(OssoContext);
 
@@ -48,19 +37,10 @@ const useProvider = (
     client,
   });
 
-  const [deleteProvider] = useMutation(DELETE_PROVIDER_MUTATION, {
-    client,
-    variables: { input: { id } },
-    update(cache) {
-      cache.evict({ id: cache.identify({ __typename: 'IdentityProvider', id }) });
-    },
-  });
-
   return {
     data,
     loading,
     error,
-    deleteProvider,
   };
 };
 
