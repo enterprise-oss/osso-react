@@ -17,6 +17,7 @@ export default {
           readOnly: true,
           copyable: true,
         },
+        pdfProps: { x: 56, y: 996, size: 8 },
       },
       {
         name: 'domain',
@@ -27,6 +28,21 @@ export default {
           readOnly: true,
           copyable: true,
         },
+        pdfProps: { x: 56, y: 1049 },
+      },
+    ],
+    appDetails: [
+      {
+        name: 'contactEmail',
+        pdfProps: { x: 40, y: 323 },
+      },
+      {
+        name: 'name',
+        pdfProps: { x: 354, y: 783 },
+      },
+      {
+        name: 'logoUrl',
+        pdfProps: { x: 81, y: 891 },
       },
     ],
   },

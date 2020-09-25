@@ -31,6 +31,17 @@ export type OssoLinkComponentProps = {
   label: string;
 };
 
+export type OssoPdfProps = {
+  x: number;
+  y: number;
+  size?: number;
+};
+
+export type OssoPdfField = {
+  name: string;
+  pdfProps: OssoPdfProps;
+};
+
 export interface OssoInputProps {
   accept?: string;
   id: string;
@@ -47,13 +58,15 @@ export interface OssoInputProps {
 export interface OssoInput {
   name: string;
   inputProps: OssoInputProps;
+  pdfProps: OssoPdfProps;
 }
 
 export type ProviderMap<T extends string> = { [key in T]: OssoProvider };
 
-export type OssoGeneratedFieldKeys = 'manual';
+export type OssoGeneratedFieldKeys = 'manual' | 'appFields';
 export type OssoGeneratedFields<T extends OssoGeneratedFieldKeys> = {
   manual: OssoInput[];
+  appDetails: OssoPdfField[];
 };
 
 export type IdpGeneratedFieldKeys = 'metadataXml' | 'metadataUrl' | 'manual';
@@ -83,6 +96,7 @@ export interface IdentityProvider {
   domain: string;
   service: Providers;
   acsUrl?: string;
+  acsUrlValidator?: string;
   ssoCert?: string;
   ssoUrl: string;
   status: IdentityProviderStatus;

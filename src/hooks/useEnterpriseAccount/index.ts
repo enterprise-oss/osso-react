@@ -14,8 +14,10 @@ export const ACCOUNT_QUERY = gql`
       status
       identityProviders {
         id
+        domain
         service
         acsUrl
+        acsUrlValidator
         ssoUrl
         status
       }
