@@ -37,6 +37,22 @@ Object {
   },
   "label": "Azure",
   "ossoGeneratedFields": Object {
+    "appDetails": Array [
+      Object {
+        "name": "contactEmail",
+        "pdfProps": Object {
+          "x": 45,
+          "y": 388,
+        },
+      },
+      Object {
+        "name": "name",
+        "pdfProps": Object {
+          "x": 395,
+          "y": 962,
+        },
+      },
+    ],
     "manual": Array [
       Object {
         "inputProps": Object {
@@ -47,6 +63,11 @@ Object {
           "type": "text",
         },
         "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 55,
+          "y": 2880,
+        },
       },
       Object {
         "inputProps": Object {
@@ -57,6 +78,10 @@ Object {
           "type": "text",
         },
         "name": "domain",
+        "pdfProps": Object {
+          "x": 55,
+          "y": 2828,
+        },
       },
     ],
   },
@@ -102,6 +127,29 @@ Object {
   },
   "label": "Okta",
   "ossoGeneratedFields": Object {
+    "appDetails": Array [
+      Object {
+        "name": "contactEmail",
+        "pdfProps": Object {
+          "x": 45,
+          "y": 388,
+        },
+      },
+      Object {
+        "name": "name",
+        "pdfProps": Object {
+          "x": 215,
+          "y": 1615,
+        },
+      },
+      Object {
+        "name": "logoUrl",
+        "pdfProps": Object {
+          "x": 81,
+          "y": 1684,
+        },
+      },
+    ],
     "manual": Array [
       Object {
         "inputProps": Object {
@@ -112,6 +160,11 @@ Object {
           "type": "text",
         },
         "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 55,
+          "y": 2009,
+        },
       },
       Object {
         "inputProps": Object {
@@ -122,6 +175,10 @@ Object {
           "type": "text",
         },
         "name": "domain",
+        "pdfProps": Object {
+          "x": 55,
+          "y": 2167,
+        },
       },
     ],
   },
@@ -162,11 +219,34 @@ Object {
       "id": "osso-one-login-metadata-xml",
       "label": "Metadata XML",
       "readOnly": false,
-      "type": "textarea",
+      "type": "file",
     },
   },
   "label": "OneLogin",
   "ossoGeneratedFields": Object {
+    "appDetails": Array [
+      Object {
+        "name": "contactEmail",
+        "pdfProps": Object {
+          "x": 42,
+          "y": 389,
+        },
+      },
+      Object {
+        "name": "name",
+        "pdfProps": Object {
+          "x": 326,
+          "y": 1044,
+        },
+      },
+      Object {
+        "name": "logoUrl",
+        "pdfProps": Object {
+          "x": 81,
+          "y": 1164,
+        },
+      },
+    ],
     "manual": Array [
       Object {
         "inputProps": Object {
@@ -177,6 +257,11 @@ Object {
           "type": "text",
         },
         "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 56,
+          "y": 1713,
+        },
       },
       Object {
         "inputProps": Object {
@@ -187,6 +272,40 @@ Object {
           "type": "text",
         },
         "name": "domain",
+        "pdfProps": Object {
+          "x": 56,
+          "y": 1554,
+        },
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-one-login-acs-url-validator",
+          "label": "ACS URL Validator",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrlValidator",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 56,
+          "y": 1660,
+        },
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-one-login-recipient",
+          "label": "Recipient",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 56,
+          "y": 1607,
+        },
       },
     ],
   },
@@ -232,6 +351,29 @@ Object {
   },
   "label": "Google (SAML)",
   "ossoGeneratedFields": Object {
+    "appDetails": Array [
+      Object {
+        "name": "contactEmail",
+        "pdfProps": Object {
+          "x": 40,
+          "y": 323,
+        },
+      },
+      Object {
+        "name": "name",
+        "pdfProps": Object {
+          "x": 354,
+          "y": 783,
+        },
+      },
+      Object {
+        "name": "logoUrl",
+        "pdfProps": Object {
+          "x": 81,
+          "y": 891,
+        },
+      },
+    ],
     "manual": Array [
       Object {
         "inputProps": Object {
@@ -242,6 +384,11 @@ Object {
           "type": "text",
         },
         "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 56,
+          "y": 996,
+        },
       },
       Object {
         "inputProps": Object {
@@ -252,6 +399,10 @@ Object {
           "type": "text",
         },
         "name": "domain",
+        "pdfProps": Object {
+          "x": 56,
+          "y": 1049,
+        },
       },
     ],
   },

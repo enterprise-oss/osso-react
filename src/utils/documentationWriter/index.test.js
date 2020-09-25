@@ -68,6 +68,8 @@ describe('for OneLogin', () => {
           uint8Array,
           {
             acsUrl: 'https://example.ossoapp.io/auth/saml/a2533317-1f77-473c-abbb-083d728253c9/callback',
+            acsUrlValidator:
+              'https://example\\.ossoapp\\.io/auth/saml/a2533317\\-1f77\\-473c\\-abbb\\-083d728253c9/callback',
             domain: 'example.com',
             service: 'ONELOGIN',
           },

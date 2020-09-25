@@ -17,6 +17,7 @@ export default {
           readOnly: true,
           copyable: true,
         },
+        pdfProps: { x: 56, y: 1713, size: 8 },
       },
       {
         name: 'domain',
@@ -27,6 +28,47 @@ export default {
           readOnly: true,
           copyable: true,
         },
+        pdfProps: { x: 56, y: 1554 },
+      },
+
+      {
+        name: 'acsUrlValidator',
+        inputProps: {
+          id: 'osso-one-login-acs-url-validator',
+          label: 'ACS URL Validator',
+          type: 'text',
+          readOnly: true,
+          copyable: true,
+        },
+        pdfProps: { x: 56, y: 1660, size: 8 },
+      },
+      {
+        name: 'acsUrl',
+        inputProps: {
+          id: 'osso-one-login-recipient',
+          label: 'Recipient',
+          type: 'text',
+          readOnly: true,
+          copyable: true,
+        },
+        pdfProps: { x: 56, y: 1607, size: 8 },
+      },
+    ],
+    appDetails: [
+      {
+        name: 'contactEmail',
+        pdfProps: {
+          x: 42,
+          y: 389,
+        },
+      },
+      {
+        name: 'name',
+        pdfProps: { x: 326, y: 1044 },
+      },
+      {
+        name: 'logoUrl',
+        pdfProps: { x: 81, y: 1164 },
       },
     ],
   },
@@ -35,7 +77,7 @@ export default {
       accept: '.xml',
       id: 'osso-one-login-metadata-xml',
       label: 'Metadata XML',
-      type: 'textarea',
+      type: 'file',
       readOnly: false,
       copyable: false,
     },
