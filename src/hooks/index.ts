@@ -10,6 +10,7 @@ import useEnterpriseAccounts from './useEnterpriseAccounts/index';
 import useIdentityProvider from './useIdentityProvider/index';
 import useOAuthClient from './useOAuthClient/index';
 import useOAuthClients from './useOAuthClients/index';
+import useOssoDocs from './useOssoDocs/index';
 import useOssoFields from './useOssoFields/index';
 
 export {
@@ -25,5 +26,6 @@ export {
   useIdentityProvider,
   useOAuthClient,
   useOAuthClients,
+  useOssoDocs,
   useOssoFields,
 };

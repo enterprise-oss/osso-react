@@ -12,6 +12,7 @@ const PROVIDER_QUERY = gql`
       domain
       service
       acsUrl
+      acsUrlValidator
       ssoCert
       ssoUrl
       status
