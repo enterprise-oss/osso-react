@@ -12,6 +12,7 @@ const PROVIDER_QUERY = gql`
       domain
       service
       acsUrl
+      acsUrlValidator
       ssoCert
       ssoUrl
       status
@@ -20,7 +21,7 @@ const PROVIDER_QUERY = gql`
 `;
 
 const useProvider = (
-  providerId: string,
+  id: string,
 ): {
   data?: { identityProvider: IdentityProvider };
   loading: boolean;
@@ -33,7 +34,7 @@ const useProvider = (
   }
 
   const { data, loading, error } = useQuery(PROVIDER_QUERY, {
-    variables: { id: providerId },
+    variables: { id },
     client,
   });
 
