@@ -21,6 +21,7 @@ export const ACCOUNT_QUERY = gql`
         ssoUrl
         status
       }
+      usersCount
       createdAt
       updatedAt
     }

@@ -120,6 +120,7 @@ export interface EnterpriseAccount {
   domain: string;
   status: Status;
   identityProviders: IdentityProvider[];
+  usersCount: number;
   createdAt: string;
   updatedAt: string;
 }

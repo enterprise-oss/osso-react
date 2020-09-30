@@ -8,6 +8,7 @@ export default {
     id: '9e4ec9d4-e1dd-44f6-9877-3686f84edf13',
     name: 'newset',
     status: 'active',
+    usersCount: 200,
     identityProviders: [
       {
         id: 'b466d079-4211-460e-8d4f-62ca03626486',
