@@ -28,6 +28,7 @@ export const ACCOUNTS_QUERY = gql`
           }
           name
           status
+          usersCount
         }
       }
     }
