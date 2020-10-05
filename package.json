@@ -111,6 +111,9 @@
     "extensions": "js,png,svg,gif,jpeg,css,map"
   },
   "files": [
-    "dist"
-  ]
+    "dist/**"
+  ],
+  "engines": {
+    "node": ">= 14.4.0"
+  }
 }
