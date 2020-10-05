@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.7-eta",
+  "version": "0.0.8",
   "description": "React components for Osso",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -13,7 +13,10 @@
     "yalc-dev": "yalc-watch",
     "lint": "eslint ./src",
     "format": "tsc && eslint ./src --fix",
-    "test": "jest"
+    "test": "jest",
+    "pack": "yarn build",
+    "prepare": "yarn prepack",
+    "prepack": "yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -108,6 +111,9 @@
     "extensions": "js,png,svg,gif,jpeg,css,map"
   },
   "files": [
-    "dist"
-  ]
+    "dist/**"
+  ],
+  "engines": {
+    "node": ">= 14.4.0"
+  }
 }
