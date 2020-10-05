@@ -13,7 +13,8 @@
     "yalc-dev": "yalc-watch",
     "lint": "eslint ./src",
     "format": "tsc && eslint ./src --fix",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
