@@ -18,7 +18,7 @@ export default function DownloadDocs({
   const { data } = useIdentityProvider(identityProvider.id);
   const { data: appData } = useAppConfig();
   const { baseUrl, client } = useContext(OssoContext);
-  console.log(client);
+
   const downloadDocumentation = async () => {
     if (!(data && appData)) return;
     const {

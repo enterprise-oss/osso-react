@@ -40,7 +40,7 @@ export const CURRENT_USER_QUERY = gql`
 `;
 
 const buildClient = (clientOptions?: OssoClientOptions) => {
-  const uri = clientOptions?.baseUrl ?? '' + '/graphql';
+  const uri = (clientOptions?.baseUrl ?? '') + '/graphql';
 
   const headers = {} as Record<string, string>;
 
@@ -50,7 +50,7 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
 
   const link = new HttpLink({
     uri,
-    credentials: clientOptions?.jwt ? 'include' : undefined,
+    credentials: clientOptions?.jwt ? undefined : 'include',
     headers,
   });
 
