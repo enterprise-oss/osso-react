@@ -39,8 +39,22 @@ const ButtonComponent = ({ children, onClick }) => {
 };
 
 // Provide a component for upload inputs rendered by Osso.
-const UploadComponent = () => (
-  <Upload.Dragger name="files">
+const UploadComponent = ({ onChange }) => (
+  <Upload.Dragger
+    name="files"
+    beforeUpload={(file) => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        onChange(event.target.result);
+      };
+      reader.readAsText(file);
+      return false;
+    }}
+    multiple={false}
+    onRemove={() => {
+      onChange('');
+    }}
+  >
     <p className="ant-upload-drag-icon"></p>
     <p className="ant-upload-text">Click to choose or drag XML Federated Metadata file</p>
     <p className="ant-upload-hint">.XML files will be parsed for configuration</p>
@@ -122,8 +136,8 @@ function App() {
             <p>
               Here is an example metadata file you can use to complete configuration:
               <a
-                href="https://raw.githubusercontent.com/enterprise-oss/osso/main/examples/contrib/example_federated_metadata"
-                download
+                href="https://raw.githubusercontent.com/enterprise-oss/osso-react/main/examples/contrib/federated_metadata_example.xml"
+                download="federated_metadata_example.xml"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -143,6 +157,7 @@ function App() {
                 classes={{}}
                 onChange={() => {}}
               />
+              <br />
               <p>
                 This step will change to match the provider used. Some IDPs support uploading an XML file, while others
                 provide a URL where the XML can be accessed. Manual configuration is supported for all providers.
