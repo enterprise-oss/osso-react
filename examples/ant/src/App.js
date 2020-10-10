@@ -39,8 +39,22 @@ const ButtonComponent = ({ children, onClick }) => {
 };
 
 // Provide a component for upload inputs rendered by Osso.
-const UploadComponent = () => (
-  <Upload.Dragger name="files">
+const UploadComponent = ({ onChange }) => (
+  <Upload.Dragger
+    name="files"
+    beforeUpload={(file) => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        onChange(event.target.result);
+      };
+      reader.readAsText(file);
+      return false;
+    }}
+    multiple={false}
+    onRemove={() => {
+      onChange('');
+    }}
+  >
     <p className="ant-upload-drag-icon"></p>
     <p className="ant-upload-text">Click to choose or drag XML Federated Metadata file</p>
     <p className="ant-upload-hint">.XML files will be parsed for configuration</p>
@@ -104,6 +118,12 @@ function App() {
               InputComponent={InputComponent}
               identityProvider={identityProvider}
             />
+
+            <p>NB: The download will not work if this example is run in CodeSandbox</p>
+
+            <Button type="primary" onClick={() => setStep(3)}>
+              Next Step
+            </Button>
           </>
         )}
         {step === 3 && (
@@ -112,6 +132,17 @@ function App() {
               Once your customer configures your app on their Identity Provider, you need to collect some data generated
               by the IDP, like an x509 cert. When this data is ready, your customer can input it directly or provide it
               to your team to input on an admin page.
+            </p>
+            <p>
+              Here is an example metadata file you can use to complete configuration:
+              <a
+                href="https://raw.githubusercontent.com/enterprise-oss/osso-react/main/examples/contrib/federated_metadata_example.xml"
+                download="federated_metadata_example.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                example_federated_metadata.xml
+              </a>
             </p>
             <Form layout="vertical">
               <IdpGeneratedFields
@@ -126,6 +157,7 @@ function App() {
                 classes={{}}
                 onChange={() => {}}
               />
+              <br />
               <p>
                 This step will change to match the provider used. Some IDPs support uploading an XML file, while others
                 provide a URL where the XML can be accessed. Manual configuration is supported for all providers.
