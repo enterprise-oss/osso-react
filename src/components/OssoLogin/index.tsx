@@ -29,12 +29,13 @@ export default function OssoLogin({
   const submitEmail = () => {
     setSubmitting(true);
     providerExists(email.split('@')[1]);
-    console.log(data);
   };
 
   const submitPassword = () => {
     setSubmitting(true);
-    onSubmitPassword(email, password);
+    onSubmitPassword(email, password).finally(() => {
+      setSubmitting(false);
+    });
   };
 
   const hasProvider = data?.enterpriseAccount?.identityProviders?.some((provider: IdentityProvider) =>
@@ -43,14 +44,14 @@ export default function OssoLogin({
 
   useEffect(() => {
     if (hasProvider) {
-      window.location.assign(`${oauthEndpoint}email=${email}`);
+      window.location.assign(`${oauthEndpoint}?email=${email}`);
     } else if (called) {
       setIsPasswordUser(true);
     }
   }, [data]);
 
   useEffect(() => {
-    setSubmitting(loading);
+    setSubmitting(called && loading);
   }, [loading, called]);
 
   return (
@@ -64,15 +65,16 @@ export default function OssoLogin({
       <InputComponent
         value={email}
         onChange={setEmail}
-        type="text"
+        type="email"
         label="Email"
         id="osso-email"
         autoComplete="email"
+        required={true}
       />
       {isPasswordUser && (
         <InputComponent value={password} onChange={setPassword} type="password" label="Password" id="osso-password" />
       )}
-      <ButtonComponent disabled={submitting} onClick={isPasswordUser ? submitPassword : submitEmail}>
+      <ButtonComponent type="submit" disabled={submitting}>
         {submitText}
       </ButtonComponent>
     </form>

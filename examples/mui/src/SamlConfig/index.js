@@ -55,7 +55,6 @@ function App() {
           {step === 1 && (
             <>
               <p>First choose the Identity Provider service you or your customer uses for SSO.</p>
-              {/* <form style={{ display: 'flex', flexDirection: 'column' }}> */}
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Provider</InputLabel>
                 <Select
@@ -76,11 +75,8 @@ function App() {
                   type="button"
                   style={{ marginTop: 24 }}
                   color="primary"
-                  onClick={(e) => {
-                    console.log('WRHD');
-                    e.preventDefault();
+                  onClick={() => {
                     createProvider(data?.enterpriseAccount.id, provider).then(() => {
-                      console.log('promise');
                       setStep(2);
                     });
                   }}
@@ -88,7 +84,6 @@ function App() {
                   Next Step
                 </Button>
               )}
-              {/* </form> */}
             </>
           )}
           {step === 2 && (

@@ -77,6 +77,10 @@ export default function Login() {
             </Button>
           )}
           InputComponent={(props) => <InputComponent {...props} />}
+          onSubmitPassword={(email, password) => {
+            console.warn(`Submit a request to sign the user in to your server. Email: ${email}, Password: ${password}`);
+            return Promise.resolve();
+          }}
         />
       </div>
       <Box mt={8}>

@@ -33,7 +33,7 @@ export default function OssoGeneratedFieldsComponent({
     const providerDetails = fieldsForProvider(fullIdentityProvider.service);
     if (providerDetails) setFields(providerDetails.ossoGeneratedFields);
   }, [fullIdentityProvider.service]);
-  console.log('render');
+
   return (
     <div style={containerStyle}>
       {fields?.manual?.map((field: OssoInput) => (
