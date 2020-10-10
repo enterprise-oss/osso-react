@@ -12,6 +12,7 @@ import useOAuthClient from './useOAuthClient/index';
 import useOAuthClients from './useOAuthClients/index';
 import useOssoDocs from './useOssoDocs/index';
 import useOssoFields from './useOssoFields/index';
+import useOssoLogin from './useOssoLogin/index';
 
 export {
   configureIdentityProvider,
@@ -28,4 +29,5 @@ export {
   useOAuthClients,
   useOssoDocs,
   useOssoFields,
+  useOssoLogin,
 };

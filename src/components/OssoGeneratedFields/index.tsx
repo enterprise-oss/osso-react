@@ -38,9 +38,9 @@ export default function OssoGeneratedFieldsComponent({
     <div style={containerStyle}>
       {fields?.manual?.map((field: OssoInput) => (
         <InputComponent
-          key={field.name}
+          key={field.inputProps.id}
           {...field.inputProps}
-          value={fullIdentityProvider[field.name as keyof IdentityProvider]}
+          value={fullIdentityProvider[field.name as keyof IdentityProvider] || ''}
         />
       ))}
       <DownloadDocs identityProvider={fullIdentityProvider} ButtonComponent={ButtonComponent} />

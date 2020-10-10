@@ -22,7 +22,10 @@ export type ProviderOption = {
 
 export type OssoButtonComponentProps = {
   children: ReactElement | string;
-  onClick: () => void;
+  onClick?: () => void;
+  loading?: boolean;
+  disabled?: boolean;
+  type?: 'button' | 'submit';
 };
 
 export type OssoLinkComponentProps = {
@@ -49,10 +52,12 @@ export interface OssoInputProps {
   name?: string;
   value?: string;
   error?: any;
-  type: 'text' | 'textarea' | 'file';
-  readOnly: boolean;
+  autoComplete?: 'email' | 'password';
+  type: 'text' | 'textarea' | 'file' | 'password' | 'email';
+  readOnly?: boolean;
   copyable?: boolean;
   onChange?: (value: string) => void; // TODO:
+  required?: boolean;
 }
 
 export interface OssoInput {

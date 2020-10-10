@@ -17,8 +17,8 @@ import {
 
 const initialConfigState: IdentityProviderFormState = {
   service: undefined,
-  ssoUrl: undefined,
-  ssoCert: undefined,
+  ssoUrl: '',
+  ssoCert: '',
 };
 
 type Action =
@@ -62,7 +62,7 @@ export default function IdpGeneratedFieldsComponent({
   errors,
 }: {
   identityProvider: Pick<IdentityProvider, 'id'> & Partial<IdentityProvider>;
-  onChange: (formState: IdentityProviderFormState) => void;
+  onChange?: (formState: IdentityProviderFormState) => void;
   InputComponent: React.FC<OssoInputProps>;
   UploadComponent: React.FC<OssoInputProps>;
   ButtonComponent: React.FC<OssoButtonComponentProps>;
@@ -100,7 +100,7 @@ export default function IdpGeneratedFieldsComponent({
   }, [loading]);
 
   useEffect(() => {
-    onChange(state);
+    onChange && onChange(state);
   }, [state]);
 
   const { metadataXml, manual } = fields;
@@ -109,7 +109,7 @@ export default function IdpGeneratedFieldsComponent({
     <div className={classes?.container}>
       {metadataXml && (
         <>
-          <h3 className={classes?.formInstructions}>Upload Federated Metadata XML</h3>
+          <h3 className={classes.formInstructions}>Upload Federated Metadata XML</h3>
           <UploadComponent
             {...(metadataXml as OssoInputProps)}
             onChange={(value) =>
@@ -135,7 +135,7 @@ export default function IdpGeneratedFieldsComponent({
             }
             {...field.inputProps}
             name={field.name}
-            value={state[field.name as keyof IdentityProviderFormState]}
+            value={state[field.name as keyof IdentityProviderFormState] || ''}
           />
         );
       })}
@@ -164,4 +164,5 @@ IdpGeneratedFieldsComponent.defaultProps = {
   InputComponent: HTMLInputComponent,
   UploadComponent: HTMLInputComponent,
   containerStyle: undefined,
+  classes: {},
 };
