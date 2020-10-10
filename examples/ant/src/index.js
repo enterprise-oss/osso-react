@@ -10,7 +10,6 @@ import App from './App';
 ReactDOM.render(
   <OssoProvider
     client={{
-      cors: 'include',
       baseUrl: 'https://demo.ossoapp.com',
       jwt:
         'eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNhbUBhZG1pbi5jb20iLCJzY29wZSI6ImFkbWluIiwiaWQiOiI2YjJmYzNkMS0wYjU4LTQ0ZTYtYWZkNC04YzMzMzg4NzIxZjYiLCJvYXV0aF9jbGllbnRfaWQiOiI0MmZiMzFkOGZiYzYyYWY2MzgzN2RiNTNhNzkwOGU4MSJ9.HInHbrbtNjLykPPRZiJMOuzu3St0SSmeYoPC2fUqLVo',
