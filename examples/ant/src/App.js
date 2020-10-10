@@ -48,6 +48,7 @@ const UploadComponent = () => (
 );
 
 function App() {
+  console.log('APP RENDER');
   const [step, setStep] = useState(1);
   const [provider, setProvider] = useState();
   const { providers } = useOssoFields();

@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 
 import { IdpGeneratedFields, OssoGeneratedFields, useOssoFields } from '@enterprise-oss/osso';
 import Button from '@material-ui/core/Button';

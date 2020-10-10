@@ -1,16 +1,16 @@
 import './index.css';
 
-import { OssoProvider } from '@enterprise-oss/osso';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <OssoProvider client={{ cors: 'same-origin', uri: 'https://example.com' }}>
+    <Router>
       <App />
-    </OssoProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );
