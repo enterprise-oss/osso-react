@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@enterprise-oss/osso": "0.0.9",
+    "@enterprise-oss/osso": "next",
     "antd": "^4.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
