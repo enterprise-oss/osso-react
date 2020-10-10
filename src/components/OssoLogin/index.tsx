@@ -38,8 +38,8 @@ export default function OssoLogin({
     });
   };
 
-  const hasProvider = data?.enterpriseAccount?.identityProviders?.some((provider: IdentityProvider) =>
-    [IdentityProviderStatus.active, IdentityProviderStatus.configured].includes(provider.status),
+  const hasProvider = data?.enterpriseAccount?.identityProviders?.some(
+    (provider: IdentityProvider) => provider.status !== IdentityProviderStatus.pending,
   );
 
   useEffect(() => {
