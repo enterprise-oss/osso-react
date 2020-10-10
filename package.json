@@ -10,14 +10,10 @@
   "scripts": {
     "build": "rollup -c",
     "clean": "rm -rf dist",
-    "yalc-dev": "yalc-watch",
     "lint": "eslint ./src",
     "format": "tsc && eslint ./src --fix",
     "start": "rollup -c --watch",
-    "test": "jest",
-    "pack": "yarn build",
-    "prepare": "yarn prepack",
-    "prepack": "yarn build"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -53,6 +49,8 @@
     "js-base64": "^3.4.5",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "rollup": "^2.18.1",
     "rollup-plugin-base64": "^1.0.1",

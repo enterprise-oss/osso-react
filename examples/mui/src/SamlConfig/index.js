@@ -1,6 +1,12 @@
 import './index.css';
 
-import { IdpGeneratedFields, OssoGeneratedFields, useOssoFields } from '@enterprise-oss/osso';
+import {
+  createIdentityProvider,
+  IdpGeneratedFields,
+  OssoGeneratedFields,
+  useEnterpriseAccount,
+  useOssoFields,
+} from '@enterprise-oss/osso';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -19,21 +25,29 @@ const InputComponent = ({ onChange, label, copyable, ...inputProps }) => (
   </FormControl>
 );
 
+const UploadComponent = (props) => (
+  <DropzoneArea
+    onChange={(files) => {
+      if (!files.length) return;
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        props.onChange(event.target.result);
+      };
+      reader.readAsText(files[0]);
+    }}
+  />
+);
+
 function App() {
   const [step, setStep] = useState(1);
   const [provider, setProvider] = useState('');
   const { providers } = useOssoFields();
+  const { data } = useEnterpriseAccount('example.com');
 
-  // Normally provided by GraphQL-based Osso hook, data here is mocked.
-  // If you've added <OssoProvider> with an Osso deployment URI, you
-  // only need to provide an object with an `id` for an identityProvider
-  // to <OssoGeneratedFields> - the component will manage it's own state
-  // and API calls.
-  const identityProvider = {
-    id: '2fdb5db6-4fcd-4872-80e2-6c59137370ef',
-    service: provider,
-    acsUrl: 'http://demo.ossoapp.io/auth/saml/2fdb5db6-4fcd-4872-80e2-6c59137370ef/callback',
-  };
+  const { createProvider, data: idpData } = createIdentityProvider();
+  const identityProvider = idpData?.createIdentityProvider?.identityProvider;
+  console.log(identityProvider);
   return (
     <div className="App">
       <Card variant="outlined" title={`Step ${step}.`} style={{ width: '100%', marginBottom: 40, overflow: 'visible' }}>
@@ -41,55 +55,93 @@ function App() {
           {step === 1 && (
             <>
               <p>First choose the Identity Provider service you or your customer uses for SSO.</p>
-              <form style={{ display: 'flex', flexDirection: 'column' }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Provider</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={provider}
-                    onChange={(event) => console.log(event.target.value) || setProvider(event.target.value)}
-                  >
-                    {Object.values(providers).map((provider) => (
-                      <MenuItem key={provider.value} value={provider.value}>
-                        {provider.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-                {provider && (
-                  <>
-                    <p style={{ margin: '40px 0' }}>
-                      Based on the chosen provider, details needed to configure your app on your customer&apos;s
-                      Identity Provider are shown below. A button to download appropriate documentation in PDF is also
-                      provided. The copy in the component adjusts based on the scope of the user you pass to
-                      OssoProvider.
-                    </p>
-                    <OssoGeneratedFields InputComponent={InputComponent} identityProvider={identityProvider} />
-                  </>
-                )}
-                <FormControl>{provider && <Button onClick={() => setStep(2)}>Next Step</Button>}</FormControl>
-              </form>
+              {/* <form style={{ display: 'flex', flexDirection: 'column' }}> */}
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Provider</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={provider}
+                  onChange={(event) => setProvider(event.target.value)}
+                >
+                  {Object.values(providers).map((provider) => (
+                    <MenuItem key={provider.value} value={provider.value}>
+                      {provider.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              {provider && (
+                <Button
+                  type="button"
+                  style={{ marginTop: 24 }}
+                  color="primary"
+                  onClick={(e) => {
+                    console.log('WRHD');
+                    e.preventDefault();
+                    createProvider(data?.enterpriseAccount.id, provider).then(() => {
+                      console.log('promise');
+                      setStep(2);
+                    });
+                  }}
+                >
+                  Next Step
+                </Button>
+              )}
+              {/* </form> */}
             </>
           )}
           {step === 2 && (
+            <>
+              <p>
+                After choosing the Identity Provider service your customer uses, you can create an IdentityProvider
+                instance in Osso. Osso generates the data that is required for your customer to configure your app in
+                their IDP, as well as IDP specific PDF documentation for your customer to follow.
+              </p>
+              <OssoGeneratedFields
+                ButtonComponent={(props) => <Button color="secondary" {...props} />}
+                InputComponent={InputComponent}
+                identityProvider={identityProvider}
+              />
+
+              <p>NB: The download will not work if this example is run in CodeSandbox</p>
+
+              <Button color="primary" onClick={() => setStep(3)}>
+                Next Step
+              </Button>
+            </>
+          )}
+
+          {step === 3 && (
             <>
               <p>
                 Once your customer configures your app on their Identity Provider, you need to collect some data
                 generated by the IDP, like an x509 cert. When this data is ready, your customer can input it directly or
                 provide it to your team to input on an admin page.
               </p>
-              <form style={{ display: 'flex', flexDirection: 'column' }}>
+              <p>
+                Here is an example metadata file you can use to complete configuration:
+                <a
+                  href="https://raw.githubusercontent.com/enterprise-oss/osso-react/main/examples/contrib/federated_metadata_example.xml"
+                  download="federated_metadata_example.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  example_federated_metadata.xml
+                </a>
+              </p>
+              <form>
                 <IdpGeneratedFields
                   ButtonComponent={(props) => (
-                    <Button variant="primary" fullWidth {...props}>
+                    <Button {...props} color="primary">
                       Submit
                     </Button>
                   )}
                   InputComponent={InputComponent}
-                  UploadComponent={DropzoneArea}
+                  UploadComponent={UploadComponent}
                   identityProvider={identityProvider}
                 />
+                <br />
                 <p>
                   This step will change to match the provider used. Some IDPs support uploading an XML file, while
                   others provide a URL where the XML can be accessed. Manual configuration is supported for all
