@@ -154,7 +154,6 @@ function App() {
               UploadComponent={UploadComponent}
               identityProvider={identityProvider}
               classes={{}}
-              onChange={() => {}}
             />
             <br />
             <p>
