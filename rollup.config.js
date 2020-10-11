@@ -1,8 +1,8 @@
 import alias from '@rollup/plugin-alias';
-import { base64 } from 'rollup-plugin-base64';
 import svg from 'rollup-plugin-svg';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+import url from 'rollup-plugin-url';
 
 import pkg from './package.json';
 
@@ -18,8 +18,9 @@ const plugins = [
   alias({
     entries: [{ find: '~', replacement: 'src' }],
   }),
-  base64({
-    include: 'src/resources/SFMono-Regular.ttf',
+  url({
+    include: ['src/resources/SFMono-Regular.ttf'],
+    limit: Infinity,
   }),
   svg({ base64: true }),
 ];
