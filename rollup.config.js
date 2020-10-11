@@ -1,6 +1,7 @@
 import alias from '@rollup/plugin-alias';
 import { base64 } from 'rollup-plugin-base64';
 import svg from 'rollup-plugin-svg';
+import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
@@ -21,9 +22,6 @@ const plugins = [
     include: 'src/resources/SFMono-Regular.ttf',
   }),
   svg({ base64: true }),
-  typescript({
-    typescript: require('typescript'),
-  }),
 ];
 
 export default [
@@ -34,17 +32,29 @@ export default [
       format: 'es',
       sourcemap: true,
     },
-    plugins,
+    plugins: [
+      ...plugins,
+      typescript({
+        typescript: require('typescript'),
+      }),
+    ],
     external,
   },
   {
     input,
     output: {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true,
+      file: 'umd/osso.js',
+      format: 'umd',
+      name: 'osso',
     },
-    plugins,
+    plugins: [
+      ...plugins,
+      typescript({
+        typescript: require('typescript'),
+        useTsconfigDeclarationDir: true,
+      }),
+      terser(),
+    ],
     external,
   },
 ];
