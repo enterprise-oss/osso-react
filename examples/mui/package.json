@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@enterprise-oss/osso": "^0.0.9-alpha.1",
+    "@enterprise-oss/osso": "^0.0.9-alpha.2",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "material-ui-dropzone": "^3.5.0",

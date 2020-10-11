@@ -3,8 +3,10 @@ import download from 'downloadjs';
 import { useContext } from 'react';
 
 import OssoContext from '~client';
-import { useAppConfig, useIdentityProvider } from '~hooks';
 import generateDocumentation, { PDF_VERSION } from '~utils/documentationWriter';
+
+import useAppConfig from '../useAppConfig';
+import useIdentityProvider from '../useIdentityProvider';
 
 const useOssoDocs = (
   id: string,

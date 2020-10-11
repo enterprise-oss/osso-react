@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { OssoLogin } from '@enterprise-oss/osso';
 import { Button, Card, Form, Input } from 'antd';
 import React from 'react';

@@ -6,3 +6,4 @@ dist
 **yalc.lock
 **.DS_Store
 __artifacts__/**
+umd
