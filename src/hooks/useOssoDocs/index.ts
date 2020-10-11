@@ -2,8 +2,9 @@ import { HttpLink } from '@apollo/client';
 import download from 'downloadjs';
 import { useContext } from 'react';
 
+import { PDF_VERSION } from '~/utils/constants';
+import generateDocumentation from '~/utils/documentationWriter';
 import OssoContext from '~client';
-import generateDocumentation, { PDF_VERSION } from '~utils/documentationWriter';
 
 import useAppConfig from '../useAppConfig';
 import useIdentityProvider from '../useIdentityProvider';

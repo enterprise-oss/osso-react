@@ -2,9 +2,10 @@ import { HttpLink } from '@apollo/client';
 import download from 'downloadjs';
 import React, { ReactElement, useContext } from 'react';
 
+import { PDF_VERSION } from '~/utils/constants';
+import generateDocumentation from '~/utils/documentationWriter';
 import OssoContext from '~client';
 import { useAppConfig, useIdentityProvider } from '~hooks';
-import generateDocumentation, { PDF_VERSION } from '~utils/documentationWriter';
 
 import { IdentityProvider, OssoButtonComponentProps } from './index.types';
 

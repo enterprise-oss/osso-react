@@ -1,7 +1,7 @@
 {
   "name": "@enterprise-oss/osso",
   "license": "SEE LICENSE IN LICENSE",
-  "version": "0.0.9-alpha.2",
+  "version": "0.0.9-alpha.3",
   "description": "React components for Osso",
   "main": "umd/osso.js",
   "module": "dist/index.esm.js",

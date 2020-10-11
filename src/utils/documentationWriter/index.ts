@@ -9,8 +9,6 @@ import { AppConfig, IdentityProvider } from '~/types';
 // so no root aliasing
 import SFMono from '../../resources/SFMono-Regular.ttf';
 
-export const PDF_VERSION = 1;
-
 type Coordinates = {
   x: number;
   y: number;

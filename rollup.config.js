@@ -6,7 +6,10 @@ import url from 'rollup-plugin-url';
 
 import pkg from './package.json';
 
-const input = 'src/index.ts';
+const input = {
+  index: 'src/index.ts',
+  docsWriter: 'src/utils/documentationWriter/index.ts',
+};
 
 const external = [
   ...Object.keys(pkg.dependencies || {}),
@@ -29,7 +32,7 @@ export default [
   {
     input,
     output: {
-      file: pkg.module,
+      dir: 'dist',
       format: 'es',
       sourcemap: true,
     },
@@ -44,9 +47,23 @@ export default [
   {
     input,
     output: {
-      file: 'umd/osso.js',
+      dir: 'cjs',
+      format: 'cjs',
+    },
+    plugins: [
+      ...plugins,
+      typescript({
+        typescript: require('typescript'),
+      }),
+    ],
+    external,
+  },
+  {
+    input: 'src/components/OssoLogin/index.tsx',
+    output: {
+      file: 'umd/osso-login.js',
       format: 'umd',
-      name: 'osso',
+      name: 'osso-login',
     },
     plugins: [
       ...plugins,
