@@ -4,6 +4,8 @@ import createIdentityProvider from './createIdentityProvider/index';
 import createOauthClient from './createOauthClient/index';
 import deleteEnterpriseAccount from './deleteEnterpriseAccount/index';
 import deleteIdentityProvider from './deleteIdentityProvider/index';
+import inviteAdminUser from './inviteAdminUser';
+import useAdminUsers from './useAdminUsers';
 import useAppConfig from './useAppConfig/index';
 import useEnterpriseAccount from './useEnterpriseAccount/index';
 import useEnterpriseAccounts from './useEnterpriseAccounts/index';
@@ -21,6 +23,8 @@ export {
   createOauthClient,
   deleteEnterpriseAccount,
   deleteIdentityProvider,
+  inviteAdminUser,
+  useAdminUsers,
   useAppConfig,
   useEnterpriseAccount,
   useEnterpriseAccounts,

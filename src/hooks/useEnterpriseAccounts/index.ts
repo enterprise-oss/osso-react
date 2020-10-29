@@ -6,8 +6,8 @@ import OssoContext from '~/client';
 import { EnterpriseAccountData } from './index.types';
 
 export const ACCOUNTS_QUERY = gql`
-  query EnterpriseAccounts($first: Int!, $after: String, $sortColumn: String, $sortOrder: String) {
-    enterpriseAccounts(first: $first, after: $after, sortColumn: $sortColumn, sortOrder: $sortOrder) {
+  query EnterpriseAccounts($first: Int!, $after: String, $sortColumn: String, $sortOrder: String, $search: String) {
+    enterpriseAccounts(first: $first, after: $after, sortColumn: $sortColumn, sortOrder: $sortOrder, search: $search) {
       pageInfo {
         hasNextPage
         endCursor
@@ -40,6 +40,7 @@ type Variables = {
   after?: string;
   sortOrder?: 'ascend' | 'descend';
   sortColumn?: string;
+  search?: string;
 };
 
 const useEnterpriseAccounts = (
@@ -57,19 +58,21 @@ const useEnterpriseAccounts = (
     throw new Error('useEnterpriseAccounts must be used inside an OssoProvider');
   }
 
-  const { data, loading, error, refetch, fetchMore } = useQuery(ACCOUNTS_QUERY, {
+  const { data, loading, error, refetch, fetchMore, networkStatus } = useQuery(ACCOUNTS_QUERY, {
     client,
     variables: {
       first: limit,
       after: undefined,
       sortOrder: 'ascend',
       sortColumn: 'name',
+      search: undefined,
     } as Variables,
+    notifyOnNetworkStatusChange: true,
   });
 
   return {
     data,
-    loading,
+    loading: loading || networkStatus === 3,
     error,
     fetchMore,
     refetch,

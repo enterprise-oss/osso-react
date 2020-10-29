@@ -189,3 +189,14 @@ export type OssoUser = {
   scope: 'admin' | 'internal' | 'end-user';
   oauthClientId?: string;
 };
+
+export type AdminUser = {
+  id: string;
+  email: string;
+  role: 'admin' | 'internal' | 'end-user';
+  oauthClientId?: string;
+};
+
+export interface AdminUsersData {
+  adminUsers: AdminUser[];
+}
