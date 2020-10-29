@@ -9,7 +9,7 @@ import useOAuthClients from './index';
 describe('client context', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let rendered: any;
-  test('fetches accounts in an <OssoProvider>', async (done) => {
+  test('fetches users in an <OssoProvider>', async (done) => {
     fetch.mockResponseOnce(JSON.stringify({ data: response }));
 
     act(() => {
@@ -20,7 +20,7 @@ describe('client context', () => {
 
     await rendered.waitForValueToChange(() => rendered.result.current.data !== undefined);
 
-    expect(rendered.result.current.data.oauthClients.length).toEqual(3);
+    expect(rendered.result.current.data.adminUsers.length).toEqual(1);
     expect(rendered.result.current.loading).toEqual(false);
     expect(rendered.result.current.error).toEqual(undefined);
 
@@ -30,5 +30,5 @@ describe('client context', () => {
 
 test('throws an error when used outside of an <OssoProvider>', () => {
   const { result } = renderHook(() => useOAuthClients());
-  expect(result.error.message).toContain('useOAuthClients must be used inside an OssoProvider');
+  expect(result.error.message).toContain('useAdminUsers must be used inside an OssoProvider');
 });
