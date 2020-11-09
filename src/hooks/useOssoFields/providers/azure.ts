@@ -20,7 +20,7 @@ export default {
         pdfProps: { x: 55, y: 2880, size: 8 },
       },
       {
-        name: 'domain',
+        name: 'ssoIssuer',
         inputProps: {
           id: 'osso-azure-entity-id',
           label: 'Identifier (Entity ID)',

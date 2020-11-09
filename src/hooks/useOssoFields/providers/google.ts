@@ -20,7 +20,7 @@ export default {
         pdfProps: { x: 56, y: 996, size: 8 },
       },
       {
-        name: 'domain',
+        name: 'ssoIssuer',
         inputProps: {
           id: 'osso-google-entity-id',
           label: 'Audience URI (SP Entity ID)',

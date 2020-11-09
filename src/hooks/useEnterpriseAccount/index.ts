@@ -19,6 +19,7 @@ export const ACCOUNT_QUERY = gql`
         acsUrl
         acsUrlValidator
         ssoUrl
+        ssoIssuer
         status
       }
       usersCount

@@ -15,6 +15,7 @@ const CREATE_PROVIDER = gql`
         domain
         enterpriseAccountId
         service
+        ssoIssuer
         acsUrl
       }
     }
