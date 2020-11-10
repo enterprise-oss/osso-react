@@ -77,7 +77,7 @@ Object {
           "readOnly": true,
           "type": "text",
         },
-        "name": "domain",
+        "name": "ssoIssuer",
         "pdfProps": Object {
           "x": 55,
           "y": 2828,
@@ -174,7 +174,7 @@ Object {
           "readOnly": true,
           "type": "text",
         },
-        "name": "domain",
+        "name": "ssoIssuer",
         "pdfProps": Object {
           "x": 55,
           "y": 2167,
@@ -271,7 +271,7 @@ Object {
           "readOnly": true,
           "type": "text",
         },
-        "name": "domain",
+        "name": "ssoIssuer",
         "pdfProps": Object {
           "x": 56,
           "y": 1554,
@@ -398,7 +398,7 @@ Object {
           "readOnly": true,
           "type": "text",
         },
-        "name": "domain",
+        "name": "ssoIssuer",
         "pdfProps": Object {
           "x": 56,
           "y": 1049,

@@ -103,6 +103,7 @@ export interface IdentityProvider {
   acsUrl?: string;
   acsUrlValidator?: string;
   ssoCert?: string;
+  ssoIssuer?: string;
   ssoUrl: string;
   status: IdentityProviderStatus;
   __typename?: 'IdentityProvider';
@@ -111,6 +112,7 @@ export interface IdentityProvider {
 export interface ConfiguredIdentityProvider {
   acsUrl: string;
   domain: string;
+  ssoIssuer: string;
 }
 
 enum Status {

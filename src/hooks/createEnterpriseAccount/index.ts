@@ -20,7 +20,7 @@ const CREATE_ACCOUNT = gql`
 `;
 
 const createEnterpriseAccount = (): {
-  createAccount: (name: string, domain: string, oauthClientId: string | undefined) => Promise<FetchResult>;
+  createAccount: (name: string, domain: string) => Promise<FetchResult>;
   data?: EnterpriseAccountData;
   loading: boolean;
   error?: ApolloError;
@@ -69,8 +69,7 @@ const createEnterpriseAccount = (): {
   });
 
   return {
-    createAccount: (name: string, domain: string, oauthClientId = undefined) =>
-      createAccount({ variables: { input: { name, domain, oauthClientId } } }),
+    createAccount: (name: string, domain: string) => createAccount({ variables: { input: { name, domain } } }),
     data,
     loading,
     error,

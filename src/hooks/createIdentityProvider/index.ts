@@ -15,6 +15,7 @@ const CREATE_PROVIDER = gql`
         domain
         enterpriseAccountId
         service
+        ssoIssuer
         acsUrl
       }
     }
@@ -22,7 +23,11 @@ const CREATE_PROVIDER = gql`
 `;
 
 const createIdentityProvider = (): {
-  createProvider: (enterpriseAccountId: string, providerService: Providers) => Promise<FetchResult>;
+  createProvider: (
+    enterpriseAccountId: string,
+    oauthClientId: string,
+    providerService: Providers,
+  ) => Promise<FetchResult>;
   data?: IdentityProvider;
   loading: boolean;
   error?: ApolloError;
@@ -66,8 +71,8 @@ const createIdentityProvider = (): {
   });
 
   return {
-    createProvider: (enterpriseAccountId: string, service?: Providers) =>
-      createProvider({ variables: { input: { enterpriseAccountId, service } } }),
+    createProvider: (enterpriseAccountId: string, oauthClientId: string, service?: Providers) =>
+      createProvider({ variables: { input: { enterpriseAccountId, oauthClientId, service } } }),
     data,
     loading,
     error,
