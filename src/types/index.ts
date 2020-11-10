@@ -106,6 +106,7 @@ export interface IdentityProvider {
   ssoIssuer?: string;
   ssoUrl: string;
   status: IdentityProviderStatus;
+  oauthClient?: OauthClient;
   __typename?: 'IdentityProvider';
 }
 

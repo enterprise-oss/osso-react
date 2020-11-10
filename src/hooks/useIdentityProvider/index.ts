@@ -17,6 +17,10 @@ const PROVIDER_QUERY = gql`
       ssoIssuer
       ssoUrl
       status
+      oauthClient {
+        id
+        name
+      }
     }
   }
 `;

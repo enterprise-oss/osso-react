@@ -21,6 +21,10 @@ export const ACCOUNT_QUERY = gql`
         ssoUrl
         ssoIssuer
         status
+        oauthClient {
+          id
+          name
+        }
       }
       usersCount
       createdAt
