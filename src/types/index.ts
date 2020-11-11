@@ -87,6 +87,7 @@ export type OssoProvider = {
   ossoGeneratedFields: OssoGeneratedFields<Partial<OssoGeneratedFieldKeys>>;
   idpGeneratedFields: IdpGeneratedFields<Partial<IdpGeneratedFieldKeys>>;
   serviceProviderMetadata: boolean;
+  oauthClient?: OauthClient;
 };
 
 export enum IdentityProviderStatus {
@@ -106,7 +107,7 @@ export interface IdentityProvider {
   ssoIssuer?: string;
   ssoUrl: string;
   status: IdentityProviderStatus;
-  oauthClient?: OauthClient;
+  // oauthClient?: OauthClient;
   __typename?: 'IdentityProvider';
 }
 
