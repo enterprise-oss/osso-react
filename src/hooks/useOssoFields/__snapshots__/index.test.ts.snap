@@ -98,6 +98,103 @@ Object {
       Object {
         "inputProps": Object {
           "copyable": false,
+          "id": "osso-google-sso-url",
+          "label": "Identity Provider Single Sign-On URL",
+          "readOnly": false,
+          "type": "text",
+        },
+        "name": "ssoUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-google-sso-cert",
+          "label": "X.509 Certificate",
+          "readOnly": false,
+          "type": "textarea",
+        },
+        "name": "ssoCert",
+      },
+    ],
+    "metadataXml": Object {
+      "accept": ".xml",
+      "copyable": false,
+      "id": "osso-google-metadata-xml",
+      "label": "Metadata XML",
+      "readOnly": false,
+      "type": "textarea",
+    },
+  },
+  "label": "Google (SAML)",
+  "ossoGeneratedFields": Object {
+    "appDetails": Array [
+      Object {
+        "name": "contactEmail",
+        "pdfProps": Object {
+          "x": 40,
+          "y": 323,
+        },
+      },
+      Object {
+        "name": "name",
+        "pdfProps": Object {
+          "x": 354,
+          "y": 783,
+        },
+      },
+      Object {
+        "name": "logoUrl",
+        "pdfProps": Object {
+          "x": 81,
+          "y": 891,
+        },
+      },
+    ],
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-google-acs-url",
+          "label": "Single sign on URL",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 56,
+          "y": 996,
+        },
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-google-entity-id",
+          "label": "Audience URI (SP Entity ID)",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "ssoIssuer",
+        "pdfProps": Object {
+          "x": 56,
+          "y": 1049,
+        },
+      },
+    ],
+  },
+  "serviceProviderMetadata": false,
+  "value": "GOOGLE",
+}
+`;
+
+exports[`fieldsForProvider it returns the expected fields for each provider 3`] = `
+Object {
+  "icon": "test-file-stub",
+  "idpGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": false,
           "id": "osso-okta-sso-url",
           "label": "Identity Provider Single Sign-On URL",
           "readOnly": false,
@@ -187,7 +284,7 @@ Object {
 }
 `;
 
-exports[`fieldsForProvider it returns the expected fields for each provider 3`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 4`] = `
 Object {
   "icon": "test-file-stub",
   "idpGeneratedFields": Object {
@@ -314,7 +411,7 @@ Object {
 }
 `;
 
-exports[`fieldsForProvider it returns the expected fields for each provider 4`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 5`] = `
 Object {
   "icon": "test-file-stub",
   "idpGeneratedFields": Object {
@@ -322,7 +419,7 @@ Object {
       Object {
         "inputProps": Object {
           "copyable": false,
-          "id": "osso-google-sso-url",
+          "id": "osso-ping-sso-url",
           "label": "Identity Provider Single Sign-On URL",
           "readOnly": false,
           "type": "text",
@@ -332,7 +429,7 @@ Object {
       Object {
         "inputProps": Object {
           "copyable": false,
-          "id": "osso-google-sso-cert",
+          "id": "osso-ping-sso-cert",
           "label": "X.509 Certificate",
           "readOnly": false,
           "type": "textarea",
@@ -343,34 +440,34 @@ Object {
     "metadataXml": Object {
       "accept": ".xml",
       "copyable": false,
-      "id": "osso-google-metadata-xml",
+      "id": "osso-ping-metadata-xml",
       "label": "Metadata XML",
       "readOnly": false,
       "type": "textarea",
     },
   },
-  "label": "Google (SAML)",
+  "label": "Ping",
   "ossoGeneratedFields": Object {
     "appDetails": Array [
       Object {
         "name": "contactEmail",
         "pdfProps": Object {
-          "x": 40,
-          "y": 323,
+          "x": 45,
+          "y": 388,
         },
       },
       Object {
         "name": "name",
         "pdfProps": Object {
-          "x": 354,
-          "y": 783,
+          "x": 215,
+          "y": 1615,
         },
       },
       Object {
         "name": "logoUrl",
         "pdfProps": Object {
           "x": 81,
-          "y": 891,
+          "y": 1684,
         },
       },
     ],
@@ -378,36 +475,36 @@ Object {
       Object {
         "inputProps": Object {
           "copyable": true,
-          "id": "osso-google-acs-url",
-          "label": "Single sign on URL",
+          "id": "osso-ping-acs-url",
+          "label": "ACS URL",
           "readOnly": true,
           "type": "text",
         },
         "name": "acsUrl",
         "pdfProps": Object {
           "size": 8,
-          "x": 56,
-          "y": 996,
+          "x": 87,
+          "y": 135,
         },
       },
       Object {
         "inputProps": Object {
           "copyable": true,
-          "id": "osso-google-entity-id",
-          "label": "Audience URI (SP Entity ID)",
+          "id": "osso-ping-entity-id",
+          "label": "ENTITY ID",
           "readOnly": true,
           "type": "text",
         },
         "name": "ssoIssuer",
         "pdfProps": Object {
-          "x": 56,
-          "y": 1049,
+          "x": 87,
+          "y": 166,
         },
       },
     ],
   },
   "serviceProviderMetadata": false,
-  "value": "GOOGLE",
+  "value": "PING",
 }
 `;
 
@@ -417,6 +514,11 @@ Array [
     "icon": "test-file-stub",
     "label": "Azure",
     "value": "AZURE",
+  },
+  Object {
+    "icon": "test-file-stub",
+    "label": "Google (SAML)",
+    "value": "GOOGLE",
   },
   Object {
     "icon": "test-file-stub",
@@ -430,8 +532,8 @@ Array [
   },
   Object {
     "icon": "test-file-stub",
-    "label": "Google (SAML)",
-    "value": "GOOGLE",
+    "label": "Ping",
+    "value": "PING",
   },
 ]
 `;
