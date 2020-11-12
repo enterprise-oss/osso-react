@@ -12,6 +12,7 @@ export enum Providers {
   Okta = 'OKTA',
   OneLogin = 'ONELOGIN',
   Google = 'GOOGLE',
+  Ping = 'PING',
 }
 
 export type ProviderOption = {
