@@ -452,22 +452,22 @@ Object {
       Object {
         "name": "contactEmail",
         "pdfProps": Object {
-          "x": 45,
-          "y": 388,
+          "x": 36,
+          "y": 322,
         },
       },
       Object {
         "name": "name",
         "pdfProps": Object {
-          "x": 215,
-          "y": 1615,
+          "x": 311,
+          "y": 1126,
         },
       },
       Object {
         "name": "logoUrl",
         "pdfProps": Object {
-          "x": 81,
-          "y": 1684,
+          "x": 80,
+          "y": 1246,
         },
       },
     ],
@@ -483,8 +483,8 @@ Object {
         "name": "acsUrl",
         "pdfProps": Object {
           "size": 8,
-          "x": 87,
-          "y": 135,
+          "x": 52,
+          "y": 1490,
         },
       },
       Object {
@@ -497,8 +497,8 @@ Object {
         },
         "name": "ssoIssuer",
         "pdfProps": Object {
-          "x": 87,
-          "y": 166,
+          "x": 52,
+          "y": 1543,
         },
       },
     ],
