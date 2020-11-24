@@ -9,7 +9,7 @@
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "Node",
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
