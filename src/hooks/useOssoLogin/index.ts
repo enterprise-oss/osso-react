@@ -1,4 +1,5 @@
-import { ApolloError, gql, useLazyQuery } from '@apollo/client';
+import { ApolloError, useLazyQuery } from '@apollo/client';
+import gql from 'graphql-tag';
 import { useContext } from 'react';
 
 import OssoContext from '~/client';

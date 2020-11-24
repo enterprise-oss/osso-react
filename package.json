@@ -65,13 +65,14 @@
     "yalc-watch": "^0.0.6"
   },
   "dependencies": {
-    "@apollo/client": "^3.0.0-rc.10",
+    "@apollo/client": "^3.2.7",
     "@pdf-lib/fontkit": "^1.0.0",
     "apollo-link-context": "^1.0.20",
     "base64-arraybuffer": "^0.2.0",
     "downloadjs": "^1.4.7",
     "fast-xml-parser": "^3.17.4",
     "graphql": "^15.1.0",
+    "graphql-tag": "^2.11.0",
     "pdf-lib": "^1.9.0"
   },
   "peerDependencies": {
