@@ -35,16 +35,15 @@ steps:
       - "yarn install"
       - "yarn build"
     label: ":rollup:"
-    branches: "!main"
-
+    
   - wait  
 
   - block: ":npm: Publish :red_button:"
-    branches: "main"
+  if: build.tag != null
   
   - name: "Push :npm:"
     commands: 
     - "yarn install"
     - "yarn build"
     - "npm publish"
-    branches: "main"
+    if: build.tag != null
