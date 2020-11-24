@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 
 const DELETE_OAUTH_CLIENT_MUTATION = gql`
   mutation DeleteRedirectUri($input: DeleteOauthClientInput!) {

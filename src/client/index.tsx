@@ -1,5 +1,6 @@
-import { ApolloClient, gql, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { relayStylePagination } from '@apollo/client/utilities';
+import gql from 'graphql-tag';
 import React, { createContext, ReactElement, useState } from 'react';
 
 import { OssoClientOptions, OssoContextValue, OssoProviderProps, OssoUser } from './index.types';

@@ -70,7 +70,7 @@ export interface OssoInput {
 export type ProviderMap<T extends string> = { [key in T]: OssoProvider };
 
 export type OssoGeneratedFieldKeys = 'manual' | 'appFields';
-export type OssoGeneratedFields<T extends OssoGeneratedFieldKeys> = {
+export type OssoGeneratedFields<_T extends OssoGeneratedFieldKeys> = {
   manual: OssoInput[];
   appDetails: OssoPdfField[];
 };
