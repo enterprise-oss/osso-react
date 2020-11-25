@@ -1,11 +1,9 @@
-import Icon from '~/resources/one-login.svg';
-
 import { OssoProvider, Providers } from '../index.types';
 
 export default {
   value: Providers.OneLogin,
   label: 'OneLogin',
-  icon: Icon,
+  iconUrl: 'https://assets.ossoapp.io/icons/one-login.svg',
   ossoGeneratedFields: {
     manual: [
       {

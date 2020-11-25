@@ -18,7 +18,7 @@ export enum Providers {
 export type ProviderOption = {
   value: Providers;
   label: string;
-  icon: string;
+  iconUrl: string;
 };
 
 export type OssoButtonComponentProps = {
@@ -84,7 +84,7 @@ export type IdpGeneratedFields<T extends IdpGeneratedFieldKeys> = {
 export type OssoProvider = {
   value: Providers;
   label: string;
-  icon: string;
+  iconUrl: string;
   ossoGeneratedFields: OssoGeneratedFields<Partial<OssoGeneratedFieldKeys>>;
   idpGeneratedFields: IdpGeneratedFields<Partial<IdpGeneratedFieldKeys>>;
   serviceProviderMetadata: boolean;

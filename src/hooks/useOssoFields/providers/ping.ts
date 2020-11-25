@@ -1,11 +1,9 @@
-import Icon from '~/resources/ping.svg';
-
 import { OssoProvider, Providers } from '../index.types';
 
 export default {
   value: Providers.Ping,
   label: 'Ping',
-  icon: Icon,
+  iconUrl: 'https://assets.ossoapp.io/icons/ping.svg',
   ossoGeneratedFields: {
     manual: [
       {

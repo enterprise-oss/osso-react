@@ -4,7 +4,7 @@ import { PDFDocument, PDFFont, PDFPage } from 'pdf-lib';
 import useOssoFields from '~/hooks/useOssoFields';
 import { AppConfig, IdentityProvider } from '~/types';
 
-export const PDF_VERSION = 1;
+export const PDF_VERSION = 'v1';
 
 type Coordinates = {
   x: number;
