@@ -22,8 +22,10 @@ export default function parseMetadataXML(xml: string): { ssoUrl: string; ssoCert
     },
   } = jsonObj;
 
+  const ssoUrl = SingleSignOnService.find((el: Record<string, string>) => el.Binding.match(/HTTP\-Redirect/)).Location;
+
   return {
     ssoCert: X509Certificate,
-    ssoUrl: SingleSignOnService[0].Location,
+    ssoUrl,
   };
 }
