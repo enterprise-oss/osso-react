@@ -632,5 +632,10 @@ Array [
     "label": "Ping",
     "value": "PING",
   },
+  Object {
+    "iconUrl": "https://assets.ossoapp.io/icons/salesforce.svg",
+    "label": "Salesforce",
+    "value": "SALESFORCE",
+  },
 ]
 `;
