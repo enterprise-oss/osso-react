@@ -1,12 +1,11 @@
-import { HttpLink } from '@apollo/client';
 import download from 'downloadjs';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
-import OssoContext from '~client';
 import generateDocumentation, { PDF_VERSION } from '~utils/documentationWriter';
 
 import useAppConfig from '../useAppConfig';
 import useIdentityProvider from '../useIdentityProvider';
+import useOssoFields from '../useOssoFields';
 
 const useOssoDocs = (
   id: string,
@@ -15,8 +14,8 @@ const useOssoDocs = (
   loading: boolean;
 } => {
   const { data } = useIdentityProvider(id);
+  const { fieldsForProvider } = useOssoFields();
   const { data: appData } = useAppConfig();
-  const { baseUrl, client } = useContext(OssoContext);
   const [loading, setLoading] = useState(false);
 
   const downloadDocs = async () => {
@@ -25,21 +24,19 @@ const useOssoDocs = (
       return;
     }
     setLoading(true);
+
     const {
       identityProvider: { service, domain },
     } = data;
-    let url = `/pdfv${PDF_VERSION}/${service.toLowerCase()}.pdf`;
 
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
+    const providerDetails = fieldsForProvider(service);
+    const url = `https://assets.ossoapp.io/pdf/${PDF_VERSION}/${service.toLowerCase()}.pdf`;
 
-    const template = await fetch(url, {
-      mode: 'cors',
-      headers: (client?.link as HttpLink)?.options?.headers,
-    }).then((res) => res.arrayBuffer());
+    const template = await fetch(url).then((res) => res.arrayBuffer());
+
     const pdf = await generateDocumentation(template, data.identityProvider, appData.appConfig);
-    download(pdf, `${service} SAML setup - ${domain}.pdf`, 'application/pdf');
+
+    download(pdf, `${providerDetails.label} SAML setup - ${domain}.pdf`, 'application/pdf');
     setLoading(false);
   };
   return {
