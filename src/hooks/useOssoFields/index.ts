@@ -7,7 +7,7 @@ const providerMap = Object.values(allProviders).reduce((map, provider) => {
 
 const providers: ProviderOption[] = Object.values(allProviders).map((provider) => ({
   value: provider.value,
-  icon: provider.icon,
+  iconUrl: provider.iconUrl,
   label: provider.label,
 }));
 

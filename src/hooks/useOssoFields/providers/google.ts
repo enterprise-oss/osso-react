@@ -1,11 +1,9 @@
-import Icon from '~/resources/google.svg';
-
 import { OssoProvider, Providers } from '../index.types';
 
 export default {
   value: Providers.Google,
   label: 'Google (SAML)',
-  icon: Icon,
+  iconUrl: 'https://assets.ossoapp.io/icons/google.svg',
   ossoGeneratedFields: {
     manual: [
       {

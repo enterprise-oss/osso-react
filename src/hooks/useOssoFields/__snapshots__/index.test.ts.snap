@@ -2,7 +2,7 @@
 
 exports[`fieldsForProvider it returns the expected fields for each provider 1`] = `
 Object {
-  "icon": "test-file-stub",
+  "iconUrl": "https://assets.ossoapp.io/icons/azure.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
       Object {
@@ -92,7 +92,7 @@ Object {
 
 exports[`fieldsForProvider it returns the expected fields for each provider 2`] = `
 Object {
-  "icon": "test-file-stub",
+  "iconUrl": "https://assets.ossoapp.io/icons/google.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
       Object {
@@ -189,7 +189,7 @@ Object {
 
 exports[`fieldsForProvider it returns the expected fields for each provider 3`] = `
 Object {
-  "icon": "test-file-stub",
+  "iconUrl": "https://assets.ossoapp.io/icons/okta.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
       Object {
@@ -286,7 +286,7 @@ Object {
 
 exports[`fieldsForProvider it returns the expected fields for each provider 4`] = `
 Object {
-  "icon": "test-file-stub",
+  "iconUrl": "https://assets.ossoapp.io/icons/one-login.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
       Object {
@@ -413,7 +413,7 @@ Object {
 
 exports[`fieldsForProvider it returns the expected fields for each provider 5`] = `
 Object {
-  "icon": "test-file-stub",
+  "iconUrl": "https://assets.ossoapp.io/icons/ping.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
       Object {
@@ -511,27 +511,27 @@ Object {
 exports[`providers contains an array of Identity Providers in the tuple 1`] = `
 Array [
   Object {
-    "icon": "test-file-stub",
+    "iconUrl": "https://assets.ossoapp.io/icons/azure.svg",
     "label": "Azure",
     "value": "AZURE",
   },
   Object {
-    "icon": "test-file-stub",
+    "iconUrl": "https://assets.ossoapp.io/icons/google.svg",
     "label": "Google (SAML)",
     "value": "GOOGLE",
   },
   Object {
-    "icon": "test-file-stub",
+    "iconUrl": "https://assets.ossoapp.io/icons/okta.svg",
     "label": "Okta",
     "value": "OKTA",
   },
   Object {
-    "icon": "test-file-stub",
+    "iconUrl": "https://assets.ossoapp.io/icons/one-login.svg",
     "label": "OneLogin",
     "value": "ONELOGIN",
   },
   Object {
-    "icon": "test-file-stub",
+    "iconUrl": "https://assets.ossoapp.io/icons/ping.svg",
     "label": "Ping",
     "value": "PING",
   },

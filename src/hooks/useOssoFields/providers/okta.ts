@@ -1,11 +1,9 @@
-import Icon from '~/resources/okta.svg';
-
 import { OssoProvider, Providers } from '../index.types';
 
 export default {
   value: Providers.Okta,
   label: 'Okta',
-  icon: Icon,
+  iconUrl: 'https://assets.ossoapp.io/icons/okta.svg',
   ossoGeneratedFields: {
     manual: [
       {

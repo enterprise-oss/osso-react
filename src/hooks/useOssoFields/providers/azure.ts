@@ -1,11 +1,9 @@
-import Icon from '~/resources/azure.svg';
-
 import { OssoProvider, Providers } from '../index.types';
 
 export default {
   value: Providers.Azure,
   label: 'Azure',
-  icon: Icon,
+  iconUrl: 'https://assets.ossoapp.io/icons/azure.svg',
   ossoGeneratedFields: {
     manual: [
       {
