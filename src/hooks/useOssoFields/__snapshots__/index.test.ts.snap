@@ -508,6 +508,103 @@ Object {
 }
 `;
 
+exports[`fieldsForProvider it returns the expected fields for each provider 6`] = `
+Object {
+  "iconUrl": "https://assets.ossoapp.io/icons/salesforce.svg",
+  "idpGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-salesforce-sso-url",
+          "label": "Identity Provider Single Sign-On URL",
+          "readOnly": false,
+          "type": "text",
+        },
+        "name": "ssoUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-salesforce-sso-cert",
+          "label": "X.509 Certificate",
+          "readOnly": false,
+          "type": "textarea",
+        },
+        "name": "ssoCert",
+      },
+    ],
+    "metadataXml": Object {
+      "accept": ".xml",
+      "copyable": false,
+      "id": "osso-salesforce-metadata-xml",
+      "label": "Metadata XML",
+      "readOnly": false,
+      "type": "textarea",
+    },
+  },
+  "label": "Salesforce",
+  "ossoGeneratedFields": Object {
+    "appDetails": Array [
+      Object {
+        "name": "contactEmail",
+        "pdfProps": Object {
+          "x": 36,
+          "y": 322,
+        },
+      },
+      Object {
+        "name": "name",
+        "pdfProps": Object {
+          "x": 311,
+          "y": 1126,
+        },
+      },
+      Object {
+        "name": "logoUrl",
+        "pdfProps": Object {
+          "x": 80,
+          "y": 1246,
+        },
+      },
+    ],
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-salesforce-acs-url",
+          "label": "ACS URL",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 87,
+          "y": 135,
+        },
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-salesforce-entity-id",
+          "label": "Entity Id",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "ssoIssuer",
+        "pdfProps": Object {
+          "x": 87,
+          "y": 166,
+        },
+      },
+    ],
+  },
+  "serviceProviderMetadata": false,
+  "value": "SALESFORCE",
+}
+`;
+
 exports[`providers contains an array of Identity Providers in the tuple 1`] = `
 Array [
   Object {
@@ -534,6 +631,11 @@ Array [
     "iconUrl": "https://assets.ossoapp.io/icons/ping.svg",
     "label": "Ping",
     "value": "PING",
+  },
+  Object {
+    "iconUrl": "https://assets.ossoapp.io/icons/salesforce.svg",
+    "label": "Salesforce",
+    "value": "SALESFORCE",
   },
 ]
 `;

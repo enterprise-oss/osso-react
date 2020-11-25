@@ -13,6 +13,7 @@ export enum Providers {
   OneLogin = 'ONELOGIN',
   Google = 'GOOGLE',
   Ping = 'PING',
+  Salesforce = 'SALESFORCE',
 }
 
 export type ProviderOption = {
