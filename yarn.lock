@@ -1280,9 +1280,9 @@
     fastq "^1.6.0"
 
 "@pdf-lib/fontkit@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@pdf-lib/fontkit/-/fontkit-1.1.0.tgz#fbef250fece95c754a05a63928a1fd3ac4e73e78"
-  integrity sha512-fauG8mgiOIuPrySuvqxvly7w/3RsBmsBuy/AmzkToIR9dB0CUoEN7gffGte/26aFrZz/lRp1715CbiuZ0lxf2Q==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@pdf-lib/fontkit/-/fontkit-1.1.1.tgz#f18473892b65e3253eb73f4569785abd2c03b1e0"
+  integrity sha512-KjMd7grNapIWS/Dm0gvfHEilSyAmeLvrEGVcqLGi0VYebuqqzTbgF29efCx7tvx+IEbG3zQciRSWl3GkUSvjZg==
   dependencies:
     pako "^1.0.6"
 
