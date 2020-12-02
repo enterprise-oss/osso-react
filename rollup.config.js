@@ -1,5 +1,4 @@
 import alias from '@rollup/plugin-alias';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
 import svg from 'rollup-plugin-svg';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
@@ -12,10 +11,10 @@ const external = [
   ...Object.keys(pkg.dependencies || {}),
   ...Object.keys(pkg.peerDependencies || {}),
   '@apollo/client/utilities',
+  '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css',
 ];
 
 const plugins = [
-  nodeResolve({ browser: true }),
   alias({
     entries: [{ find: '~', replacement: 'src' }],
   }),
