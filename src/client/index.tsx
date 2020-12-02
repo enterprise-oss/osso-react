@@ -61,6 +61,11 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
     defaultOptions: {
       query: {
         fetchPolicy: 'cache-first',
+        errorPolicy: 'all',
+      },
+      watchQuery: {
+        fetchPolicy: 'cache-first',
+        errorPolicy: 'all',
       },
     },
   });

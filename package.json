@@ -3,7 +3,6 @@
   "license": "SEE LICENSE IN LICENSE",
   "version": "0.1.1-alpha.1",
   "description": "React components for Osso",
-  "main": "umd/osso.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "author": "sbauch",
@@ -22,6 +21,8 @@
     "@babel/preset-typescript": "^7.12.7",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-url": "^5.0.1",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.4.2",
@@ -31,6 +32,7 @@
     "@types/node": "^14.14.9",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-modal": "^3.10.6",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "babel-jest": "^26.6.3",
@@ -54,6 +56,8 @@
     "react-test-renderer": "^17.0.1",
     "rollup": "^2.33.3",
     "rollup-plugin-base64": "^1.0.1",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-graphql": "^0.1.0",
     "rollup-plugin-root-import": "^1.0.0",
     "rollup-plugin-svg": "^2.0.0",
@@ -66,6 +70,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.7",
+    "@okta/okta-auth-js": "^4.2.0",
+    "@okta/okta-react": "^4.0.0",
+    "@okta/okta-signin-widget": "^5.0.2",
+    "@openid/appauth": "^1.3.0",
     "@pdf-lib/fontkit": "^1.1.0",
     "apollo-link-context": "^1.0.20",
     "base64-arraybuffer": "^0.2.0",
@@ -73,7 +81,8 @@
     "fast-xml-parser": "^3.17.4",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
-    "pdf-lib": "^1.12.0"
+    "pdf-lib": "^1.12.0",
+    "react-modal": "^3.12.1"
   },
   "peerDependencies": {
     "react": "^16.13.1"

@@ -5,12 +5,13 @@ import { DownloadOutlined } from '@ant-design/icons';
 import {
   createIdentityProvider,
   IdpGeneratedFields,
+  OssoContext,
   OssoGeneratedFields,
   useEnterpriseAccount,
   useOssoFields,
 } from '@enterprise-oss/osso';
 import { Button, Card, Form, Input, Select, Tooltip, Upload } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 // Provide a component for text inputs rendered by Osso.
 const InputComponent = ({ onChange, label, copyable, ...inputProps }) => (
@@ -65,8 +66,9 @@ function App() {
   const [step, setStep] = useState(1);
   const [provider, setProvider] = useState();
   const { providers } = useOssoFields();
-  const { data } = useEnterpriseAccount('example.com');
-
+  const { currentUser } = useContext(OssoContext);
+  const { data, error } = useEnterpriseAccount(currentUser?.email?.split('@')[1]);
+  console.log(data, error);
   const { createProvider, data: idpData } = createIdentityProvider();
   const identityProvider = idpData?.createIdentityProvider?.identityProvider;
 
@@ -92,7 +94,7 @@ function App() {
                     type="primary"
                     htmlType="submit"
                     onClick={() => {
-                      createProvider(data?.enterpriseAccount.id, provider).then(() => {
+                      createProvider(data?.enterpriseAccount.id, null, provider).then(() => {
                         setStep(2);
                       });
                     }}

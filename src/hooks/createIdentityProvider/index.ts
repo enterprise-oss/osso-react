@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 import OssoContext from '~client';
 import { ACCOUNT_QUERY } from '~hooks/useEnterpriseAccount/index';
-import { IdentityProvider } from '~types';
+import { CreateIdentityProviderData } from '~types';
 
 import { EnterpriseAccount, Providers } from './index.types';
 
@@ -24,12 +24,16 @@ const CREATE_PROVIDER = gql`
 `;
 
 const createIdentityProvider = (): {
-  createProvider: (
-    enterpriseAccountId: string,
-    oauthClientId: string,
-    providerService: Providers,
-  ) => Promise<FetchResult>;
-  data?: IdentityProvider;
+  createProvider: ({
+    enterpriseAccountId,
+    oauthClientId,
+    service,
+  }: {
+    enterpriseAccountId?: string;
+    oauthClientId?: string;
+    service: Providers;
+  }) => Promise<FetchResult>;
+  data?: CreateIdentityProviderData;
   loading: boolean;
   error?: ApolloError;
 } => {
@@ -72,8 +76,15 @@ const createIdentityProvider = (): {
   });
 
   return {
-    createProvider: (enterpriseAccountId: string, oauthClientId: string, service?: Providers) =>
-      createProvider({ variables: { input: { enterpriseAccountId, oauthClientId, service } } }),
+    createProvider: ({
+      enterpriseAccountId,
+      oauthClientId,
+      service,
+    }: {
+      enterpriseAccountId?: string;
+      oauthClientId?: string;
+      service: Providers;
+    }) => createProvider({ variables: { input: { enterpriseAccountId, oauthClientId, service } } }),
     data,
     loading,
     error,

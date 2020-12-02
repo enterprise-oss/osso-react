@@ -119,6 +119,12 @@ export interface ConfiguredIdentityProvider {
   ssoIssuer: string;
 }
 
+export interface CreateIdentityProviderData {
+  createIdentityProvider: {
+    identityProvider: IdentityProvider;
+  };
+}
+
 enum Status {
   new = 'new',
   active = 'ACTIVE',
