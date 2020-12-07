@@ -13,7 +13,7 @@
     "clean": "rm -rf dist",
     "lint": "eslint ./src",
     "format": "tsc && eslint ./src --fix",
-    "prepare": "npm run build",
+    "prepare": "rollpkg",
     "start": "rollpkg watch",
     "test": "jest"
   },
