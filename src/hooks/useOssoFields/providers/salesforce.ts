@@ -15,7 +15,7 @@ export default {
           readOnly: true,
           copyable: true,
         },
-        pdfProps: { x: 87, y: 135, size: 8 },
+        pdfProps: { x: 52, y: 2464, size: 8 },
       },
       {
         name: 'ssoIssuer',
@@ -26,21 +26,21 @@ export default {
           readOnly: true,
           copyable: true,
         },
-        pdfProps: { x: 87, y: 166 },
+        pdfProps: { x: 52, y: 2411 },
       },
     ],
     appDetails: [
       {
         name: 'contactEmail',
-        pdfProps: { x: 36, y: 322 },
+        pdfProps: { x: 36, y: 388 },
       },
       {
         name: 'name',
-        pdfProps: { x: 311, y: 1126 },
+        pdfProps: { x: 52, y: 2074 },
       },
       {
         name: 'logoUrl',
-        pdfProps: { x: 80, y: 1246 },
+        pdfProps: { x: 52, y: 2233 },
       },
     ],
   },

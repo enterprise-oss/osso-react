@@ -550,21 +550,21 @@ Object {
         "name": "contactEmail",
         "pdfProps": Object {
           "x": 36,
-          "y": 322,
+          "y": 388,
         },
       },
       Object {
         "name": "name",
         "pdfProps": Object {
-          "x": 311,
-          "y": 1126,
+          "x": 52,
+          "y": 2074,
         },
       },
       Object {
         "name": "logoUrl",
         "pdfProps": Object {
-          "x": 80,
-          "y": 1246,
+          "x": 52,
+          "y": 2233,
         },
       },
     ],
@@ -580,8 +580,8 @@ Object {
         "name": "acsUrl",
         "pdfProps": Object {
           "size": 8,
-          "x": 87,
-          "y": 135,
+          "x": 52,
+          "y": 2464,
         },
       },
       Object {
@@ -594,8 +594,8 @@ Object {
         },
         "name": "ssoIssuer",
         "pdfProps": Object {
-          "x": 87,
-          "y": 166,
+          "x": 52,
+          "y": 2411,
         },
       },
     ],

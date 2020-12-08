@@ -136,3 +136,27 @@ describe('for Ping', () => {
     }).not.toThrow();
   });
 });
+
+describe('for Salesforce', () => {
+  test('it writes a PDF', async (done) => {
+    fetch.dontMock();
+    expect(function write() {
+      fs.readFile('__fixtures__/salesforce.pdf', async (err, data) => {
+        if (err) throw err;
+        const uint8Array = new Uint8Array(data);
+        const result = await generateDocumentation(
+          uint8Array,
+          {
+            acsUrl: 'https://example.ossoapp.io/auth/saml/a2533317-1f77-473c-abbb-083d728253c9/callback',
+            ssoIssuer: 'example.com',
+            service: 'SALESFORCE',
+          },
+          appConfig,
+        );
+        const path = `__artifacts__/salesforce-docs.pdf`;
+        fs.writeFileSync(path, result);
+        done();
+      });
+    }).not.toThrow();
+  });
+});
