@@ -1,20 +1,20 @@
 steps:
   - commands: 
-    - "yarn install"
+    - "yarn install --ignore-scripts"
     - "yarn tsc --declaration false --noEmit"
     label: ":typescript:"
 
   - wait
   
   - commands: 
-    - "yarn install"
+    - "yarn install --ignore-scripts"
     - "yarn lint"
     label: ":eslint:"
 
   - wait
   
   - commands: 
-    - "yarn install"
+    - "yarn install --ignore-scripts"
     - "yarn test --collectCoverage"
     label: ":jest:"
     artifact_paths:
@@ -32,7 +32,7 @@ steps:
   - wait
 
   - commands: 
-      - "yarn install"
+      - "yarn install --ignore-scripts"
       - "yarn build"
     label: ":rollup:"
     
@@ -43,7 +43,7 @@ steps:
   
   - name: "Push :npm:"
     commands: 
-    - "yarn install"
+    - "yarn install --ignore-scripts"
     - "yarn build"
     - "npm publish"
     if: build.tag != null
