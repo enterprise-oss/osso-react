@@ -1191,10 +1191,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
   integrity sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==
 
-"@enterprise-oss/osso@^0.0.9-alpha.1":
-  version "0.0.9-alpha.1"
-  resolved "https://registry.yarnpkg.com/@enterprise-oss/osso/-/osso-0.0.9-alpha.1.tgz#303c993f39e91004cf03f0adcecfe7eca982df0c"
-  integrity sha512-B+MiohfsttklCfoP5ryRa3w4yHCSR7MV6CmVsAN23t7Vo0vfwgS7CbD2Tgdn/VLwNzhYn2UaWCARor8ch8Yr3g==
+"@enterprise-oss/osso@^0.0.9-alpha.2":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@enterprise-oss/osso/-/osso-0.0.9.tgz#c8e94e442c686e9b5d9d4e568f3bc276fe1f5a7a"
+  integrity sha512-ramlqaVea1m3ooTs4KTIpXuB5Rs1+goWoheSCGSc8pZz9U1NySmLfheBlnuaaJOlcGZkeziUxtPzvngdS/qXaA==
   dependencies:
     "@apollo/client" "^3.0.0-rc.10"
     "@pdf-lib/fontkit" "^1.0.0"
@@ -5567,9 +5567,9 @@ inherits@2.0.3:
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
 ini@^1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
-  integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.7.tgz#a09363e1911972ea16d7a8851005d84cf09a9a84"
+  integrity sha512-iKpRpXP+CrP2jyrxvg1kMUpXDyRUFDWurxbnVT1vQPx+Wz9uCYsMIqYuSBLV+PAaZG/d7kRLKRFc9oDMsH+mFQ==
 
 inquirer@7.0.4:
   version "7.0.4"
