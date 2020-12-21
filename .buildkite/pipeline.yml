@@ -24,6 +24,7 @@ steps:
   - wait
 
   - name: ":codeclimate:"
+    soft_fail: true
     plugins:
       - jobready/codeclimate-test-reporter#v2.0:
           artifact: "coverage/lcov.info"
