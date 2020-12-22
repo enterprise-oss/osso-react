@@ -5104,9 +5104,9 @@ path-type@^4.0.0:
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
 pdf-lib@^1.12.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/pdf-lib/-/pdf-lib-1.13.0.tgz#5442ecf7c32e7cbef3a22dab0acdf72bf65f0225"
-  integrity sha512-OO6HMcrXRYJi3np77znd1i1BBDxRDBTREthQjeXLtkJw3SO7TUPk47G8yHNGC+zpo8PDUWjECx8HM+b48RfxbA==
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/pdf-lib/-/pdf-lib-1.14.0.tgz#004ed461b2ac7a515319a266302d77df07ba0668"
+  integrity sha512-Q3t3bqSeTifCE5cB6G8l2TVvcNA6UNwxt9SDWhkWVDk1HTCV4uM0stNDEmdpdlLgEGCs9gXrCT27kcot6dUsRA==
   dependencies:
     "@pdf-lib/standard-fonts" "^1.0.0"
     "@pdf-lib/upng" "^1.0.1"
