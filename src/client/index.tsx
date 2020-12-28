@@ -1,4 +1,5 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, ServerError } from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
 import { relayStylePagination } from '@apollo/client/utilities';
 import gql from 'graphql-tag';
 import React, { createContext, ReactElement, useState } from 'react';
@@ -55,9 +56,15 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
     headers,
   });
 
+  const unauthorizedLink = onError(({ networkError }) => {
+    if ((networkError as ServerError)?.statusCode === 401) {
+      clientOptions?.onUnauthorized?.();
+    }
+  });
+
   const client = new ApolloClient({
     cache,
-    link,
+    link: unauthorizedLink.concat(link),
     defaultOptions: {
       query: {
         fetchPolicy: 'cache-first',
