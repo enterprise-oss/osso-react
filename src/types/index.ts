@@ -157,6 +157,7 @@ export type OssoClientOptions = {
   baseUrl?: string;
   cors?: string;
   jwt?: string;
+  onUnauthorized?: () => void;
 };
 
 export type OssoContextValue = {

@@ -58,7 +58,7 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
 
   const unauthorizedLink = onError(({ networkError }) => {
     if ((networkError as ServerError)?.statusCode === 401) {
-      window.location.href = '/login';
+      clientOptions?.onUnauthorized?.();
     }
   });
 
