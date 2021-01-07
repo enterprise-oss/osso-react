@@ -30,5 +30,5 @@ describe('client context', () => {
 
 test('throws an error when used outside of an <OssoProvider>', () => {
   const { result } = renderHook(() => useOAuthClients());
-  expect(result.error.message).toContain('useAdminUsers must be used inside an OssoProvider');
+  expect(result?.error?.message).toContain('useAdminUsers must be used inside an OssoProvider');
 });
