@@ -30,5 +30,5 @@ describe('client context', () => {
 
 test('throws an error when used outside of an <OssoProvider>', () => {
   const { result } = renderHook(() => useIdentityProvider('id'));
-  expect(result.error.message).toContain('useIdentityProvider must be used inside an OssoProvider');
+  expect(result?.error?.message).toContain('useIdentityProvider must be used inside an OssoProvider');
 });
