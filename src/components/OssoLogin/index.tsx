@@ -1,7 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useOssoLogin } from '~hooks';
-import { IdentityProvider, IdentityProviderStatus } from '~types';
 
 import { OssoButtonComponentProps, OssoInputProps } from './index.types';
 
@@ -10,25 +9,32 @@ export default function OssoLogin({
   InputComponent,
   containerClass,
   submitText,
+  onSamlFound,
   onSubmitPassword,
-  oauthEndpoint,
 }: {
   ButtonComponent: React.FC<OssoButtonComponentProps>;
   InputComponent: React.FC<OssoInputProps>;
   containerClass?: string;
   submitText: string;
+  onSamlFound: (email: string) => Promise<void>;
   onSubmitPassword: (email: string, password: string) => Promise<void>;
-  oauthEndpoint: string;
 }): ReactElement {
   const [email, setEmail] = useState('');
   const [isPasswordUser, setIsPasswordUser] = useState(false);
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const { providerExists, data, loading, called } = useOssoLogin();
+  const { providerExists, loading, called } = useOssoLogin();
 
-  const submitEmail = () => {
+  const submitEmail = async () => {
     setSubmitting(true);
-    providerExists(email.split('@')[1]);
+    const hasProvider = await providerExists(email.split('@')[1]);
+
+    if (hasProvider) {
+      onSamlFound(email);
+    } else if (called) {
+      setSubmitting(false);
+      setIsPasswordUser(true);
+    }
   };
 
   const submitPassword = () => {
@@ -37,18 +43,6 @@ export default function OssoLogin({
       setSubmitting(false);
     });
   };
-
-  const hasProvider = data?.enterpriseAccount?.identityProviders?.some(
-    (provider: IdentityProvider) => provider.status !== IdentityProviderStatus.pending,
-  );
-
-  useEffect(() => {
-    if (hasProvider) {
-      window.location.assign(`${oauthEndpoint}?email=${email}`);
-    } else if (called) {
-      setIsPasswordUser(true);
-    }
-  }, [data]);
 
   useEffect(() => {
     setSubmitting(called && loading);
@@ -92,5 +86,4 @@ OssoLogin.defaultProps = {
   InputComponent: HTMLInputComponent,
   containerStyle: undefined,
   submitText: 'Submit',
-  oauthEndpoint: '/auth/osso',
 };

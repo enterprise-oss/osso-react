@@ -52,7 +52,6 @@ const buildClient = (clientOptions?: OssoClientOptions) => {
 
   const link = new HttpLink({
     uri,
-    credentials: clientOptions?.jwt ? undefined : 'include',
     headers,
   });
 
