@@ -81,6 +81,7 @@ export default function Login() {
             console.warn(`Submit a request to sign the user in to your server. Email: ${email}, Password: ${password}`);
             return Promise.resolve();
           }}
+          onSamlFound={(email) => (window.location = `/auth/osso?email=${email}`)}
         />
       </div>
       <Box mt={8}>
