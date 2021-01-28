@@ -1,47 +1,46 @@
-import { ApolloError, useLazyQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import OssoContext from '~/client';
 
-import { EnterpriseAccount } from './index.types';
-
-export const ACCOUNT_QUERY = gql`
-  query EnterpriseAccount($domain: String!) {
-    enterpriseAccount(domain: $domain) {
-      id
-      domain
-      name
-      status
-      identityProviders {
-        id
-        domain
-        status
-      }
-    }
-  }
-`;
-
 export type UseOssoLoginReturnTuple = {
-  providerExists: (domain: string) => void;
-  data: { enterpriseAccount?: EnterpriseAccount };
+  providerExists: (domain: string) => Promise<boolean>;
   called: boolean;
   loading: boolean;
-  error?: ApolloError;
 };
 
 const useOssoLogin = (): UseOssoLoginReturnTuple => {
-  const { client } = useContext(OssoContext);
+  const { baseUrl } = useContext(OssoContext);
+  const [called, setCalled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  if (client === undefined) {
+  if (baseUrl === undefined) {
     throw new Error('useOssoLogin must be used inside an OssoProvider');
   }
-  const [providerExists, { called, loading, data }] = useLazyQuery(ACCOUNT_QUERY, { client });
+
+  const providerExists = async (domain: string): Promise<boolean> => {
+    setCalled(true);
+    setLoading(true);
+
+    return fetch(`${baseUrl}/idp`, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        domain,
+      }),
+    })
+      .then((res) => res.json())
+      .then(({ onboarded }) => {
+        setLoading(false);
+        return Boolean(onboarded);
+      });
+  };
 
   return {
-    providerExists: (domain: string) => providerExists({ variables: { domain } }),
+    providerExists: async (domain: string) => providerExists(domain),
     called,
-    data,
     loading,
   };
 };

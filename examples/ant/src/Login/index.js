@@ -28,6 +28,7 @@ export default function Login() {
             </Button>
           )}
           InputComponent={(props) => <InputComponent {...props} />}
+          onSamlFound={(email) => (window.location = `/auth/osso?email=${email}`)}
           onSubmitPassword={(email, password) => {
             console.warn(`Submit a request to sign the user in to your server. Email: ${email}, Password: ${password}`);
             return Promise.resolve();
