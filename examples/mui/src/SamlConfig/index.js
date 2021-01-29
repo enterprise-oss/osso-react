@@ -44,6 +44,7 @@ function App() {
   const [provider, setProvider] = useState('');
   const { providers } = useOssoFields();
   const { data } = useEnterpriseAccount('example.com');
+  const oauthClientId = data?.enterpriseAccount?.identityProviders?.[0]?.oauthClient?.id;
 
   const { createProvider, data: idpData } = createIdentityProvider();
   const identityProvider = idpData?.createIdentityProvider?.identityProvider;
@@ -76,7 +77,7 @@ function App() {
                   style={{ marginTop: 24 }}
                   color="primary"
                   onClick={() => {
-                    createProvider(data?.enterpriseAccount.id, provider).then(() => {
+                    createProvider(data?.enterpriseAccount.id, oauthClientId, provider).then(() => {
                       setStep(2);
                     });
                   }}
