@@ -4,13 +4,11 @@ import OssoContext from '~/client';
 
 export type UseOssoLoginReturnTuple = {
   providerExists: (domain: string) => Promise<boolean>;
-  called: boolean;
   loading: boolean;
 };
 
 const useOssoLogin = (): UseOssoLoginReturnTuple => {
   const { baseUrl } = useContext(OssoContext);
-  const [called, setCalled] = useState(false);
   const [loading, setLoading] = useState(false);
 
   if (baseUrl === undefined) {
@@ -18,7 +16,6 @@ const useOssoLogin = (): UseOssoLoginReturnTuple => {
   }
 
   const providerExists = async (domain: string): Promise<boolean> => {
-    setCalled(true);
     setLoading(true);
 
     return fetch(`${baseUrl}/idp`, {
@@ -33,14 +30,13 @@ const useOssoLogin = (): UseOssoLoginReturnTuple => {
     })
       .then((res) => res.json())
       .then(({ onboarded }) => {
-        setLoading(false);
+        setLoading(onboarded);
         return Boolean(onboarded);
       });
   };
 
   return {
     providerExists: async (domain: string) => providerExists(domain),
-    called,
     loading,
   };
 };

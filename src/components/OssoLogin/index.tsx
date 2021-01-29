@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import { useOssoLogin } from '~hooks';
 
@@ -21,20 +21,25 @@ export default function OssoLogin({
 }): ReactElement {
   const [email, setEmail] = useState('');
   const [isPasswordUser, setIsPasswordUser] = useState(false);
-  const [password, setPassword] = useState('');
+  const [password, setPasswordValue] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const { providerExists, loading, called } = useOssoLogin();
+  const { providerExists } = useOssoLogin();
 
   const submitEmail = async () => {
     setSubmitting(true);
     const hasProvider = await providerExists(email.split('@')[1]);
 
     if (hasProvider) {
-      onSamlFound(email);
-    } else if (called) {
-      setSubmitting(false);
-      setIsPasswordUser(true);
+      return onSamlFound(email);
     }
+
+    setSubmitting(false);
+    setIsPasswordUser(true);
+  };
+
+  const setPassword = (value: string) => {
+    setIsPasswordUser(Boolean(value));
+    setPasswordValue(value);
   };
 
   const submitPassword = () => {
@@ -43,10 +48,6 @@ export default function OssoLogin({
       setSubmitting(false);
     });
   };
-
-  useEffect(() => {
-    setSubmitting(called && loading);
-  }, [loading, called]);
 
   return (
     <form
@@ -65,9 +66,15 @@ export default function OssoLogin({
         autoComplete="email"
         required={true}
       />
-      {isPasswordUser && (
+      <div
+        style={{
+          height: isPasswordUser ? 'auto' : 0,
+          overflow: 'hidden',
+        }}
+      >
         <InputComponent value={password} onChange={setPassword} type="password" label="Password" id="osso-password" />
-      )}
+      </div>
+
       <ButtonComponent type="submit" disabled={submitting}>
         {submitText}
       </ButtonComponent>

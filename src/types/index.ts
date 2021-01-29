@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
-import { ReactElement } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 
 export type AppConfig = {
   name?: string;
@@ -54,6 +54,7 @@ export interface OssoInputProps {
   name?: string;
   value?: string;
   error?: any;
+  style?: CSSProperties;
   autoComplete?: 'email' | 'password';
   type: 'text' | 'textarea' | 'file' | 'password' | 'email';
   readOnly?: boolean;
