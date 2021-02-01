@@ -14,6 +14,7 @@ export enum Providers {
   Google = 'GOOGLE',
   Ping = 'PING',
   Salesforce = 'SALESFORCE',
+  Other = 'Other',
 }
 
 export type ProviderOption = {
