@@ -3,6 +3,8 @@ import { OssoProvider, Providers } from '../index.types';
 export default {
   value: Providers.OneLogin,
   label: 'OneLogin',
+  primary: true,
+  description: 'OneLogin cloud based Identity Provider',
   iconUrl: 'https://assets.ossoapp.io/icons/one-login.svg',
   ossoGeneratedFields: {
     manual: [

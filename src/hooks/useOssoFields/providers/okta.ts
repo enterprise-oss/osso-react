@@ -3,6 +3,8 @@ import { OssoProvider, Providers } from '../index.types';
 export default {
   value: Providers.Okta,
   label: 'Okta',
+  primary: true,
+  description: 'Okta cloud-based Identity Provider',
   iconUrl: 'https://assets.ossoapp.io/icons/okta.svg',
   ossoGeneratedFields: {
     manual: [

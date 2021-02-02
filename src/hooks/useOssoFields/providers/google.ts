@@ -3,6 +3,8 @@ import { OssoProvider, Providers } from '../index.types';
 export default {
   value: Providers.Google,
   label: 'Google (SAML)',
+  primary: true,
+  description: 'Google Workspace SAML app',
   iconUrl: 'https://assets.ossoapp.io/icons/google.svg',
   ossoGeneratedFields: {
     manual: [

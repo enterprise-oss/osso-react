@@ -3,6 +3,8 @@ import { OssoProvider, Providers } from '../index.types';
 export default {
   value: Providers.Salesforce,
   label: 'Salesforce',
+  primary: true,
+  description: 'Salesforce.com instance as an Identity Provider',
   iconUrl: 'https://assets.ossoapp.io/icons/salesforce.svg',
   ossoGeneratedFields: {
     manual: [

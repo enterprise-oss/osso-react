@@ -3,6 +3,8 @@ import { OssoProvider, Providers } from '../index.types';
 export default {
   value: Providers.Azure,
   label: 'Azure',
+  description: 'Azure AD or on premise ADFS from Microsoft',
+  primary: true,
   iconUrl: 'https://assets.ossoapp.io/icons/azure.svg',
   ossoGeneratedFields: {
     manual: [
