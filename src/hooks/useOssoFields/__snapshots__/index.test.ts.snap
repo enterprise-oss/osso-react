@@ -2,6 +2,7 @@
 
 exports[`fieldsForProvider it returns the expected fields for each provider 1`] = `
 Object {
+  "description": "Azure AD or on premise ADFS from Microsoft",
   "iconUrl": "https://assets.ossoapp.io/icons/azure.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
@@ -85,6 +86,7 @@ Object {
       },
     ],
   },
+  "primary": true,
   "serviceProviderMetadata": false,
   "value": "AZURE",
 }
@@ -92,6 +94,121 @@ Object {
 
 exports[`fieldsForProvider it returns the expected fields for each provider 2`] = `
 Object {
+  "description": "Customer IDP not listed - use generic SAML",
+  "iconUrl": "https://assets.ossoapp.io/icons/saml.svg",
+  "idpGeneratedFields": Object {
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-generic-saml-sso-url",
+          "label": "Identity Provider Single Sign-On URL",
+          "readOnly": false,
+          "type": "text",
+        },
+        "name": "ssoUrl",
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": false,
+          "id": "osso-generic-saml-sso-cert",
+          "label": "X.509 Certificate",
+          "readOnly": false,
+          "type": "textarea",
+        },
+        "name": "ssoCert",
+      },
+    ],
+    "metadataXml": Object {
+      "accept": ".xml",
+      "copyable": false,
+      "id": "osso-generic-saml-metadata-xml",
+      "label": "Metadata XML",
+      "readOnly": false,
+      "type": "textarea",
+    },
+  },
+  "label": "Generic SAML 2.0",
+  "ossoGeneratedFields": Object {
+    "appDetails": Array [
+      Object {
+        "name": "contactEmail",
+        "pdfProps": Object {
+          "x": 36,
+          "y": 396,
+        },
+      },
+      Object {
+        "name": "name",
+        "pdfProps": Object {
+          "x": 324,
+          "y": 737,
+        },
+      },
+      Object {
+        "name": "logoUrl",
+        "pdfProps": Object {
+          "x": 80,
+          "y": 805,
+        },
+      },
+    ],
+    "manual": Array [
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-generic-saml-entity-id",
+          "label": "Entity ID",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "ssoIssuer",
+        "pdfProps": Object {
+          "x": 56,
+          "y": 1049,
+        },
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-generic-saml-acs-url",
+          "label": "Single sign on URL",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrl",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 56,
+          "y": 1102,
+        },
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-generic-saml-acs-url-validator",
+          "label": "ACS URL Validator",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "acsUrlValidator",
+        "pdfProps": Object {
+          "size": 8,
+          "x": 56,
+          "y": 1155,
+        },
+      },
+    ],
+  },
+  "primary": false,
+  "serviceProviderMetadata": false,
+  "value": "OTHER",
+}
+`;
+
+exports[`fieldsForProvider it returns the expected fields for each provider 3`] = `
+Object {
+  "description": "Google Workspace SAML app",
   "iconUrl": "https://assets.ossoapp.io/icons/google.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
@@ -182,13 +299,15 @@ Object {
       },
     ],
   },
+  "primary": true,
   "serviceProviderMetadata": false,
   "value": "GOOGLE",
 }
 `;
 
-exports[`fieldsForProvider it returns the expected fields for each provider 3`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 4`] = `
 Object {
+  "description": "Okta cloud-based Identity Provider",
   "iconUrl": "https://assets.ossoapp.io/icons/okta.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
@@ -279,13 +398,15 @@ Object {
       },
     ],
   },
+  "primary": true,
   "serviceProviderMetadata": false,
   "value": "OKTA",
 }
 `;
 
-exports[`fieldsForProvider it returns the expected fields for each provider 4`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 5`] = `
 Object {
+  "description": "OneLogin cloud based Identity Provider",
   "iconUrl": "https://assets.ossoapp.io/icons/one-login.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
@@ -406,13 +527,15 @@ Object {
       },
     ],
   },
+  "primary": true,
   "serviceProviderMetadata": false,
   "value": "ONELOGIN",
 }
 `;
 
-exports[`fieldsForProvider it returns the expected fields for each provider 5`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 6`] = `
 Object {
+  "description": "PingID cloud identity provider",
   "iconUrl": "https://assets.ossoapp.io/icons/ping.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
@@ -503,13 +626,15 @@ Object {
       },
     ],
   },
+  "primary": true,
   "serviceProviderMetadata": false,
   "value": "PING",
 }
 `;
 
-exports[`fieldsForProvider it returns the expected fields for each provider 6`] = `
+exports[`fieldsForProvider it returns the expected fields for each provider 7`] = `
 Object {
+  "description": "Salesforce.com instance as an Identity Provider",
   "iconUrl": "https://assets.ossoapp.io/icons/salesforce.svg",
   "idpGeneratedFields": Object {
     "manual": Array [
@@ -600,6 +725,7 @@ Object {
       },
     ],
   },
+  "primary": true,
   "serviceProviderMetadata": false,
   "value": "SALESFORCE",
 }
@@ -608,33 +734,52 @@ Object {
 exports[`providers contains an array of Identity Providers in the tuple 1`] = `
 Array [
   Object {
+    "description": "Azure AD or on premise ADFS from Microsoft",
     "iconUrl": "https://assets.ossoapp.io/icons/azure.svg",
     "label": "Azure",
+    "primary": true,
     "value": "AZURE",
   },
   Object {
+    "description": "Customer IDP not listed - use generic SAML",
+    "iconUrl": "https://assets.ossoapp.io/icons/saml.svg",
+    "label": "Generic SAML 2.0",
+    "primary": false,
+    "value": "OTHER",
+  },
+  Object {
+    "description": "Google Workspace SAML app",
     "iconUrl": "https://assets.ossoapp.io/icons/google.svg",
     "label": "Google (SAML)",
+    "primary": true,
     "value": "GOOGLE",
   },
   Object {
+    "description": "Okta cloud-based Identity Provider",
     "iconUrl": "https://assets.ossoapp.io/icons/okta.svg",
     "label": "Okta",
+    "primary": true,
     "value": "OKTA",
   },
   Object {
+    "description": "OneLogin cloud based Identity Provider",
     "iconUrl": "https://assets.ossoapp.io/icons/one-login.svg",
     "label": "OneLogin",
+    "primary": true,
     "value": "ONELOGIN",
   },
   Object {
+    "description": "PingID cloud identity provider",
     "iconUrl": "https://assets.ossoapp.io/icons/ping.svg",
     "label": "Ping",
+    "primary": true,
     "value": "PING",
   },
   Object {
+    "description": "Salesforce.com instance as an Identity Provider",
     "iconUrl": "https://assets.ossoapp.io/icons/salesforce.svg",
     "label": "Salesforce",
+    "primary": true,
     "value": "SALESFORCE",
   },
 ]

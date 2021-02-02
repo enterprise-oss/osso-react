@@ -3,6 +3,8 @@ import { OssoProvider, Providers } from '../index.types';
 export default {
   value: Providers.Ping,
   label: 'Ping',
+  primary: true,
+  description: 'PingID cloud identity provider',
   iconUrl: 'https://assets.ossoapp.io/icons/ping.svg',
   ossoGeneratedFields: {
     manual: [

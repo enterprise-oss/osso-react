@@ -14,12 +14,15 @@ export enum Providers {
   Google = 'GOOGLE',
   Ping = 'PING',
   Salesforce = 'SALESFORCE',
+  Other = 'OTHER',
 }
 
 export type ProviderOption = {
   value: Providers;
   label: string;
+  description: string;
   iconUrl: string;
+  primary: boolean;
 };
 
 export type OssoButtonComponentProps = {
@@ -86,6 +89,8 @@ export type IdpGeneratedFields<T extends IdpGeneratedFieldKeys> = {
 export type OssoProvider = {
   value: Providers;
   label: string;
+  description: string;
+  primary: boolean;
   iconUrl: string;
   ossoGeneratedFields: OssoGeneratedFields<Partial<OssoGeneratedFieldKeys>>;
   idpGeneratedFields: IdpGeneratedFields<Partial<IdpGeneratedFieldKeys>>;

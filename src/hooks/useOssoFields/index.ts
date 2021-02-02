@@ -9,6 +9,8 @@ const providers: ProviderOption[] = Object.values(allProviders).map((provider) =
   value: provider.value,
   iconUrl: provider.iconUrl,
   label: provider.label,
+  primary: provider.primary,
+  description: provider.description,
 }));
 
 const useOssoFields = (): {

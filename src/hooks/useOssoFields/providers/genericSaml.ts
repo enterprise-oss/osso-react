@@ -1,83 +1,68 @@
 import { OssoProvider, Providers } from '../index.types';
 
 export default {
-  value: Providers.OneLogin,
-  label: 'OneLogin',
-  primary: true,
-  description: 'OneLogin cloud based Identity Provider',
-  iconUrl: 'https://assets.ossoapp.io/icons/one-login.svg',
+  value: Providers.Other,
+  label: 'Generic SAML 2.0',
+  description: 'Customer IDP not listed - use generic SAML',
+  primary: false,
+  iconUrl: 'https://assets.ossoapp.io/icons/saml.svg',
   ossoGeneratedFields: {
     manual: [
       {
+        name: 'ssoIssuer',
+        inputProps: {
+          id: 'osso-generic-saml-entity-id',
+          label: 'Entity ID',
+          type: 'text',
+          readOnly: true,
+          copyable: true,
+        },
+        pdfProps: { x: 56, y: 1049 },
+      },
+      {
         name: 'acsUrl',
         inputProps: {
-          id: 'osso-one-login-acs-url',
+          id: 'osso-generic-saml-acs-url',
           label: 'Single sign on URL',
           type: 'text',
           readOnly: true,
           copyable: true,
         },
-        pdfProps: { x: 56, y: 1713, size: 8 },
+        pdfProps: { x: 56, y: 1102, size: 8 },
       },
-      {
-        name: 'ssoIssuer',
-        inputProps: {
-          id: 'osso-one-login-entity-id',
-          label: 'Audience URI (SP Entity ID)',
-          type: 'text',
-          readOnly: true,
-          copyable: true,
-        },
-        pdfProps: { x: 56, y: 1554 },
-      },
-
       {
         name: 'acsUrlValidator',
         inputProps: {
-          id: 'osso-one-login-acs-url-validator',
+          id: 'osso-generic-saml-acs-url-validator',
           label: 'ACS URL Validator',
           type: 'text',
           readOnly: true,
           copyable: true,
         },
-        pdfProps: { x: 56, y: 1660, size: 8 },
-      },
-      {
-        name: 'acsUrl',
-        inputProps: {
-          id: 'osso-one-login-recipient',
-          label: 'Recipient',
-          type: 'text',
-          readOnly: true,
-          copyable: true,
-        },
-        pdfProps: { x: 56, y: 1607, size: 8 },
+        pdfProps: { x: 56, y: 1155, size: 8 },
       },
     ],
     appDetails: [
       {
         name: 'contactEmail',
-        pdfProps: {
-          x: 42,
-          y: 389,
-        },
+        pdfProps: { x: 36, y: 396 },
       },
       {
         name: 'name',
-        pdfProps: { x: 326, y: 1044 },
+        pdfProps: { x: 324, y: 737 },
       },
       {
         name: 'logoUrl',
-        pdfProps: { x: 81, y: 1164 },
+        pdfProps: { x: 80, y: 805 },
       },
     ],
   },
   idpGeneratedFields: {
     metadataXml: {
       accept: '.xml',
-      id: 'osso-one-login-metadata-xml',
+      id: 'osso-generic-saml-metadata-xml',
       label: 'Metadata XML',
-      type: 'file',
+      type: 'textarea',
       readOnly: false,
       copyable: false,
     },
@@ -85,7 +70,7 @@ export default {
       {
         name: 'ssoUrl',
         inputProps: {
-          id: 'osso-one-login-sso-url',
+          id: 'osso-generic-saml-sso-url',
           label: 'Identity Provider Single Sign-On URL',
           type: 'text',
           readOnly: false,
@@ -95,7 +80,7 @@ export default {
       {
         name: 'ssoCert',
         inputProps: {
-          id: 'osso-one-login-sso-cert',
+          id: 'osso-generic-saml-sso-cert',
           label: 'X.509 Certificate',
           type: 'textarea',
           readOnly: false,
