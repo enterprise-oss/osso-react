@@ -101,7 +101,7 @@ Object {
       Object {
         "inputProps": Object {
           "copyable": false,
-          "id": "osso-salesforce-sso-url",
+          "id": "osso-generic-saml-sso-url",
           "label": "Identity Provider Single Sign-On URL",
           "readOnly": false,
           "type": "text",
@@ -111,7 +111,7 @@ Object {
       Object {
         "inputProps": Object {
           "copyable": false,
-          "id": "osso-salesforce-sso-cert",
+          "id": "osso-generic-saml-sso-cert",
           "label": "X.509 Certificate",
           "readOnly": false,
           "type": "textarea",
@@ -122,7 +122,7 @@ Object {
     "metadataXml": Object {
       "accept": ".xml",
       "copyable": false,
-      "id": "osso-salesforce-metadata-xml",
+      "id": "osso-generic-saml-metadata-xml",
       "label": "Metadata XML",
       "readOnly": false,
       "type": "textarea",
@@ -135,21 +135,21 @@ Object {
         "name": "contactEmail",
         "pdfProps": Object {
           "x": 36,
-          "y": 388,
+          "y": 396,
         },
       },
       Object {
         "name": "name",
         "pdfProps": Object {
-          "x": 52,
-          "y": 2074,
+          "x": 324,
+          "y": 737,
         },
       },
       Object {
         "name": "logoUrl",
         "pdfProps": Object {
-          "x": 52,
-          "y": 2233,
+          "x": 80,
+          "y": 805,
         },
       },
     ],
@@ -157,30 +157,45 @@ Object {
       Object {
         "inputProps": Object {
           "copyable": true,
-          "id": "osso-salesforce-acs-url",
-          "label": "ACS URL",
+          "id": "osso-generic-saml-entity-id",
+          "label": "Entity ID",
+          "readOnly": true,
+          "type": "text",
+        },
+        "name": "ssoIssuer",
+        "pdfProps": Object {
+          "x": 56,
+          "y": 1049,
+        },
+      },
+      Object {
+        "inputProps": Object {
+          "copyable": true,
+          "id": "osso-generic-saml-acs-url",
+          "label": "Single sign on URL",
           "readOnly": true,
           "type": "text",
         },
         "name": "acsUrl",
         "pdfProps": Object {
           "size": 8,
-          "x": 52,
-          "y": 2464,
+          "x": 56,
+          "y": 1102,
         },
       },
       Object {
         "inputProps": Object {
           "copyable": true,
-          "id": "osso-salesforce-entity-id",
-          "label": "Entity Id",
+          "id": "osso-generic-saml-acs-url-validator",
+          "label": "ACS URL Validator",
           "readOnly": true,
           "type": "text",
         },
-        "name": "ssoIssuer",
+        "name": "acsUrlValidator",
         "pdfProps": Object {
-          "x": 52,
-          "y": 2411,
+          "size": 8,
+          "x": 56,
+          "y": 1155,
         },
       },
     ],
